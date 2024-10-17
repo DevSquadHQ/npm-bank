@@ -9,7 +9,7 @@ export default function Button(props) {
     onClick,
   } = props;
 
-  const primaryClass = "bg-button";
+  const primaryClass = "bg-button ";
   const outlinedClass =
     "border-button border text-button hover:border-transparent hover:bg-button hover:text-white duration-100";
   const fullWidthClass = "w-full";
