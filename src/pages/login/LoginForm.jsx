@@ -17,7 +17,11 @@ export default function LoginForm() {
     const id = e.target.id;
     const value = e.target.value;
     setUserInfo((prevState) => ({ ...prevState, [id]: value }));
- 
+  };
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    setStep(1);
   };
 
   return (
@@ -25,7 +29,11 @@ export default function LoginForm() {
       {step === 1 ? (
         <FirstForm handleSubmit={handleSubmit} handleChange={handleChange} />
       ) : (
-        <SecondForm handleSubmit={handleSubmit} handleChange={handleChange} />
+        <SecondForm
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          handleBack={handleBack}
+        />
       )}
     </>
   );
@@ -59,7 +67,7 @@ function FirstForm(props) {
   );
 }
 function SecondForm(props) {
-  const { handleChange, handleSubmit } = props;
+  const { handleChange, handleSubmit ,handleBack} = props;
 
   return (
     <form action="" className="space-y-5" onSubmit={handleSubmit}>
@@ -84,7 +92,13 @@ function SecondForm(props) {
         onChange={handleChange}
         type="email"
       />
-      <Button label="ادامه" />
+      <Button label="ثبت نام"/>
+      <Button
+        variant="outlined"
+        label="بازگشت"
+        type="button"
+        onClick={handleBack}
+      />
     </form>
   );
 }
