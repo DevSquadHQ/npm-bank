@@ -1,7 +1,10 @@
-import React from 'react'
+import SignUpForm from "./SignUpForm";
+import { Form } from "@/components/form";
 
 export default function SignUp() {
   return (
-    <div>SignUp</div>
-  )
+    <Form title="ایجاد حساب کاربری">
+      <SignUpForm />
+    </Form>
+  );
 }

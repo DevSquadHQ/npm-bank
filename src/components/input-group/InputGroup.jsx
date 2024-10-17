@@ -10,7 +10,8 @@ export default function InputGroup(props) {
         type={type}
         name={id}
         placeholder={placeholder}
-        className="bg-input  rounded-[8px] py-4 px-5 border-[#4B5563] h-[42px]"
+        className="bg-input  rounded-[8px] py-4 px-5 border-[#4B5563] h-[42px] outline-none"
+        autoComplete="new-password"
         required
       />
     </div>
