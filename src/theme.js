@@ -1,12 +1,14 @@
 
 
 import { createTheme } from "@mui/material";
+import { dark } from "@mui/material/styles/createPalette";
 
 const theme = createTheme({
   typography: {
     fontFamily: '"Vazirmatn", "Roboto", "Helvetica", "Arial", sans-serif',
   },
   palette: {
+    mode:"dark",
     background: {
       default: '#111928', // App background color
     },
