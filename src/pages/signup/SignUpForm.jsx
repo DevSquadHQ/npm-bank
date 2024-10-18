@@ -3,6 +3,10 @@ import { InputGroup } from "@/components/input-group";
 import { Button } from "@/components/button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import InputIcon from "react-multi-date-picker/components/input_icon";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
@@ -99,13 +103,22 @@ function SecondForm(props) {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-5 grow">
-        <InputGroup
+        {/* <InputGroup
           label="تاریخ تولد"
           id="birthdate"
           placeholder="انتخاب تاریخ"
           type="date"
           register={register}
           errors={errors}
+        /> */}
+        <DatePicker
+          value="1403/08/1"
+          render={<InputIcon />}
+          minDate="1385/08/1"
+          calendar={persian}
+          locale={persian_fa}
+          format={"YYYY/MM/DD"}
+          calendarPosition="bottom-left"
         />
         <InputGroup
           label="شماره موبایل"

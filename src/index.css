@@ -1,6 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-    font-family: 'vazir';
+body {
+  font-family: "vazir";
+}
+.rmdp-container {
+  width: 100%;
+  padding: 1rem 0.75rem !important;
+  background-color: #374151 !important;
+  border-radius: 8px !important;
+}
+.rmdp-input {
+  background-color: transparent !important;
+  outline: 2px solid transparent!important;
+  box-shadow:none!important;
+  padding: 0 !important;
+  border-color: transparent !important;
+  width: 100%;
 }
