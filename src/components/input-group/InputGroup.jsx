@@ -3,7 +3,6 @@ export default function InputGroup(props) {
     label,
     id,
     placeholder,
-    onChange,
     type = "text",
     register,
     errors,
@@ -86,7 +85,6 @@ export default function InputGroup(props) {
       <div className="flex flex-col text-white space-y-4">
         <label htmlFor={id}>{label}</label>
         <input
-          onChange={onChange}
           id={id}
           type={type}
           name={id}

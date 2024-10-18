@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
-  const [userInfo, setUserInfo] = useState({});
+
   const navigate = useNavigate();
   const {
     register,
@@ -15,17 +15,9 @@ export default function SignUpForm() {
   } = useForm();
 
   const onSubmit = (data) => {
-    // e.preventDefault();
     console.log(data);
-    // e.target.reset();
 
     step === 1 ? setStep(2) : navigate("/login");
-  };
-
-  const handleChange = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
-    setUserInfo((prevState) => ({ ...prevState, [id]: value }));
   };
 
   const handleBack = (e) => {
@@ -38,7 +30,6 @@ export default function SignUpForm() {
       {step === 1 ? (
         <FirstForm
           onSubmit={onSubmit}
-          handleChange={handleChange}
           handleSubmit={handleSubmit}
           register={register}
           errors={errors}
@@ -46,7 +37,6 @@ export default function SignUpForm() {
       ) : (
         <SecondForm
           onSubmit={onSubmit}
-          handleChange={handleChange}
           handleBack={handleBack}
           handleSubmit={handleSubmit}
           register={register}
@@ -58,7 +48,7 @@ export default function SignUpForm() {
 }
 
 function FirstForm(props) {
-  const { handleChange, onSubmit, handleSubmit, register, errors } = props;
+  const { onSubmit, handleSubmit, register, errors } = props;
 
   return (
     <form
@@ -71,7 +61,6 @@ function FirstForm(props) {
           label="نام"
           id="name"
           placeholder="لطفا نام خود را وارد کنید"
-          onChange={handleChange}
           register={register}
           errors={errors}
         />
@@ -79,7 +68,6 @@ function FirstForm(props) {
           label="نام خانوادگی"
           id="lastName"
           placeholder="لطفا نام خانوادگی خود را وارد کنید"
-          onChange={handleChange}
           register={register}
           errors={errors}
         />
@@ -87,7 +75,6 @@ function FirstForm(props) {
           label="کد ملی"
           id="nationalCode"
           placeholder="لطفا کد ملی خود را وارد کنید"
-          onChange={handleChange}
           register={register}
           errors={errors}
         />
@@ -103,8 +90,7 @@ function FirstForm(props) {
   );
 }
 function SecondForm(props) {
-  const { handleChange, onSubmit, handleBack, handleSubmit, register, errors } =
-    props;
+  const { onSubmit, handleBack, handleSubmit, register, errors } = props;
 
   return (
     <form
@@ -117,7 +103,6 @@ function SecondForm(props) {
           label="تاریخ تولد"
           id="birthdate"
           placeholder="انتخاب تاریخ"
-          onChange={handleChange}
           type="date"
           register={register}
           errors={errors}
@@ -126,7 +111,6 @@ function SecondForm(props) {
           label="شماره موبایل"
           id="PhoneNumber"
           placeholder="مثال 09121212121"
-          onChange={handleChange}
           type="tel"
           register={register}
           errors={errors}
@@ -135,7 +119,6 @@ function SecondForm(props) {
           label="ایمیل"
           id="email"
           placeholder="لطفا ایمیل خود را وارد کنید"
-          onChange={handleChange}
           type="email"
           register={register}
           errors={errors}

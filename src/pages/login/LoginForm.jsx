@@ -4,23 +4,14 @@ import { Button } from "@/components/button";
 import { useForm } from "react-hook-form";
 
 export default function LoginForm() {
-  const [userInfo, setUserInfo] = useState({});
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (e) => {
-    // e.preventDefault();
-    console.log(userInfo);
-    // e.target.reset();
-  };
-
-  const handleChange = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
-    setUserInfo((prevState) => ({ ...prevState, [id]: value }));
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -29,7 +20,6 @@ export default function LoginForm() {
         label="پست الکترونیک"
         id="email"
         placeholder="name@happy.com"
-        onChange={handleChange}
         register={register}
         errors={errors}
       />
@@ -37,7 +27,6 @@ export default function LoginForm() {
         label="رمز عبور "
         id="password"
         placeholder=""
-        onChange={handleChange}
         type="password"
         register={register}
         errors={errors}
