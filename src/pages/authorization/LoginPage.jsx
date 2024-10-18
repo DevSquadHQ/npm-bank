@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, IconButton, InputAdornment, Typography, FormControl, OutlinedInput, InputLabel } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  Typography,
+  FormControl,
+  OutlinedInput,
+  Link,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event) => event.preventDefault();
-  const handleMouseUpPassword = (event) => event.preventDefault();
-
-  const handleSignUp = () => {
-    navigate('/signup-step1'); // Redirect to signup page
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,18 +27,20 @@ const LoginPage = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        height: '100vh',
-        backgroundColor: 'background.default',
-        direction: 'rtl', // Enable RTL layout
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        height: "100vh",
+        backgroundColor: "background.default",
+        padding: { xs: 2, md: 5 },
+        direction: "rtl", // RTL layout for the form
       }}
     >
       {/* Title outside the form box */}
       <Typography
-        variant="h4"
+        variant="h3"
+        component="h2"
         color="text.primary"
         align="center"
         sx={{ mb: 8 }}
@@ -48,54 +53,70 @@ const LoginPage = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          p: 3,
-          backgroundColor: 'custom.authBox',
+          p: 4,
+          backgroundColor: "custom.authBox",
           borderRadius: 2,
-          width: '320px',
+          width: { xs: "100%", sm: "400px" },
           boxShadow: 3,
-          direction: 'rtl', // Form content direction RTL
+          direction: "rtl",
+          display: "flex",
+          flexDirection: "column",
+          gap: 3,
         }}
       >
-        <Typography variant="h5" color="text.primary" align="center" mb={5}>
+        <Typography
+          variant="h5"
+          color="text.primary"
+          align="center"
+          mb={5}
+          component="h3"
+        >
           ورود به حساب کاربری
         </Typography>
 
-        {/* Email Input with Label Outside */}
-        <Typography color="text.primary" sx={{ mb: 2 }}>
-          پست الکترونیکی
-        </Typography>
-        <TextField
-          fullWidth
-          required
-          placeholder="name@happy.com"
-          type="email"
-          autoComplete="email"
-        //   variant="outlined"
-          sx={{ backgroundColor: 'custom.inputBackground', mb: 2 }}
-        />
+        {/* Email Input with Static Label */}
+        <FormControl fullWidth required variant="outlined">
+          <Typography
+            component="label"
+            htmlFor="outlined-email"
+            sx={{ mb: 1, color: "text.primary" }}
+          >
+            پست الکترونیکی
+          </Typography>
+          <OutlinedInput
+            id="outlined-email"
+            placeholder="name@happy.com"
+            type="email"
+            autoComplete="email"
+            sx={{ backgroundColor: "custom.inputBackground" }}
+          />
+        </FormControl>
 
-        {/* Password Input with Label Outside */}
-        <Typography color="text.primary" sx={{ mb: 2 }}>
-          رمز عبور
-        </Typography>
-        <FormControl fullWidth required sx={{ mb: 2 }} variant="outlined">
+        {/* Password Input with Static Label */}
+        <FormControl fullWidth required variant="outlined">
+          <Typography
+            component="label"
+            htmlFor="outlined-adornment-password"
+            sx={{ mb: 1, color: "text.primary" }}
+          >
+            رمز عبور
+          </Typography>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  onMouseUp={handleMouseUpPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
-            sx={{ backgroundColor: 'custom.inputBackground' }}
+            sx={{ backgroundColor: "custom.inputBackground" }}
           />
         </FormControl>
 
@@ -104,7 +125,6 @@ const LoginPage = () => {
           type="submit"
           fullWidth
           variant="contained"
-          color="primary"
           sx={{ mt: 2, mb: 1 }}
         >
           ورود به حساب
@@ -112,10 +132,14 @@ const LoginPage = () => {
 
         {/* Sign up link */}
         <Typography align="center" color="text.secondary">
-          عضو نیستید؟{' '}
-          <Button onClick={handleSignUp} sx={{ color: 'primary.main' }}>
+          عضو نیستید؟{" "}
+          <Link
+            component={RouterLink}
+            to="/signup-step1"
+            sx={{ color: "primary.main", textDecoration: "none", mr:1}}
+          >
             ایجاد حساب
-          </Button>
+          </Link>
         </Typography>
       </Box>
     </Box>
