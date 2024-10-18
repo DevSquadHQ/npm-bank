@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import { InputGroup } from "@/components/input-group";
 import { Button } from "@/components/button";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userInfo);
-    e.target.reset();
+  const onSubmit = (data) => {
+    // e.preventDefault();
+    console.log(data);
+    // e.target.reset();
 
     step === 1 ? setStep(2) : navigate("/login");
   };
@@ -30,12 +36,21 @@ export default function SignUpForm() {
   return (
     <>
       {step === 1 ? (
-        <FirstForm handleSubmit={handleSubmit} handleChange={handleChange} />
+        <FirstForm
+          onSubmit={onSubmit}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          register={register}
+          errors={errors}
+        />
       ) : (
         <SecondForm
-          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
           handleChange={handleChange}
           handleBack={handleBack}
+          handleSubmit={handleSubmit}
+          register={register}
+          errors={errors}
         />
       )}
     </>
@@ -43,32 +58,38 @@ export default function SignUpForm() {
 }
 
 function FirstForm(props) {
-  const { handleChange, handleSubmit } = props;
+  const { handleChange, onSubmit, handleSubmit, register, errors } = props;
 
   return (
     <form
       action=""
       className="space-y-5 h-full flex flex-col"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="space-y-5 grow sm:grow-0">
+      <div className="space-y-4 grow sm:grow-0">
         <InputGroup
           label="نام"
           id="name"
           placeholder="لطفا نام خود را وارد کنید"
           onChange={handleChange}
+          register={register}
+          errors={errors}
         />
         <InputGroup
           label="نام خانوادگی"
           id="lastName"
           placeholder="لطفا نام خانوادگی خود را وارد کنید"
           onChange={handleChange}
+          register={register}
+          errors={errors}
         />
         <InputGroup
           label="کد ملی"
           id="nationalCode"
           placeholder="لطفا کد ملی خود را وارد کنید"
           onChange={handleChange}
+          register={register}
+          errors={errors}
         />
       </div>
       <Button label="ادامه" />
@@ -82,13 +103,14 @@ function FirstForm(props) {
   );
 }
 function SecondForm(props) {
-  const { handleChange, handleSubmit, handleBack } = props;
+  const { handleChange, onSubmit, handleBack, handleSubmit, register, errors } =
+    props;
 
   return (
     <form
       action=""
       className="space-y-5 h-full flex flex-col"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-5 grow">
         <InputGroup
@@ -97,6 +119,8 @@ function SecondForm(props) {
           placeholder="انتخاب تاریخ"
           onChange={handleChange}
           type="date"
+          register={register}
+          errors={errors}
         />
         <InputGroup
           label="شماره موبایل"
@@ -104,6 +128,8 @@ function SecondForm(props) {
           placeholder="مثال 09121212121"
           onChange={handleChange}
           type="tel"
+          register={register}
+          errors={errors}
         />
         <InputGroup
           label="ایمیل"
@@ -111,6 +137,8 @@ function SecondForm(props) {
           placeholder="لطفا ایمیل خود را وارد کنید"
           onChange={handleChange}
           type="email"
+          register={register}
+          errors={errors}
         />
       </div>
       <Button label="ثبت نام" />

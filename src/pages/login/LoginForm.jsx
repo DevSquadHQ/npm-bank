@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { InputGroup } from "@/components/input-group";
 import { Button } from "@/components/button";
+import { useForm } from "react-hook-form";
 
 export default function LoginForm() {
   const [userInfo, setUserInfo] = useState({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (e) => {
+    // e.preventDefault();
     console.log(userInfo);
-    e.target.reset();
+    // e.target.reset();
   };
 
   const handleChange = (e) => {
@@ -18,12 +24,14 @@ export default function LoginForm() {
   };
 
   return (
-    <form action="" className="space-y-5" onSubmit={handleSubmit}>
+    <form action="" className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <InputGroup
         label="پست الکترونیک"
         id="email"
         placeholder="name@happy.com"
         onChange={handleChange}
+        register={register}
+        errors={errors}
       />
       <InputGroup
         label="رمز عبور "
@@ -31,6 +39,8 @@ export default function LoginForm() {
         placeholder=""
         onChange={handleChange}
         type="password"
+        register={register}
+        errors={errors}
       />
 
       <Button label="ایجاد حساب" />
