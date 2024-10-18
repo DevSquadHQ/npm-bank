@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { dark } from "@mui/material/styles/createPalette";
 
 const theme = createTheme({
   typography: {
@@ -28,6 +27,17 @@ const theme = createTheme({
       main: "#771D1D", // Warning or error color
     },
   },
+  components:{
+    MuiOutlinedInput:{
+      styleOverrides:{
+        input:{
+          '&::placeholder': {
+            fontWeight: 300, 
+          },
+        }
+      }
+    }
+  }
 });
 
 export default theme;

@@ -136,7 +136,7 @@ const LoginPage = () => {
           <Link
             component={RouterLink}
             to="/signup-step1"
-            sx={{ color: "primary.main", textDecoration: "none", mr:1}}
+            sx={{ color: "primary.main", textDecoration: "none", mr: 1 }}
           >
             ایجاد حساب
           </Link>
