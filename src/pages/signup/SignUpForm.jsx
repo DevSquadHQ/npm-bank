@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { InputGroup } from "@/components/input-group";
 import { Button } from "@/components/button";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
     e.target.reset();
-    setStep(2);
+
+    step === 1 ? setStep(2) : navigate("/login");
   };
 
   const handleChange = (e) => {
@@ -91,7 +94,7 @@ function SecondForm(props) {
         <InputGroup
           label="تاریخ تولد"
           id="birthdate"
-          placeholder="انتخاب تاریخ"  
+          placeholder="انتخاب تاریخ"
           onChange={handleChange}
           type="date"
         />
