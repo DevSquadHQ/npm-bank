@@ -9,25 +9,23 @@ import {
   FormHelperText,
 } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 
 const SignupPageStep1 = () => {
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitted },
-  } = useForm({ mode: "onBlur" });
 
-  // code meli
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors }} = useForm({ mode: "onBlur" });
+
+
+// *********************** IranianNationalCode validation **********************
+
   const validateIranianNationalCode = (code) => {
-    // Check if the input contains any non-digit characters
+
     if (!/^\d*$/.test(code)) {
       return "کد ملی نباید شامل حروف باشد";
     }
 
-    // Check if the input is exactly 10 digits long
+
     if (code.length !== 10) {
       return "کد ملی باید دقیقا ۱۰ رقم باشد";
     }
@@ -40,15 +38,14 @@ const SignupPageStep1 = () => {
     );
     const R = s % 11;
 
-    // Validate the check digit
     return (R < 2 && checkDigit === R) || (R >= 2 && checkDigit === 11 - R)
       ? true
       : "کد ملی نامعتبر است";
   };
 
+  // ******************************* OnSubmit Func **********************
   const onSubmit = (data) => {
-    // (Updated) Handle form submission
-    // (Updated) Pass data to the next page via navigation state
+    // Pass data to the next page via navigation state
     console.log(data);
     navigate("/signup-step2", { state: { step1Data: data } });
   };
@@ -63,7 +60,7 @@ const SignupPageStep1 = () => {
         height: "100vh",
         backgroundColor: "background.default",
         padding: { xs: 2, md: 5 },
-        direction: "rtl", // RTL layout for the form
+        direction: "rtl", 
       }}
     >
       {/* Title outside the form box */}
@@ -118,21 +115,21 @@ const SignupPageStep1 = () => {
             placeholder="لطفا نام خود را وارد کنید"
             type="text"
             {...register("firstName", {
-              required: "لطفا نام خود را وارد کنید", // (Updated) Error for empty field
+              required: "لطفا نام خود را وارد کنید",
               pattern: {
-                value: /^[\u0600-\u06FF\s]+$/, // (Updated) Regex for Persian letters
-                message: "لطفا فقط از حروف فارسی استفاده کنید", // (Updated) Error for invalid input
+                value: /^[\u0600-\u06FF\s]+$/, 
+                message: "لطفا فقط از حروف فارسی استفاده کنید", 
               },
             })}
             sx={{
               backgroundColor: "custom.inputBackground",
               "& fieldset": {
-                borderColor: errors.firstName ? "error.main" : "inherit", // Red border if there's an error
+                borderColor: errors.firstName ? "error.main" : "inherit", 
               },
             }}
           />
           {errors.firstName && (
-            <FormHelperText error>{errors.firstName.message}</FormHelperText> // (Updated) Show error message
+            <FormHelperText error>{errors.firstName.message}</FormHelperText> 
           )}
         </FormControl>
 
@@ -150,21 +147,21 @@ const SignupPageStep1 = () => {
             placeholder="لطفا نام خانوادگی خود را وارد کنید"
             type="text"
             {...register("lastName", {
-              required: "لطفا نام خانوادگی خود را وارد کنید", // (Updated) Error for empty field
+              required: "لطفا نام خانوادگی خود را وارد کنید", 
               pattern: {
-                value: /^[\u0600-\u06FF\s]+$/, // (Updated) Regex for Persian letters
-                message: "لطفا فقط از حروف فارسی استفاده کنید", // (Updated) Error for invalid input
+                value: /^[\u0600-\u06FF\s]+$/, 
+                message: "لطفا فقط از حروف فارسی استفاده کنید", 
               },
             })}
             sx={{
               backgroundColor: "custom.inputBackground",
               "& fieldset": {
-                borderColor: errors.lastName ? "error.main" : "inherit", // Red border if there's an error
+                borderColor: errors.lastName ? "error.main" : "inherit", 
               },
             }}
           />
           {errors.lastName && (
-            <FormHelperText error>{errors.lastName.message}</FormHelperText> // (Updated) Show error message
+            <FormHelperText error>{errors.lastName.message}</FormHelperText> 
           )}
         </FormControl>
 
@@ -183,17 +180,17 @@ const SignupPageStep1 = () => {
             type="text"
             {...register("nationalCode", {
               required: "لطفا کد ملی خود را وارد کنید",
-              validate: validateIranianNationalCode, // Pass the validation function directly
+              validate: validateIranianNationalCode, 
             })}
             sx={{
               backgroundColor: "custom.inputBackground",
               "& fieldset": {
-                borderColor: errors.nationalCode ? "error.main" : "inherit", // Red border if there's an error
+                borderColor: errors.nationalCode ? "error.main" : "inherit", 
               },
             }}
           />
           {errors.nationalCode && (
-            <FormHelperText error>{errors.nationalCode.message}</FormHelperText> // Show error
+            <FormHelperText error>{errors.nationalCode.message}</FormHelperText> 
           )}
         </FormControl>
 
