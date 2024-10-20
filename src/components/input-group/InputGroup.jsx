@@ -5,27 +5,38 @@ export default function InputGroup(props) {
     ? "border border-red-700"
     : "border-transparent";
 
-  const onlyPersian = /^[\u0600-\u06FF\s]+$/;
-
-  // Email regex pattern
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  const validatePhoneNumber = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
+  const patterns = {
+    onlyPersian: /^[\u0600-\u06FF\s]+$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    phoneNumber: /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g,
+    exactlyTenDigits: /^\d{10}$/,
+    onlyNumbers: /^\d+$/,
+  };
 
   const validateIranianNationalCode = (code) => {
-    if (!/^\d{10}$/.test(code)) return false;
 
+    if (!patterns.onlyNumbers.test(code)) {
+      return { isValid: false, message: "کد ملی باید فقط شامل اعداد باشد" };
+    }
+    
+    // Check if the code is exactly 10 digits
+    if (!patterns.exactlyTenDigits.test(code)) {
+      return { isValid: false, message: "کد ملی باید دقیقا ۱۰ رقم باشد" };
+    }
+
+   
     const digits = code.split("").map(Number);
     const checkDigit = digits.pop();
-    const s = digits.reduce(
-      (sum, digit, index) => sum + digit * (10 - index),
-      0
-    );
-    const R = s % 11;
-    if ((R < 2 && checkDigit === R) || (R >= 2 && checkDigit == 11 - R)) {
-      return true;
+    const sum = digits.reduce((acc, digit, idx) => acc + digit * (10 - idx), 0);
+    const remainder = sum % 11;
+
+    if (
+      (remainder < 2 && checkDigit === remainder) ||
+      (remainder >= 2 && checkDigit === 11 - remainder)
+    ) {
+      return { isValid: true }; // Valid national code.
     } else {
-      return false;
+      return { isValid: false, message: "کد ملی نامعتبر است" }; // Invalid national code.
     }
   };
 
@@ -34,23 +45,29 @@ export default function InputGroup(props) {
       case "nationalCode":
         return {
           required: "وارد کردن کد ملی الزامی است",
-          validate: (value) =>
-            validateIranianNationalCode(value) || "کد ملی نامعتبر است",
+          validate: (value) => {
+            const validation = validateIranianNationalCode(value);
+            // Check if validation is defined
+            if (validation && !validation.isValid) {
+              return validation.message; // Return the error message from the validation function.
+            }
+            return true; // Return true if validation is successful
+          },
         };
 
       case "name":
         return {
           required: "لطفا نام را وارد کنید",
           pattern: {
-            value: onlyPersian,
+            value: patterns.onlyPersian,
             message: "لطفا نام را به فارسی وارد کنید",
           },
         };
-      case "name":
+      case "lastName":
         return {
           required: "لطفا نام خانوادگی را وارد کنید",
           pattern: {
-            value: onlyPersian,
+            value: patterns.onlyPersian,
             message: "لطفا نام خانوادگی را به فارسی وارد کنید",
           },
         };
@@ -58,7 +75,7 @@ export default function InputGroup(props) {
         return {
           required: "لطفا شماره تلفن را وارد کنید",
           pattern: {
-            value: validatePhoneNumber,
+            value: patterns.phoneNumber,
             message: "لطفا شماره تلفن معتبر وارد کنید",
           },
         };
@@ -66,7 +83,7 @@ export default function InputGroup(props) {
         return {
           required: "ایمیل الزامی است",
           pattern: {
-            value: emailPattern,
+            value: patterns.email,
             message: "لطفا یک ایمیل معتبر وارد کنید",
           },
         };
@@ -88,6 +105,7 @@ export default function InputGroup(props) {
           autoComplete="new-password"
           {...register(id, getValidateRules(id))}
           aria-invalid={errors[id] ? "true" : "false"}
+          maxLength={id === "nationalCode" && 10}
         />
       </div>
       {errors[id] && (
