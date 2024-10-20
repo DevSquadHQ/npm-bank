@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 
 export default function SignUpForm() {
-  const [step, setStep] = useState(1);
-
+  const [step, setStep] = useState(2);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-
+    console.log("Submitted Data:", data); // Check if date is included in data
     step === 1 ? setStep(2) : navigate("/login");
   };
 
@@ -42,10 +40,9 @@ export default function SignUpForm() {
           handleSubmit={handleSubmit}
           register={register}
           errors={errors}
+          control={control}
         />
       )}
     </>
   );
 }
-
-

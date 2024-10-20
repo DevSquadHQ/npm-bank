@@ -14,17 +14,15 @@ export default function InputGroup(props) {
   };
 
   const validateIranianNationalCode = (code) => {
-
     if (!patterns.onlyNumbers.test(code)) {
       return { isValid: false, message: "کد ملی باید فقط شامل اعداد باشد" };
     }
-    
+
     // Check if the code is exactly 10 digits
     if (!patterns.exactlyTenDigits.test(code)) {
       return { isValid: false, message: "کد ملی باید دقیقا ۱۰ رقم باشد" };
     }
 
-   
     const digits = code.split("").map(Number);
     const checkDigit = digits.pop();
     const sum = digits.reduce((acc, digit, idx) => acc + digit * (10 - idx), 0);
@@ -71,26 +69,26 @@ export default function InputGroup(props) {
             message: "لطفا نام خانوادگی را به فارسی وارد کنید",
           },
         };
-      case "PhoneNumber":
-        return {
-          required: "لطفا شماره تلفن را وارد کنید",
-          pattern: {
-            value: patterns.phoneNumber,
-            message: "لطفا شماره تلفن معتبر وارد کنید",
-          },
-        };
-      case "email":
-        return {
-          required: "ایمیل الزامی است",
-          pattern: {
-            value: patterns.email,
-            message: "لطفا یک ایمیل معتبر وارد کنید",
-          },
-        };
-      default:
-        return {
-          required: `${fieldId} ضروری است`,
-        };
+      // case "PhoneNumber":
+      //   return {
+      //     required: "لطفا شماره تلفن را وارد کنید",
+      //     pattern: {
+      //       value: patterns.phoneNumber,
+      //       message: "لطفا شماره تلفن معتبر وارد کنید",
+      //     },
+      //   };
+      // case "email":
+      //   return {
+      //     required: "ایمیل الزامی است",
+      //     pattern: {
+      //       value: patterns.email,
+      //       message: "لطفا یک ایمیل معتبر وارد کنید",
+      //     },
+      //   };
+      // default:
+      //   return {
+      //     required: `${fieldId} ضروری است`,
+      //   };
     }
   };
   return (
