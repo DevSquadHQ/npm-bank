@@ -10,15 +10,20 @@ export default function InputGroup(props) {
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     phoneNumber: /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g,
     exactlyTenDigits: /^\d{10}$/,
-    exactlyTenDigits: /^\d{10}$/, 
+    exactlyTenDigits: /^\d{10}$/,
     onlyNumbers: /^[0-9]+$/,
   };
 
+  // Function to convert Persian digits to English
+  const convertPersianToEnglish = (input) => {
+    const stringInput = String(input); // Ensure input is a string
+    return stringInput.replace(/[۰-۹]/g, (char) =>
+      String.fromCharCode(char.charCodeAt(0) - 1728)
+    );
+  };
+
   const validateIranianNationalCode = (code) => {
-    // Normalize Persian digits to English digits directly
-    const normalizedCode = code.trim().replace(/[۰-۹]/g, (char) => {
-      return String.fromCharCode(char.charCodeAt(0) - 1728); // Converts Persian digits to English (Arabic) digits
-    });
+    const normalizedCode = convertPersianToEnglish(code.trim());
 
     if (!patterns.onlyNumbers.test(normalizedCode)) {
       return { isValid: false, message: "کد ملی باید فقط شامل اعداد باشد" };
