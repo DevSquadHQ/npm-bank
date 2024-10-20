@@ -8,45 +8,60 @@ import {
   InputAdornment,
   IconButton,
   Link,
-  Stack,
+  FormHelperText,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { differenceInYears } from 'date-fns';
-import DatePicker from "react-multi-date-picker"; // Import the new date picker
-import persian from "react-date-object/calendars/persian"; // For Persian calendar if needed
-import persian_fa from "react-date-object/locales/persian_fa"; // For Persian locale
+import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
+import DatePicker from "react-multi-date-picker"; 
+import persian from "react-date-object/calendars/persian"; 
+import persian_fa from "react-date-object/locales/persian_fa"; 
 import InputIcon from "react-multi-date-picker/components/input_icon";
-import EventIcon from "@mui/icons-material/Event";
-import { grey } from "@mui/material/colors";
-import "react-multi-date-picker/styles/layouts/prime.css"
-import "/src/components/pickerStyle.css"
-
+import "react-multi-date-picker/styles/layouts/prime.css";
+import "/src/components/pickerStyle.css";
+import { Controller, useForm } from "react-hook-form";
 
 const SignupPageStep2 = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [birthdate, setBirthdate] = useState(null); // Store birthdate here
-  // const [age, setAge] = useState(null);
+  
 
+  const { state } = useLocation();
+  const { register, handleSubmit ,formState: { errors},trigger,control} = useForm({ mode: "onBlur" });
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => event.preventDefault();
 
-  // const handleDateChange = (newValue) => {
-  //   setBirthdate(newValue);
-  //   if (newValue) {
-  //     const userAge = differenceInYears(new Date(), new Date(newValue));
-  //     setAge(userAge);
-  //   }
-  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission for signup step 2
-    console.log("Birthdate: ", birthdate);
+
+  // ************************checking if the user is under 18 **********************
+
+  const validateBirthdate = (value) => {
+    if (!value) {
+      return "لطفا تاریخ تولد خود را وارد کنید";
+    }
+    const birthDate = new Date(value);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      return age - 1 >= 18 ? true : "سن شما باید حداقل ۱۸ سال باشد";
+    }
+    return age >= 18 ? true : "سن شما باید حداقل ۱۸ سال باشد";
+  };
+
+  // ******************************* OnSubmit Func **********************
+  const onSubmit = (data) => {
+    const finalData = {
+      ...state.step1Data,
+      birthdate: data.birthdate?.format?.("D MMMM YYYY"),
+      phoneNumber: data.phoneNumber,
+      email: data.email,
+      password: data.password,
+    };
+
+    console.log("Final Data: ", finalData); // Log final data
   };
 
   return (
@@ -59,7 +74,7 @@ const SignupPageStep2 = () => {
         height: "100vh",
         backgroundColor: "background.default",
         padding: { xs: 2, md: 5 },
-        direction: "rtl", // RTL layout for the form
+        direction: "rtl", 
       }}
     >
       {/* Title outside the form box */}
@@ -76,7 +91,8 @@ const SignupPageStep2 = () => {
       {/* Form Box */}
       <Box
         component="form"
-        onSubmit={handleSubmit}
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
         sx={{
           p: 4,
           backgroundColor: "custom.authBox",
@@ -108,16 +124,29 @@ const SignupPageStep2 = () => {
           >
             تاریخ تولد
           </Typography>
-          
-          <DatePicker
-            render={<InputIcon/>}
-            // className="rmdp-prime"
-            value={birthdate}
-            onChange={setBirthdate} // Use the new Date Picker's onChange
-            calendar={persian} // Persian calendar
-            locale={persian_fa} // Persian locale
-            // inputClass="outlined-input" // Add custom styling here if needed 
+
+          <Controller
+            name="birthdate"
+            control={control}
+            rules={{ validate: validateBirthdate }} // Use the custom validation for age
+            render={({ field: { onChange,onBlur, value }, fieldState: { error } }) => (
+              <>
+                <DatePicker
+                  render={<InputIcon />}
+                  value={value || ""}
+                  onChange={(date) => {
+                    onChange(date); 
+                    onBlur(); 
+                  }}
+                  calendar={persian} // Persian calendar
+                  locale={persian_fa} // Persian locale
+                  format="D MMMM YYYY" // Date format
+                />
+                {error && <FormHelperText error>{error.message}</FormHelperText>}
+              </>
+            )}
           />
+
         </FormControl>
 
         {/* Phone Number Input */}
@@ -133,11 +162,25 @@ const SignupPageStep2 = () => {
             id="outlined-phone"
             placeholder="مثال ۰۹۱۲۱۲۱۲۱۲۱"
             type="tel"
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("phoneNumber", {
+              required: "لطفا شماره موبایل خود را وارد کنید",
+              pattern: {
+                value: /^(09|\+989)\d{9}$/, // Your regex
+                message: "شماره موبایل نامعتبر است",
+              },
+            })}
+            sx={{ backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.phoneNumber ? "error.main" : "inherit", 
+              },
+             }}
             inputProps={{
-              style: { textAlign: "right" }, // Ensures the input value and placeholder are right-aligned
+              style: { textAlign: "right" }
             }}
           />
+           {errors.phoneNumber && (
+            <FormHelperText error>{errors.phoneNumber.message}</FormHelperText>
+          )}
         </FormControl>
 
         {/* Email Input */}
@@ -153,8 +196,22 @@ const SignupPageStep2 = () => {
             id="outlined-email"
             placeholder="لطفا ایمیل خود را وارد کنید"
             type="email"
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("email", {
+              required: "لطفا ایمیل خود را وارد کنید",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 
+                message: "ایمیل نامعتبر است",
+              },
+            })}
+            sx={{ backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.email ? "error.main" : "inherit", 
+              },
+             }}
           />
+          {errors.email && (
+            <FormHelperText error>{errors.email.message}</FormHelperText>
+          )}
         </FormControl>
 
         {/* Password Input */}
@@ -169,7 +226,23 @@ const SignupPageStep2 = () => {
           <OutlinedInput
             id="outlined-password"
             type={showPassword ? "text" : "password"}
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("password", {
+              required: "لطفا رمز عبور خود را وارد کنید",
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
+                message:
+                  "رمز عبور باید حداقل ۸ کاراکتر و شامل حروف بزرگ، کوچک، اعداد و کاراکترهای خاص باشد",
+              },
+              onChange: (e) => {
+                trigger("password"); 
+              },
+            })}
+            sx={{ backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.password ? "error.main" : "inherit", 
+              },
+             }}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -184,6 +257,9 @@ const SignupPageStep2 = () => {
             }
             placeholder="لطفا رمز عبور خود را وارد کنید"
           />
+          {errors.password && (
+            <FormHelperText error>{errors.password.message}</FormHelperText>
+          )}
         </FormControl>
 
         {/* Register Button */}
