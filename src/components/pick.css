@@ -1,0 +1,32 @@
+/* .jalil {
+  background-color: #374151;
+  color: #fff;
+  width: 100%;
+  padding: 30px 14px;
+  border: 1px solid grey;
+  font-family: "Vazirmatn";
+  font-size: 1rem;
+  /* box-sizing: border-box; */
+  /* direction: rtl;
+} */ 
+/* .jallil svg{
+    color: red;
+} */
+
+
+.rmdp-container {
+    width: 100%;
+    padding: 1rem 0.75rem !important;
+    background-color: #374151 !important;
+    border-radius: 8px !important;
+    color: aliceblue;
+}
+.rmdp-input {
+    background-color: transparent !important;
+    color: aliceblue;
+    outline: 2px solid transparent!important;
+    box-shadow:none!important;
+    padding: 0 !important;
+    border-color: transparent !important;
+    width: 100%;
+  }

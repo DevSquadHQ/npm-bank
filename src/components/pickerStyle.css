@@ -1,0 +1,33 @@
+
+
+.rmdp-container {
+  width: 100%;
+  padding: 1rem 0.75rem !important;
+  background-color: #374151 !important;
+  border-radius: 4px !important;
+  color: white;
+  box-sizing: border-box;
+  border: 1px solid gray;
+}
+.rmdp-input {
+  font-size: 1rem;
+  font-family: "Vazirmatn";
+  background-color: transparent !important;
+  color: white;
+  outline: 2px solid transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-color: transparent !important;
+  width: 100%;
+}
+
+/* style={{
+    backgroundColor: "#374151",
+    color: "#fff",
+    width: "100%",
+    padding: "30px 14px",
+    border: "1px solid grey",
+    fontFamily:"Vazirmatn",
+    fontSize:"1rem",
+    boxSizing:"border-box",
+  }} */

@@ -8,6 +8,7 @@ import {
   InputAdornment,
   IconButton,
   Link,
+  Stack,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -15,12 +16,21 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 // import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import { differenceInYears } from 'date-fns';
+import DatePicker from "react-multi-date-picker"; // Import the new date picker
+import persian from "react-date-object/calendars/persian"; // For Persian calendar if needed
+import persian_fa from "react-date-object/locales/persian_fa"; // For Persian locale
+import InputIcon from "react-multi-date-picker/components/input_icon";
+import EventIcon from "@mui/icons-material/Event";
+import { grey } from "@mui/material/colors";
+import "react-multi-date-picker/styles/layouts/prime.css"
+import "/src/components/pickerStyle.css"
+
 
 const SignupPageStep2 = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [birthdate, setBirthdate] = useState(null);
-  const [age, setAge] = useState(null);
+  const [birthdate, setBirthdate] = useState(null); // Store birthdate here
+  // const [age, setAge] = useState(null);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => event.preventDefault();
@@ -35,7 +45,8 @@ const SignupPageStep2 = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission
+    // Handle form submission for signup step 2
+    console.log("Birthdate: ", birthdate);
   };
 
   return (
@@ -88,29 +99,25 @@ const SignupPageStep2 = () => {
           ایجاد حساب کاربری
         </Typography>
 
-        {/* Birthdate Input (MUI DatePicker) */}
+        {/* Birthdate Input */}
         <FormControl fullWidth required variant="outlined">
           <Typography
             component="label"
             htmlFor="outlined-birthdate"
             sx={{ mb: 1, color: "text.primary", fontWeight: 500 }}
           >
-            تاریخ تولد {age ? `(${age} ساله)` : ""}
+            تاریخ تولد
           </Typography>
-          {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="انتخاب تاریخ"
-              value={birthdate}
-              onChange={handleDateChange}
-              renderInput={(params) => (
-                <OutlinedInput
-                  {...params}
-                  id="outlined-birthdate"
-                  sx={{ backgroundColor: "custom.inputBackground" }}
-                />
-              )}
-            />
-          </LocalizationProvider> */}
+          
+          <DatePicker
+            render={<InputIcon/>}
+            // className="rmdp-prime"
+            value={birthdate}
+            onChange={setBirthdate} // Use the new Date Picker's onChange
+            calendar={persian} // Persian calendar
+            locale={persian_fa} // Persian locale
+            // inputClass="outlined-input" // Add custom styling here if needed 
+          />
         </FormControl>
 
         {/* Phone Number Input */}
@@ -126,7 +133,7 @@ const SignupPageStep2 = () => {
             id="outlined-phone"
             placeholder="مثال ۰۹۱۲۱۲۱۲۱۲۱"
             type="tel"
-            sx={{backgroundColor: "custom.inputBackground"}}
+            sx={{ backgroundColor: "custom.inputBackground" }}
             inputProps={{
               style: { textAlign: "right" }, // Ensures the input value and placeholder are right-aligned
             }}
@@ -184,7 +191,7 @@ const SignupPageStep2 = () => {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 2,mb:-1 }}
+          sx={{ mt: 2, mb: -1 }}
         >
           ثبت نام
         </Button>
