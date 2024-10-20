@@ -1,12 +1,5 @@
 export default function InputGroup(props) {
-  const {
-    label,
-    id,
-    placeholder,
-    type = "text",
-    register,
-    errors,
-  } = props;
+  const { label, id, placeholder, type = "text", register, errors } = props;
 
   const inputClass = errors[id]
     ? "border border-red-700"
@@ -17,20 +10,23 @@ export default function InputGroup(props) {
   // Email regex pattern
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const validatePhoneNumber = /^((98|\+98|0098|0)*(9)[0-9]{9})+$/;
+  const validatePhoneNumber = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
 
   const validateIranianNationalCode = (code) => {
     if (!/^\d{10}$/.test(code)) return false;
 
-    var check = parseInt(code[9]);
-    var sum = 0;
-    var i;
-    for (i = 0; i < 9; ++i) {
-      sum += parseInt(code[i]) * (10 - i);
+    const digits = code.split("").map(Number);
+    const checkDigit = digits.pop();
+    const s = digits.reduce(
+      (sum, digit, index) => sum + digit * (10 - index),
+      0
+    );
+    const R = s % 11;
+    if ((R < 2 && checkDigit === R) || (R >= 2 && checkDigit == 11 - R)) {
+      return true;
+    } else {
+      return false;
     }
-    sum %= 11;
-
-    return (sum < 2 && check == sum) || (sum >= 2 && check + sum == 11);
   };
 
   const getValidateRules = (fieldId) => {
@@ -38,8 +34,8 @@ export default function InputGroup(props) {
       case "nationalCode":
         return {
           required: "وارد کردن کد ملی الزامی است",
-          // validate: (value) =>
-          //   validateIranianNationalCode(value) || "کد ملی نامعتبر است",
+          validate: (value) =>
+            validateIranianNationalCode(value) || "کد ملی نامعتبر است",
         };
 
       case "name":
@@ -87,7 +83,6 @@ export default function InputGroup(props) {
         <input
           id={id}
           type={type}
-          name={id}
           placeholder={placeholder}
           className={`bg-input  rounded-[8px] py-3 px-5 border-[#4B5563]  outline-none ${inputClass}`}
           autoComplete="new-password"
