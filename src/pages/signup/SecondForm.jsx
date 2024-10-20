@@ -23,10 +23,13 @@ export default function SecondForm(props) {
             register={register}
             errors={errors}
           /> */}
-        <DatePicker
-          value="1403/08/1"
+       <DatePicker
+          containerClassName="datePicker-container w-full bg-input rounded-[8px] py-3 px-5 border-[#4B5563] outline-none"
+          // inputClass="custom-input outline-none w-full rounded-[8px] border-none bg-transparent"
+          placeholder="لطفا یک تاریخ انتخاب کنید"
+          value="1385/08/1"
           render={<InputIcon />}
-          minDate="1385/08/1"
+          maxDate="1385/08/20"
           calendar={persian}
           locale={persian_fa}
           format={"YYYY/MM/DD"}
