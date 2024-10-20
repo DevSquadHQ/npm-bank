@@ -10,10 +10,10 @@ const theme = createTheme({
       default: "#111928", // App background color
     },
     primary: {
-      main: "#1C64F2", // Main color for buttons
+      main: "#1C64F2", 
     },
     text: {
-      // Main text color
+     
       secondary: "#9CA3AF", // Lighter text color
     },
     custom: {
@@ -21,23 +21,32 @@ const theme = createTheme({
       inputBackground: "#374151", // Lighter part like input background
     },
     success: {
-      main: "#014737", // Success color
+      main: "#014737", 
     },
     error: {
-      main: "#771D1D", // Warning or error color
+      main: "#DD7373", 
     },
   },
-  components:{
-    MuiOutlinedInput:{
-      styleOverrides:{
-        input:{
-          '&::placeholder': {
-            fontWeight: 300, 
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        
+        input: {
+          "&::placeholder": {
+            fontWeight: 300,
           },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          textAlign: "right",
+          marginTop:"8px",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

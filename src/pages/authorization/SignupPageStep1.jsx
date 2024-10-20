@@ -6,15 +6,51 @@ import {
   FormControl,
   OutlinedInput,
   Link,
+  FormHelperText,
 } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
+
 const SignupPageStep1 = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitted },
+  } = useForm({ mode: "onBlur" });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission for signup step 1
+  // code meli
+  const validateIranianNationalCode = (code) => {
+    // Check if the input contains any non-digit characters
+    if (!/^\d*$/.test(code)) {
+      return "کد ملی نباید شامل حروف باشد";
+    }
+
+    // Check if the input is exactly 10 digits long
+    if (code.length !== 10) {
+      return "کد ملی باید دقیقا ۱۰ رقم باشد";
+    }
+
+    const digits = code.split("").map(Number);
+    const checkDigit = digits.pop();
+    const s = digits.reduce(
+      (sum, digit, index) => sum + digit * (10 - index),
+      0
+    );
+    const R = s % 11;
+
+    // Validate the check digit
+    return (R < 2 && checkDigit === R) || (R >= 2 && checkDigit === 11 - R)
+      ? true
+      : "کد ملی نامعتبر است";
+  };
+
+  const onSubmit = (data) => {
+    // (Updated) Handle form submission
+    // (Updated) Pass data to the next page via navigation state
+    console.log(data);
+    navigate("/signup-step2", { state: { step1Data: data } });
   };
 
   return (
@@ -44,7 +80,8 @@ const SignupPageStep1 = () => {
       {/* Form Box */}
       <Box
         component="form"
-        onSubmit={handleSubmit}
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
         sx={{
           p: 4,
           backgroundColor: "custom.authBox",
@@ -80,8 +117,23 @@ const SignupPageStep1 = () => {
             id="outlined-firstname"
             placeholder="لطفا نام خود را وارد کنید"
             type="text"
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("firstName", {
+              required: "لطفا نام خود را وارد کنید", // (Updated) Error for empty field
+              pattern: {
+                value: /^[\u0600-\u06FF\s]+$/, // (Updated) Regex for Persian letters
+                message: "لطفا فقط از حروف فارسی استفاده کنید", // (Updated) Error for invalid input
+              },
+            })}
+            sx={{
+              backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.firstName ? "error.main" : "inherit", // Red border if there's an error
+              },
+            }}
           />
+          {errors.firstName && (
+            <FormHelperText error>{errors.firstName.message}</FormHelperText> // (Updated) Show error message
+          )}
         </FormControl>
 
         {/* Last Name Input */}
@@ -97,8 +149,23 @@ const SignupPageStep1 = () => {
             id="outlined-lastname"
             placeholder="لطفا نام خانوادگی خود را وارد کنید"
             type="text"
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("lastName", {
+              required: "لطفا نام خانوادگی خود را وارد کنید", // (Updated) Error for empty field
+              pattern: {
+                value: /^[\u0600-\u06FF\s]+$/, // (Updated) Regex for Persian letters
+                message: "لطفا فقط از حروف فارسی استفاده کنید", // (Updated) Error for invalid input
+              },
+            })}
+            sx={{
+              backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.lastName ? "error.main" : "inherit", // Red border if there's an error
+              },
+            }}
           />
+          {errors.lastName && (
+            <FormHelperText error>{errors.lastName.message}</FormHelperText> // (Updated) Show error message
+          )}
         </FormControl>
 
         {/* National Code Input */}
@@ -114,8 +181,20 @@ const SignupPageStep1 = () => {
             id="outlined-nationalcode"
             placeholder="لطفا کد ملی خود را وارد کنید"
             type="text"
-            sx={{ backgroundColor: "custom.inputBackground" }}
+            {...register("nationalCode", {
+              required: "لطفا کد ملی خود را وارد کنید",
+              validate: validateIranianNationalCode, // Pass the validation function directly
+            })}
+            sx={{
+              backgroundColor: "custom.inputBackground",
+              "& fieldset": {
+                borderColor: errors.nationalCode ? "error.main" : "inherit", // Red border if there's an error
+              },
+            }}
           />
+          {errors.nationalCode && (
+            <FormHelperText error>{errors.nationalCode.message}</FormHelperText> // Show error
+          )}
         </FormControl>
 
         {/* Continue Button */}
@@ -134,7 +213,7 @@ const SignupPageStep1 = () => {
           <Link
             component={RouterLink}
             to="/login"
-            sx={{ color: "primary.main", textDecoration: "none" , mr:1 }}
+            sx={{ color: "primary.main", textDecoration: "none", mr: 1 }}
           >
             ورود به حساب
           </Link>
