@@ -17,9 +17,10 @@ export default function CustomDatePicker(props) {
           <DatePicker
             containerClassName="datePicker-container w-full bg-input rounded-[8px] py-3 px-5 border-[#4B5563] outline-none"
             placeholder="لطفا یک تاریخ انتخاب کنید"
-            value={value || null} // Use null if no value is set
+            value="1385/08/20"
+            // value={value || null} // Use null if no value is set
             onChange={(date) => onChange(date ? date.toString() : null)} // Convert to string or null
-            // render={<InputIcon />} // Keep the InputIcon rendering
+            render={<InputIcon />} // Keep the InputIcon rendering
             maxDate="1385/08/20"
             calendar={persian}
             locale={persian_fa}

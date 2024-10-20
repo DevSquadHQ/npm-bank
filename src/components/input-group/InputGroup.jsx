@@ -10,20 +10,26 @@ export default function InputGroup(props) {
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     phoneNumber: /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g,
     exactlyTenDigits: /^\d{10}$/,
-    onlyNumbers: /^\d+$/,
+    exactlyTenDigits: /^\d{10}$/, 
+    onlyNumbers: /^[0-9]+$/,
   };
 
   const validateIranianNationalCode = (code) => {
-    if (!patterns.onlyNumbers.test(code)) {
+    // Normalize Persian digits to English digits directly
+    const normalizedCode = code.trim().replace(/[۰-۹]/g, (char) => {
+      return String.fromCharCode(char.charCodeAt(0) - 1728); // Converts Persian digits to English (Arabic) digits
+    });
+
+    if (!patterns.onlyNumbers.test(normalizedCode)) {
       return { isValid: false, message: "کد ملی باید فقط شامل اعداد باشد" };
     }
 
     // Check if the code is exactly 10 digits
-    if (!patterns.exactlyTenDigits.test(code)) {
-      return { isValid: false, message: "کد ملی باید دقیقا ۱۰ رقم باشد" };
+    if (!patterns.exactlyTenDigits.test(normalizedCode)) {
+      return { isValid: false, message: "کد ملی باید دقیقاً ۱۰ رقم باشد" }; // Must be exactly 10 digits
     }
 
-    const digits = code.split("").map(Number);
+    const digits = normalizedCode.split("").map(Number);
     const checkDigit = digits.pop();
     const sum = digits.reduce((acc, digit, idx) => acc + digit * (10 - idx), 0);
     const remainder = sum % 11;
@@ -69,26 +75,26 @@ export default function InputGroup(props) {
             message: "لطفا نام خانوادگی را به فارسی وارد کنید",
           },
         };
-      // case "PhoneNumber":
-      //   return {
-      //     required: "لطفا شماره تلفن را وارد کنید",
-      //     pattern: {
-      //       value: patterns.phoneNumber,
-      //       message: "لطفا شماره تلفن معتبر وارد کنید",
-      //     },
-      //   };
-      // case "email":
-      //   return {
-      //     required: "ایمیل الزامی است",
-      //     pattern: {
-      //       value: patterns.email,
-      //       message: "لطفا یک ایمیل معتبر وارد کنید",
-      //     },
-      //   };
-      // default:
-      //   return {
-      //     required: `${fieldId} ضروری است`,
-      //   };
+      case "PhoneNumber":
+        return {
+          required: "لطفا شماره تلفن را وارد کنید",
+          pattern: {
+            value: patterns.phoneNumber,
+            message: "لطفا شماره تلفن معتبر وارد کنید",
+          },
+        };
+      case "email":
+        return {
+          required: "ایمیل الزامی است",
+          pattern: {
+            value: patterns.email,
+            message: "لطفا یک ایمیل معتبر وارد کنید",
+          },
+        };
+      default:
+        return {
+          required: `${fieldId} ضروری است`,
+        };
     }
   };
   return (
@@ -103,7 +109,7 @@ export default function InputGroup(props) {
           autoComplete="new-password"
           {...register(id, getValidateRules(id))}
           aria-invalid={errors[id] ? "true" : "false"}
-          maxLength={id === "nationalCode" && 10}
+          maxLength={id === "nationalCode" ? 10 : undefined}
         />
       </div>
       {errors[id] && (
