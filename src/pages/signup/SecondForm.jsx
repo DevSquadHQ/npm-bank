@@ -2,7 +2,7 @@ import { Button, Form, Input } from "antd";
 import { inputStyle } from "./FirstForm";
 
 export default function SecondForm(props) {
-  const { onSubmit } = props;
+  const { onSubmit, handleBack } = props;
 
   return (
     <Form
@@ -15,21 +15,11 @@ export default function SecondForm(props) {
       }}
       autoComplete="off"
     >
-      <Form.Item label="تاریخ" name="date">
+      <Form.Item label="تاریخ تولد" name="birthDate">
         <Input
-          placeholder="لطفا یک تاریخ را وارد کنید"
+          placeholder="لطفا تاریخ تولد خود را وارد کنید"
           style={inputStyle}
           type="date"
-          autoComplete="new-password"
-        />
-      </Form.Item>
-
-      <Form.Item label="رمز عبور" name="password">
-        <Input
-          placeholder="لطفا رمز عبور خود را وارد کنید"
-          style={inputStyle}
-          type="password"
-          autoComplete="new-password"
         />
       </Form.Item>
 
@@ -56,6 +46,21 @@ export default function SecondForm(props) {
       >
         <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
           ادامه
+        </Button>
+      </Form.Item>
+      <Form.Item
+        wrapperCol={{
+          span: 24,
+        }}
+      >
+        <Button
+          onClick={handleBack}
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%" }}
+          ghost
+        >
+          بازگشت
         </Button>
       </Form.Item>
       {/* <Button label="ادامه"/> */}

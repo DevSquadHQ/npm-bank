@@ -23,7 +23,7 @@ export default function SignUpForm() {
       {step === 1 ? (
         <FirstForm onSubmit={onSubmit} />
       ) : (
-        <SecondForm onSubmit={onSubmit} />
+        <SecondForm onSubmit={onSubmit} handleBack={handleBack} />
       )}
     </>
   );
