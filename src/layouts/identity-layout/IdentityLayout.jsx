@@ -1,19 +1,15 @@
-import { Layout, Row, theme, Typography } from "antd";
-import React from "react";
 import { Outlet } from "react-router-dom";
+import { Layout, Row, Typography } from "antd";
 const { Content } = Layout;
 const { Title } = Typography;
-const { useToken } = theme;
-import { layoutStyle, titleStyle } from "./identity-layout";
+import "./identity-layout.css";
 
 export default function IdentityLayout() {
-  const { token } = useToken();
-
   return (
-    <Layout style={layoutStyle(token)}>
+    <Layout className="main-layout">
       <Content className="flex items-center">
         <Row className="flex-col">
-          <Title style={{ titleStyle }}>اینترنت بانک من</Title>
+          <Title className="main-title">اینترنت بانک من</Title>
           <Outlet />
         </Row>
       </Content>
