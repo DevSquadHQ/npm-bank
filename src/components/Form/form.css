@@ -2,13 +2,13 @@
   color: #fff;
   border: none;
   padding: 32px;
-  border-radius: 8px;
-  background-color: var(--form-bg);
+  /* border-radius: 8px; */
+  /* background-color: var(--form-bg); */
   width: 384px;
 }
-.form-container .title {
+/* .form-container .title {
   font-size: 20px;
   color: inherit;
   margin-bottom: 1rem;
   display: block;
-}
+} */

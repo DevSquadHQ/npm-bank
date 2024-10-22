@@ -28,6 +28,11 @@ const theme = {
     Button: {
       controlHeight: "41px",
     },
+    Card: {
+      cardPaddingBase: "0",
+      colorBgContainer: token.form,
+      borderRadiusLG: "8px",
+    },
   },
 };
 
