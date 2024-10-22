@@ -7,6 +7,7 @@ body {
 
 :root {
   --navy-blue: #111928; /* Replace with your desired navy blue color */
+  --form-bg: #1f2a37;
 }
 
 .rmdp-input {
@@ -26,6 +27,6 @@ body {
 .justify-center {
   justify-content: center;
 }
-.items-center{
+.items-center {
   align-items: center;
 }
