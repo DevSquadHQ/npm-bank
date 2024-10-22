@@ -1,5 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { inputStyle } from "./FirstForm";
+import { CustomDatePicker } from "@/components/custom-datePicker";
+// import { control } from "react-hook-form";
 
 export default function SecondForm(props) {
   const { onSubmit, handleBack } = props;
@@ -16,11 +18,12 @@ export default function SecondForm(props) {
       autoComplete="off"
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
-        <Input
+        {/* <Input
           placeholder="لطفا تاریخ تولد خود را وارد کنید"
           style={inputStyle}
           type="date"
-        />
+        /> */}
+        <CustomDatePicker id="date"/>
       </Form.Item>
 
       <Form.Item label="شماره تلفن" name="phoneNumber">

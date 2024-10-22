@@ -8,6 +8,7 @@ body {
 :root {
   --navy-blue: #111928; /* Replace with your desired navy blue color */
   --form-bg: #1f2a37;
+  --input-bg:#374151
 }
 
 .rmdp-input {

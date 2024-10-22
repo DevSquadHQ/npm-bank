@@ -1,12 +1,23 @@
 import { Card, Typography } from "antd";
 const { Text } = Typography;
-import "./form.css";
+
 
 export default function Form(props) {
   const { title, children } = props;
+  const cardStyle = {
+    width: "384px",
+    border: "none",
+    padding: "15px",
+  };
+  const titleStyle = {
+    color: "white",
+    fontSize: "20px",
+    display: "block",
+    marginBottom: "1rem",
+  };
   return (
-    <Card className="form-container">
-      <Text className="title">{title}</Text>
+    <Card style={cardStyle}>
+      <Text style={titleStyle}>{title}</Text>
       {children}
     </Card>
   );
