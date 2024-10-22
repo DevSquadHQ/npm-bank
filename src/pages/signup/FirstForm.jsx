@@ -1,14 +1,11 @@
-import { InputGroup } from "@/components/input-group";
-// import { Button } from "@/components/button";
 import { Button, Form, Input } from "antd";
+export const inputStyle = {
+  padding: "10px 15px", // Custom padding
+  boxShadow: "none",
+  border: "none",
+};
 
 export default function FirstForm() {
-  const inputStyle = {
-    padding: "10px 15px", // Custom padding
-    boxShadow: "none",
-    border: "none",
-  };
-
   return (
     <Form
       action=""

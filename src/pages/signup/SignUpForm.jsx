@@ -5,14 +5,8 @@ import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 
 export default function SignUpForm() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm();
 
   const onSubmit = (data) => {
     console.log("Submitted Data:", data); // Check if date is included in data
@@ -27,21 +21,9 @@ export default function SignUpForm() {
   return (
     <>
       {step === 1 ? (
-        <FirstForm
-          onSubmit={onSubmit}
-          handleSubmit={handleSubmit}
-          register={register}
-          errors={errors}
-        />
+        <FirstForm onSubmit={onSubmit} />
       ) : (
-        <SecondForm
-          onSubmit={onSubmit}
-          handleBack={handleBack}
-          handleSubmit={handleSubmit}
-          register={register}
-          errors={errors}
-          control={control}
-        />
+        <SecondForm onSubmit={onSubmit} />
       )}
     </>
   );

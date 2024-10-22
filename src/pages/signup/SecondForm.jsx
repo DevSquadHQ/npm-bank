@@ -1,58 +1,70 @@
-import { InputGroup } from "@/components/input-group";
-import { Button } from "@/components/button";
-import { CustomDatePicker } from "@/components/custom-datePicker";
+import { Button, Form, Input } from "antd";
+import { inputStyle } from "./FirstForm";
 
 export default function SecondForm(props) {
-  const { onSubmit, handleBack, handleSubmit, register, errors, control } =
-    props;
+  const { onSubmit } = props;
 
   return (
-    <form
+    <Form
       action=""
-      className="space-y-5 h-full flex flex-col"
-      onSubmit={handleSubmit(onSubmit)}
+      labelCol={{
+        span: 24,
+      }}
+      wrapperCol={{
+        span: 24,
+      }}
+      autoComplete="off"
     >
-      <div className="space-y-5 grow">
-        {/* <InputGroup
-            label="تاریخ تولد"
-            id="birthdate"
-            placeholder="انتخاب تاریخ"
-            type="date"
-            register={register}
-            errors={errors}
-          /> */}
-        <CustomDatePicker control={control} id="data"/>
-
-        <InputGroup
-          label="شماره موبایل"
-          id="PhoneNumber"
-          placeholder="مثال 09121212121"
-          type="tel"
-          register={register}
-          errors={errors}
+      <Form.Item label="تاریخ" name="date">
+        <Input
+          placeholder="لطفا یک تاریخ را وارد کنید"
+          style={inputStyle}
+          type="date"
+          autoComplete="new-password"
         />
-        <InputGroup
-          label="ایمیل"
-          id="email"
+      </Form.Item>
+
+      <Form.Item label="رمز عبور" name="password">
+        <Input
+          placeholder="لطفا رمز عبور خود را وارد کنید"
+          style={inputStyle}
+          type="password"
+          autoComplete="new-password"
+        />
+      </Form.Item>
+
+      <Form.Item label="شماره تلفن" name="phoneNumber">
+        <Input
+          placeholder="لطفا شماره تلفن خود را وارد کنید"
+          style={inputStyle}
+          type="tel"
+        />
+      </Form.Item>
+
+      <Form.Item label="ایمیل" name="email">
+        <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
           type="email"
-          register={register}
-          errors={errors}
+          style={inputStyle}
         />
-      </div>
-      <Button label="ثبت نام" />
-      <Button
-        variant="outlined"
-        label="بازگشت"
-        type="button"
-        onClick={handleBack}
-      />
+      </Form.Item>
+
+      <Form.Item
+        wrapperCol={{
+          span: 24,
+        }}
+      >
+        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          ادامه
+        </Button>
+      </Form.Item>
+      {/* <Button label="ادامه"/> */}
       <span className="text-[#6B7280] block">
         حساب کاربری دارید ؟{" "}
         <a href="/login" className="text-button">
           ورود به حساب
         </a>
       </span>
-    </form>
+    </Form>
   );
 }
