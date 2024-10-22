@@ -1,45 +1,56 @@
 import { InputGroup } from "@/components/input-group";
-import { Button } from "@/components/button";
+// import { Button } from "@/components/button";
+import { Button, Form, Input } from "antd";
 
-export default function FirstForm(props) {
-  const { onSubmit, handleSubmit, register, errors } = props;
+export default function FirstForm() {
+  const inputStyle = {
+    padding: "10px 15px", // Custom padding
+    boxShadow: "none",
+    border: "none",
+  };
 
   return (
-    <form
+    <Form
       action=""
-      className="space-y-5 h-full flex flex-col"
-      onSubmit={handleSubmit(onSubmit)}
+      labelCol={{
+        span: 24,
+      }}
+      wrapperCol={{
+        span: 24,
+      }}
+      autoComplete="off"
     >
-      <div className="space-y-4 grow sm:grow-0">
-        <InputGroup
-          label="نام"
-          id="name"
-          placeholder="لطفا نام خود را وارد کنید"
-          register={register}
-          errors={errors}
-        />
-        <InputGroup
-          label="نام خانوادگی"
-          id="lastName"
+      <Form.Item label="نام" name="username">
+        <Input placeholder="لطفا نام خود را وارد کنید" style={inputStyle} />
+      </Form.Item>
+
+      <Form.Item label="نام خانوادگی" name="lastName">
+        <Input
           placeholder="لطفا نام خانوادگی خود را وارد کنید"
-          register={register}
-          errors={errors}
+          style={inputStyle}
         />
-        <InputGroup
-          label="کد ملی"
-          id="nationalCode"
-          placeholder="لطفا کد ملی خود را وارد کنید"
-          register={register}
-          errors={errors}
-        />
-      </div>
-      <Button label="ادامه" />
+      </Form.Item>
+
+      <Form.Item label="کد ملی" name="nationalCode">
+        <Input placeholder="لطفا کد ملی خود را وارد کنید" style={inputStyle} />
+      </Form.Item>
+
+      <Form.Item
+        wrapperCol={{
+          span: 24,
+        }}
+      >
+        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          ادامه
+        </Button>
+      </Form.Item>
+      {/* <Button label="ادامه"/> */}
       <span className="text-[#6B7280] block">
         حساب کاربری دارید ؟{" "}
         <a href="/login" className="text-button">
           ورود به حساب
         </a>
       </span>
-    </form>
+    </Form>
   );
 }
