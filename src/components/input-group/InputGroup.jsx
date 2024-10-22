@@ -96,6 +96,26 @@ export default function InputGroup(props) {
             message: "لطفا یک ایمیل معتبر وارد کنید",
           },
         };
+      case "password":
+        return {
+          required: "رمز عبور الزامی است",
+
+          validate: {
+            hasUpperCase: (value) =>
+              /[A-Z]/.test(value) || "باید حداقل یک حرف بزرگ داشته باشد",
+            hasLowerCase: (value) =>
+              /[a-z]/.test(value) || "باید حداقل یک حرف کوچک داشته باشد",
+            hasNumber: (value) =>
+              /\d/.test(value) || "باید حداقل یک عدد داشته باشد",
+            hasSpecialChar: (value) =>
+              /[@$!%*?&]/.test(value) ||
+              "باید حداقل یک کاراکتر خاص (@, $, !, %, *, ?, &) داشته باشد",
+          },
+          minLength: {
+            value: 8,
+            message: "رمز عبور باید حداقل ۸ کاراکتر باشد",
+          },
+        };
       default:
         return {
           required: `${fieldId} ضروری است`,
