@@ -13,3 +13,13 @@
   text-align: center;
   margin-bottom: 40px !important;
 }
+
+/* warning message style */
+
+.ant-input-password-icon{
+  color: white !important;
+}
+.ant-form-item-explain-error{
+  margin-top: 4px;
+  padding-right: 8px;
+}
