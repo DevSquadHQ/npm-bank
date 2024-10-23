@@ -2,18 +2,11 @@ import { useState } from "react";
 //================== import defualt Components========
 import { Layout, Menu, Button } from "antd";
 //================== import icons======
-import {
-  DoubleLeftOutlined,
-  DoubleRightOutlined,
-  SettingFilled,
-  HomeOutlined,
-  PieChartFilled,
-  DollarOutlined,
-} from "@ant-design/icons";
+import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 //=====================================
 import "antd/dist/reset.css";
 
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import CustomSidebar from "../../components/custom-sidebar/CustomSidebar";
 
 const { Header, Content } = Layout;
@@ -63,20 +56,7 @@ export default function MainLayout() {
 
       <Layout className="site-layout" style={{ marginTop: 64 }}>
         <CustomSidebar collapsed={collapsed} />
-
-        <Content
-          className="content"
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            background: "#fff",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "auto",
-            border: "1px solid black",
-          }}
-        >
+        <Content className="content">
           <Outlet />
         </Content>
       </Layout>
