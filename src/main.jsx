@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MainLayout from "./layout/main-layout/MainLayout.jsx";
+import MainLayout from "./layouts/main-layout/MainLayout.jsx";
 import Home from "./pages/main-pages/Home.jsx";
 import Report from "./pages/main-pages/Report.jsx";
 import MoneyTransfer from "./pages/main-pages/MoneyTransfer.jsx";
@@ -9,6 +9,7 @@ import AccountSuspension from "./pages/main-pages/AccountSuspension.jsx";
 import ChangePassword from "./pages/main-pages/ChangePassword.jsx";
 import AccountList from "./pages/main-pages/AccountList.jsx";
 import MyAccount from "./pages/main-pages/MyAccount.jsx";
+import CreateAccount from "./pages/main-pages/CreateAccount.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/myAccount",
         element: <MyAccount />,
+      },
+      {
+        path: "/createAccount",
+        element: <CreateAccount />,
       },
     ],
   },
