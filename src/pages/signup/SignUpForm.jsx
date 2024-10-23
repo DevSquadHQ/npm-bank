@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 
 export default function SignUpForm() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {

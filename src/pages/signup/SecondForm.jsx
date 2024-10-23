@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { inputStyle } from "./FirstForm";
-import { CustomDatePicker } from "@/components/custom-datePicker";
+import CustomDatePicker from "../../components/custom-datePicker/CustomDatePicker";
 // import { control } from "react-hook-form";
 
 export default function SecondForm(props) {
@@ -23,7 +23,7 @@ export default function SecondForm(props) {
           style={inputStyle}
           type="date"
         /> */}
-        <CustomDatePicker id="date"/>
+        <CustomDatePicker id="date" />
       </Form.Item>
 
       <Form.Item label="شماره تلفن" name="phoneNumber">
