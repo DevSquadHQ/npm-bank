@@ -2,10 +2,12 @@ import { Button, Form, Input } from "antd";
 export const inputStyle = {
   padding: "10px 15px", // Custom padding
   boxShadow: "none",
-  border: "none",
+  // border: "none",
 };
 
-export default function FirstForm() {
+export default function FirstForm({onFinish}) {
+  const [form] = Form.useForm()
+
   return (
     <Form
       action=""
@@ -15,7 +17,11 @@ export default function FirstForm() {
       wrapperCol={{
         span: 24,
       }}
-      autoComplete="off"
+      // autoComplete="off"
+      onFinish={onFinish}
+      noValidate
+      requiredMark={false}
+      form={form}
     >
       <Form.Item label="نام" name="username">
         <Input placeholder="لطفا نام خود را وارد کنید" style={inputStyle} />

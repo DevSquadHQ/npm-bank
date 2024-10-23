@@ -3,14 +3,29 @@ import { useNavigate } from "react-router-dom";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 
+
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
+  const [formData,setFormData]=useState({});
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log("Submitted Data:", data); // Check if date is included in data
-    step === 1 ? setStep(2) : navigate("/login");
-  };
+  const onFinishFirst=(data)=>{
+    setFormData((prevData)=>({...prevData,...data}));
+    setStep(2);
+  }
+
+  const onFinishSecond=(data)=>{
+    const finalData={...formData,...data};
+    console.log("Final Submited Data:",finalData);
+    navigate("/login")
+    
+  }
+
+ 
+  // const onSubmit = (data) => {
+  //   console.log("Submitted Data:", data); // Check if date is included in data
+  //   step === 1 ? setStep(2) : navigate("/login");
+  // };
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -20,9 +35,9 @@ export default function SignUpForm() {
   return (
     <>
       {step === 1 ? (
-        <FirstForm onSubmit={onSubmit} />
+        <FirstForm onFinish={onFinishFirst} />
       ) : (
-        <SecondForm onSubmit={onSubmit} handleBack={handleBack} />
+        <SecondForm onFinish={onFinishSecond} handleBack={handleBack} />
       )}
     </>
   );

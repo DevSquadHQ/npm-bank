@@ -4,7 +4,9 @@ import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePi
 // import { control } from "react-hook-form";
 
 export default function SecondForm(props) {
-  const { onSubmit, handleBack } = props;
+  const [form] = Form.useForm()
+
+  const { onFinish, handleBack } = props;
 
   return (
     <Form
@@ -15,7 +17,11 @@ export default function SecondForm(props) {
       wrapperCol={{
         span: 24,
       }}
-      autoComplete="off"
+      // autoComplete="off"
+      onFinish={onFinish}
+      noValidate
+      requiredMark={false}
+      form={form}
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
         {/* <Input
