@@ -14,8 +14,9 @@ import {
 import "antd/dist/reset.css";
 
 import { Link, Outlet } from "react-router-dom";
+import CustomSidebar from "../../components/custom-sidebar/CustomSidebar";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -61,29 +62,7 @@ export default function MainLayout() {
       </Header>
 
       <Layout className="site-layout" style={{ marginTop: 64 }}>
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          trigger={null}
-          width={200}
-          style={{ background: "#001529" }}
-        >
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="home" icon={<HomeOutlined />}>
-              <Link to="/">خانه</Link>
-            </Menu.Item>
-            <Menu.Item href="/report" key="2" icon={<PieChartFilled />}>
-              <Link to="/report">گزارش</Link>
-            </Menu.Item>
-            <Menu.Item key="3" icon={<DollarOutlined />}>
-              انتقال وجه
-            </Menu.Item>
-            <Menu.SubMenu key="sub1" icon={<SettingFilled />} title="تنظیمات">
-              <Menu.Item key="4">مسدود سازی</Menu.Item>
-              <Menu.Item key="5">تغییر رمز اولیه ثابت</Menu.Item>
-            </Menu.SubMenu>
-          </Menu>
-        </Sider>
+        <CustomSidebar collapsed={collapsed} />
 
         <Content
           className="content"
