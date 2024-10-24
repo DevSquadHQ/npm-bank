@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { validateIranianNationalCode } from "../../../utils/indentityUtils";
+import "../../../layouts/identity-layout/identity-layout.css";
 
 export const inputStyle = {
   padding: "10px 15px",
@@ -37,9 +38,15 @@ export default function FirstForm({ onFinish }) {
             pattern: /^[\u0600-\u06FF\s]+$/,
             message: "لطفا فقط از حروف فارسی استفاده کنید",
           },
+          {
+            min:2,
+            message:"نام باید حداقل ۲ کاراکتر باشد"
+          }
         ]}
+        validateTrigger="onChange" // Show validation on every change
+        validateFirst // showing only one error
       >
-        <Input placeholder="لطفا نام خود را وارد کنید" style={inputStyle} />
+        <Input placeholder="لطفا نام خود را وارد کنید" className="inputStyle" />
       </Form.Item>
 
       <Form.Item
@@ -54,11 +61,17 @@ export default function FirstForm({ onFinish }) {
             pattern: /^[\u0600-\u06FF\s]+$/,
             message: "لطفا فقط از حروف فارسی استفاده کنید",
           },
+          {
+            min:2,
+            message:"نام خانوادگی باید حداقل ۲ کاراکتر باشد"
+          }
         ]}
+        validateTrigger="onChange" // Show validation on every change
+        validateFirst // showing only one error
       >
         <Input
           placeholder="لطفا نام خانوادگی خود را وارد کنید"
-          style={inputStyle}
+          className="inputStyle"
         />
       </Form.Item>
 
@@ -73,19 +86,17 @@ export default function FirstForm({ onFinish }) {
           {
             validator: (_, value) => {
               if (!value) {
-                // If the field is empty, skip custom validation (required rule will handle this)
-                return Promise.resolve();
+                return Promise.resolve(); // Skip validation if empty
               }
               const validationResult = validateIranianNationalCode(value);
-              if (validationResult === true) {
-                return Promise.resolve(); // Validation passed
-              }
-              return Promise.reject(new Error(validationResult)); // Custom error message if validation fails
+              return validationResult.isValid
+                ? Promise.resolve() // Validation passed
+                : Promise.reject(new Error(validationResult.message)); //Validation failed
             },
           },
         ]}
       >
-        <Input placeholder="لطفا کد ملی خود را وارد کنید" style={inputStyle} />
+        <Input placeholder="لطفا کد ملی خود را وارد کنید" className="inputStyle" />
       </Form.Item>
 
       <Form.Item

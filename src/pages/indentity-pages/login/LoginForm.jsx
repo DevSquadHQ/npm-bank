@@ -1,6 +1,5 @@
 import { Button, Form, Input } from "antd";
-
-import { inputStyle } from "../signup/FirstForm";
+import "../../../layouts/identity-layout/identity-layout.css";
 
 export default function LoginForm() {
   const [form] = Form.useForm();
@@ -21,7 +20,6 @@ export default function LoginForm() {
       }}
       // autoComplete="off"
       action=""
-      // onSubmit={onSubmit}
       onFinish={onFinish}
       requiredMark={false}
     >
@@ -39,7 +37,10 @@ export default function LoginForm() {
           },
         ]}
       >
-        <Input placeholder="لطفا ایمیل خود را وارد کنید" style={inputStyle} />
+        <Input
+          placeholder="لطفا ایمیل خود را وارد کنید"
+          className="inputStyle"
+        />
       </Form.Item>
       <Form.Item
         label="رمز عبور"
@@ -57,7 +58,7 @@ export default function LoginForm() {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-          style={inputStyle}
+          className="inputStyle"
           autoComplete="new-password"
         />
       </Form.Item>

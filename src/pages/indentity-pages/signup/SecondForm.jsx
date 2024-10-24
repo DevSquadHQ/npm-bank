@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
-import { inputStyle } from "./FirstForm";
 import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
-// import { control } from "react-hook-form";
+import "../../../layouts/identity-layout/identity-layout.css";
+
 
 export default function SecondForm(props) {
   const [form] = Form.useForm();
@@ -47,7 +47,7 @@ export default function SecondForm(props) {
       >
         <Input
           placeholder="لطفا شماره تلفن خود را وارد کنید"
-          style={inputStyle}
+          className="inputStyle"
           type="tel"
         />
       </Form.Item>
@@ -69,7 +69,7 @@ export default function SecondForm(props) {
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
           type="email"
-          style={inputStyle}
+          className="inputStyle"
         />
       </Form.Item>
 
@@ -92,7 +92,7 @@ export default function SecondForm(props) {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-          style={inputStyle}
+          className="inputStyle"
         />
       </Form.Item>
 
@@ -106,7 +106,7 @@ export default function SecondForm(props) {
           htmlType="submit"
           style={{ width: "100%", marginTop: "32px" }}
         >
-          ادامه
+          ثبت نام
         </Button>
       </Form.Item>
       <Form.Item
