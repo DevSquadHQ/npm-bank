@@ -18,11 +18,12 @@ export default function CustomDatePicker({onChange}) {
       //   color: "#fff",
       //   borderRaduis: "8px",
       // }}
-      containerClassName="datePicker-container w-full bg-input rounded-[8px] py-3 px-5 border-[#4B5563] outline-none"
+      containerClassName="datePicker-container"
+      inputClass="custom-datePicker"
       placeholder="انتخاب تاریخ"
       value={maxDate}
       onChange={(value)=>onChange(value)}
-      render={<InputIcon />} // Keep the InputIcon rendering
+      render={<InputIcon />}
       maxDate={maxDate}
       calendar={persian}
       locale={persian_fa}

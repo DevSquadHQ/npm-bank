@@ -24,7 +24,11 @@ export default function SecondForm(props) {
       form={form}
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
-        <CustomDatePicker  onChange={(date) => form.setFieldValue('birthDate', date?.format('YYYY/MM/DD'))}/>
+        <CustomDatePicker
+          onChange={(date) =>
+            form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
+          }
+        />
       </Form.Item>
 
       <Form.Item
@@ -57,7 +61,7 @@ export default function SecondForm(props) {
             message: "لطفا ایمیل خود را وارد کنید",
           },
           {
-            type:"email",
+            type: "email",
             message: "ایمیل نامعتبر است",
           },
         ]}
@@ -78,11 +82,13 @@ export default function SecondForm(props) {
             message: "لطفا رمز عبور خود را وارد کنید",
           },
           {
-            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message: "رمز عبور باید حداقل ۸ کاراکتر و شامل حروف بزرگ، کوچک، اعداد و کاراکترهای خاص باشد",
+            pattern:
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            message:
+              "رمز عبور باید حداقل ۸ کاراکتر و شامل حروف بزرگ، کوچک، اعداد و کاراکترهای خاص باشد",
           },
         ]}
-        validateTrigger={["onChange"]} 
+        validateTrigger={["onChange"]}
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
@@ -95,7 +101,11 @@ export default function SecondForm(props) {
           span: 24,
         }}
       >
-        <Button type="primary" htmlType="submit" style={{ width: "100%",marginTop:"32px" }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%", marginTop: "32px" }}
+        >
           ادامه
         </Button>
       </Form.Item>
@@ -115,11 +125,8 @@ export default function SecondForm(props) {
         </Button>
       </Form.Item>
       {/* <Button label="ادامه"/> */}
-      <span className="text-[#6B7280] block">
-        حساب کاربری دارید ؟{" "}
-        <a href="/login" className="text-button">
-          ورود به حساب
-        </a>
+      <span className="auth-form-footer">
+        حساب کاربری دارید ؟ <a href="/login">ورود به حساب</a>
       </span>
     </Form>
   );

@@ -1,5 +1,5 @@
 .main-layout{
-  height: 100svh;
+  min-height: 100svh;
   width: 100svw;
   background-color:var(--navy-blue);
   display: flex;

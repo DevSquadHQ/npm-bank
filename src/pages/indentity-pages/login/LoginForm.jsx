@@ -11,8 +11,8 @@ export default function LoginForm() {
 
   return (
     <Form
-    form={form}
-    noValidate // turn-off the browser default validation warn
+      form={form}
+      noValidate // turn-off the browser default validation warn
       labelCol={{
         span: 24,
       }}
@@ -34,15 +34,12 @@ export default function LoginForm() {
             message: "لطفا ایمیل خود را وارد کنید",
           },
           {
-            type:'email',
-            message:'لطفا یک ایمیل معتبر وارد کنید'
-          }
+            type: "email",
+            message: "لطفا یک ایمیل معتبر وارد کنید",
+          },
         ]}
       >
-        <Input
-          placeholder="لطفا ایمیل خود را وارد کنید"
-          style={inputStyle}
-        />
+        <Input placeholder="لطفا ایمیل خود را وارد کنید" style={inputStyle} />
       </Form.Item>
       <Form.Item
         label="رمز عبور"
@@ -53,7 +50,7 @@ export default function LoginForm() {
             message: "لطفا رمز عبور خود را وارد کنید",
           },
           {
-            min:8,
+            min: 8,
             message: "رمز عبور باید حداقل ۸ کاراکتر باشد",
           },
         ]}
@@ -65,15 +62,16 @@ export default function LoginForm() {
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: "100%",marginTop:"32px"}}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%", marginTop: "32px" }}
+        >
           ورود به حساب
         </Button>
       </Form.Item>
-      <span className="text-[#6B7280] block">
-        عضو نیستید ؟{" "}
-        <a href="/" className="text-button" style={{marginRight:"4px"}}>
-          ایجاد حساب{" "}
-        </a>
+      <span className="auth-form-footer">
+        عضو نیستید ؟ <a href="/">ایجاد حساب </a>
       </span>
     </Form>
   );

@@ -2,7 +2,7 @@ import { Button, Form, Input } from "antd";
 import { validateIranianNationalCode } from "../../../utils/indentityUtils";
 
 export const inputStyle = {
-  padding: "10px 15px", 
+  padding: "10px 15px",
   boxShadow: "none",
   // border: "none",
 };
@@ -101,9 +101,9 @@ export default function FirstForm({ onFinish }) {
           ادامه
         </Button>
       </Form.Item>
-      <span className="text-[#6B7280] block">
+      <span className="auth-form-footer">
         حساب کاربری دارید ؟{" "}
-        <a href="/login" className="text-button" style={{ marginRight: "4px" }}>
+        <a href="/login" className="auth-form-footer">
           ورود به حساب
         </a>
       </span>
