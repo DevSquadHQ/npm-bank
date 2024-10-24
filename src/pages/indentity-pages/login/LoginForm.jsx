@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import "../../../layouts/identity-layout/identity-layout.css";
+import { validateMessages } from "../../../utils/validationUtils";
 
 export default function LoginForm() {
   const [form] = Form.useForm();
@@ -12,30 +13,22 @@ export default function LoginForm() {
     <Form
       form={form}
       noValidate // turn-off the browser default validation warn
+      // autoComplete="off"
+      action=""
+      onFinish={onFinish}
+      requiredMark={false}
+      validateMessages={validateMessages}
       labelCol={{
         span: 24,
       }}
       wrapperCol={{
         span: 24,
       }}
-      // autoComplete="off"
-      action=""
-      onFinish={onFinish}
-      requiredMark={false}
     >
       <Form.Item
-        label="پست الکترونیک"
+        label="ایمیل"
         name="email"
-        rules={[
-          {
-            required: true,
-            message: "لطفا ایمیل خود را وارد کنید",
-          },
-          {
-            type: "email",
-            message: "لطفا یک ایمیل معتبر وارد کنید",
-          },
-        ]}
+        rules={[{ required: true }, { type: "email" }]}
       >
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
@@ -45,16 +38,7 @@ export default function LoginForm() {
       <Form.Item
         label="رمز عبور"
         name="password"
-        rules={[
-          {
-            required: true,
-            message: "لطفا رمز عبور خود را وارد کنید",
-          },
-          {
-            min: 8,
-            message: "رمز عبور باید حداقل ۸ کاراکتر باشد",
-          },
-        ]}
+        rules={[{ required: true }, { min: 8 }]}
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"

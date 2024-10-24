@@ -13,11 +13,6 @@ export default function CustomDatePicker({onChange}) {
 
   return (
     <DatePicker
-      // style={{
-      //   width: "100%",
-      //   color: "#fff",
-      //   borderRaduis: "8px",
-      // }}
       containerClassName="datePicker-container"
       inputClass="custom-datePicker"
       placeholder="انتخاب تاریخ"

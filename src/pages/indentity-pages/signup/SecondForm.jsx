@@ -1,7 +1,10 @@
 import { Button, Form, Input } from "antd";
 import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
 import "../../../layouts/identity-layout/identity-layout.css";
-
+import {
+  validateMessages,
+  validationRules,
+} from "../../../utils/validationUtils";
 
 export default function SecondForm(props) {
   const [form] = Form.useForm();
@@ -11,17 +14,18 @@ export default function SecondForm(props) {
   return (
     <Form
       action=""
+      // autoComplete="off"
+      onFinish={onFinish}
+      noValidate
+      requiredMark={false} //delete star
+      form={form}
+      validateMessages={validateMessages}
       labelCol={{
         span: 24,
       }}
       wrapperCol={{
         span: 24,
       }}
-      // autoComplete="off"
-      onFinish={onFinish}
-      noValidate
-      requiredMark={false} //delete star
-      form={form}
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
         <CustomDatePicker
@@ -34,16 +38,7 @@ export default function SecondForm(props) {
       <Form.Item
         label="شماره تلفن"
         name="phoneNumber"
-        rules={[
-          {
-            required: true,
-            message: "لطفا نام خود را وارد کنید",
-          },
-          {
-            pattern: /^(09|\+989)\d{9}$/,
-            message: "شماره موبایل نامعتبر است",
-          },
-        ]}
+        rules={[{ required: true }, validationRules.phoneNumber]}
       >
         <Input
           placeholder="لطفا شماره تلفن خود را وارد کنید"
@@ -55,16 +50,7 @@ export default function SecondForm(props) {
       <Form.Item
         label="ایمیل"
         name="email"
-        rules={[
-          {
-            required: true,
-            message: "لطفا ایمیل خود را وارد کنید",
-          },
-          {
-            type: "email",
-            message: "ایمیل نامعتبر است",
-          },
-        ]}
+        rules={[{ required: true }, { type: "email" }]}
       >
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
@@ -76,18 +62,7 @@ export default function SecondForm(props) {
       <Form.Item
         label="رمز عبور"
         name="password"
-        rules={[
-          {
-            required: true,
-            message: "لطفا رمز عبور خود را وارد کنید",
-          },
-          {
-            pattern:
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message:
-              "رمز عبور باید حداقل ۸ کاراکتر و شامل حروف بزرگ، کوچک، اعداد و کاراکترهای خاص باشد",
-          },
-        ]}
+        rules={[{ required: true }, validationRules.password]}
         validateTrigger={["onChange"]}
       >
         <Input.Password
