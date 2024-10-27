@@ -1,9 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
-import Login from "./pages/indentity-pages/login/Login";
-import IdentityLayout from "./layouts/identity-layout/IdentityLayout";
-import SignUp from "./pages/indentity-pages/signup/SignUp";
 
 import { createBrowserRouter } from "react-router-dom";
+import IdentityLayout from "./layouts/identity-layout/IdentityLayout";
+import Login from "./pages/indentity-pages/login/Login";
+import SignUp from "./pages/indentity-pages/signup/SignUp";
 import MainLayout from "./layouts/main-layout//MainLayout.jsx";
 import Home from "./pages/main-pages/Home/Home.jsx";
 import Report from "./pages/main-pages/Report/Report.jsx";
@@ -67,3 +66,4 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
