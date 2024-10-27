@@ -15,6 +15,7 @@ const validateMessages = {
 
 const validationRules = {
   password: {
+    min: 8,
     pattern:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     message: "رمز عبور باید ۸ کاراکتر، حروف بزرگ، کوچک، عدد و نماد داشته باشد",
