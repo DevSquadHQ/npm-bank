@@ -32,7 +32,6 @@ const theme = {
     Popover: {
       colorBgElevated: token.input,
       colorText: "#fff",
-      minWidth: "100px",
     },
     Menu: {
       itemColor: "#fff",
