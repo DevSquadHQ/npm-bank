@@ -2,7 +2,7 @@ import { Card, Typography } from "antd";
 const { Text } = Typography;
 
 
-export default function Form(props) {
+export default function FormContainer(props) {
   const { title, children } = props;
   const cardStyle = {
     width: "384px",

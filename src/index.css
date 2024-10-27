@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 body {
   font-family: "vazir";
 }
@@ -8,17 +5,15 @@ body {
 :root {
   --navy-blue: #111928; /* Replace with your desired navy blue color */
   --form-bg: #1f2a37;
-  --input-bg:#374151
+  --input-bg: #374151;
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.rmdp-input {
-  background-color: transparent !important;
-  outline: 2px solid transparent !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  border-color: transparent !important;
-  width: 100%;
-}
+/* global  */
+
 .flex-col {
   flex-direction: column;
 }
@@ -30,4 +25,35 @@ body {
 }
 .items-center {
   align-items: center;
+}
+
+/* date picker style  */
+.datePicker-container {
+  width: 100%;
+  background-color: var(--input-bg);
+  border-radius: 8px;
+  border-color: #4b5563;
+  padding: 10px 15px;
+}
+.rmdp-input {
+  background-color: transparent !important;
+  outline: 2px solid transparent !important;
+  box-shadow: none !important;
+  color: #fff;
+  padding: 0 !important;
+  border-color: transparent !important;
+  width: 100%;
+}
+
+
+
+/* auth form footer  */
+.auth-form-footer {
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  a {
+    color: #1c64f2;
+  }
 }

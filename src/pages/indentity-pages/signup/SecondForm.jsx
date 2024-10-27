@@ -1,44 +1,73 @@
 import { Button, Form, Input } from "antd";
-import { inputStyle } from "./FirstForm";
 import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
-// import { control } from "react-hook-form";
+import "../../../layouts/identity-layout/identity-layout.css";
+import {
+  validateMessages,
+  validationRules,
+} from "../../../utils/validationUtils";
 
 export default function SecondForm(props) {
-  const { onSubmit, handleBack } = props;
+  const [form] = Form.useForm();
+
+  const { onFinish, handleBack } = props;
 
   return (
     <Form
       action=""
+      // autoComplete="off"
+      onFinish={onFinish}
+      noValidate
+      requiredMark={false} //delete star
+      form={form}
+      validateMessages={validateMessages}
       labelCol={{
         span: 24,
       }}
       wrapperCol={{
         span: 24,
       }}
-      autoComplete="off"
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
-        {/* <Input
-          placeholder="لطفا تاریخ تولد خود را وارد کنید"
-          style={inputStyle}
-          type="date"
-        /> */}
-        <CustomDatePicker id="date" />
+        <CustomDatePicker
+          onChange={(date) =>
+            form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
+          }
+        />
       </Form.Item>
 
-      <Form.Item label="شماره تلفن" name="phoneNumber">
+      <Form.Item
+        label="شماره تلفن"
+        name="phoneNumber"
+        rules={[{ required: true }, validationRules.phoneNumber]}
+      >
         <Input
           placeholder="لطفا شماره تلفن خود را وارد کنید"
-          style={inputStyle}
+          className="inputStyle"
           type="tel"
         />
       </Form.Item>
 
-      <Form.Item label="ایمیل" name="email">
+      <Form.Item
+        label="ایمیل"
+        name="email"
+        rules={[{ required: true }, { type: "email" }]}
+      >
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
           type="email"
-          style={inputStyle}
+          className="inputStyle"
+        />
+      </Form.Item>
+
+      <Form.Item
+        label="رمز عبور"
+        name="password"
+        rules={[{ required: true }, validationRules.password]}
+        validateTrigger={["onChange"]}
+      >
+        <Input.Password
+          placeholder="لطفا رمز عبور خود را وارد کنید"
+          className="inputStyle"
         />
       </Form.Item>
 
@@ -47,8 +76,12 @@ export default function SecondForm(props) {
           span: 24,
         }}
       >
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-          ادامه
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%", marginTop: "32px" }}
+        >
+          ثبت نام
         </Button>
       </Form.Item>
       <Form.Item
@@ -67,11 +100,8 @@ export default function SecondForm(props) {
         </Button>
       </Form.Item>
       {/* <Button label="ادامه"/> */}
-      <span className="text-[#6B7280] block">
-        حساب کاربری دارید ؟{" "}
-        <a href="/login" className="text-button">
-          ورود به حساب
-        </a>
+      <span className="auth-form-footer">
+        حساب کاربری دارید ؟ <a href="/login">ورود به حساب</a>
       </span>
     </Form>
   );
