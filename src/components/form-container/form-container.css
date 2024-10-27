@@ -1,0 +1,14 @@
+.custom-card {
+  border: none;
+  padding: "15px";
+  width: 384px;
+}
+.card-title {
+  color: white;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 1rem;
+}
+.dashboard-content .custom-card {
+  width: 480px;
+}

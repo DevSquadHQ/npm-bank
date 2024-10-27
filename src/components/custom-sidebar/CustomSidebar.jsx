@@ -48,10 +48,10 @@ export default function CustomSidebar(props) {
       collapsed={collapsed}
       trigger={null}
       width={200}
-      style={{ background: "#001529" }}
+      className="custom-sidebar"
     >
       <Menu
-        theme="dark"
+       className="main-menu"
         mode="inline"
         defaultSelectedKeys={["1"]}
         items={items}

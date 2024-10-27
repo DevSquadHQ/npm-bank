@@ -1,15 +1,11 @@
 import { useState } from "react";
-//================== import defualt Components========
-import { Layout, Menu, Button } from "antd";
-//================== import icons======
-import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
-//=====================================
+import { Layout } from "antd";
 import "antd/dist/reset.css";
-
+const { Content } = Layout;
 import { Outlet } from "react-router-dom";
 import CustomSidebar from "../../components/custom-sidebar/CustomSidebar";
-
-const { Header, Content } = Layout;
+import Header from "../../components/custom-header/CustomHeader";
+import FormContainer from "../../components/form-container/FormContainer";
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -19,45 +15,13 @@ export default function MainLayout() {
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Header
-        style={{
-          position: "fixed",
-          zIndex: 1,
-          width: "100%",
-          background: "#001529",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "0 16px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Button type="primary" onClick={toggle}>
-            {collapsed ? <DoubleLeftOutlined /> : <DoubleRightOutlined />}
-          </Button>
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Button
-            className="btncna"
-            type="primary"
-            style={{ marginRight: "16px" }}
-          >
-            ایجاد حساب جدید
-          </Button>
-          <img className="image" src="/public/profile.jpg" />
-        </div>
-      </Header>
-
-      <Layout className="site-layout" style={{ marginTop: 64 }}>
+      <Header toggle={toggle} collapsed={collapsed} />
+      <Layout>
         <CustomSidebar collapsed={collapsed} />
-        <Content className="content">
-          <Outlet />
+        <Content className="dashboard-content">
+          <FormContainer>
+            <Outlet />
+          </FormContainer>
         </Content>
       </Layout>
     </Layout>

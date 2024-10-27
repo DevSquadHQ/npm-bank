@@ -1,0 +1,11 @@
+.custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+}
+.custom-header .collapsed-button {
+  margin-left: auto;
+  color: #fff!important;
+}

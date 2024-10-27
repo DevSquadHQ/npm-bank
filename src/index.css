@@ -45,8 +45,6 @@ body {
   width: 100%;
 }
 
-
-
 /* auth form footer  */
 .auth-form-footer {
   color: #6b7280;
@@ -58,44 +56,11 @@ body {
   }
 }
 
-
 /* dash styles */
 
-.btncna {
-  color: #fff;
-  padding: 8px 16px;
-  border: 1px solid #1a56db;
-  background-color: #1a56db;
-}
-
-.image {
-  border-radius: 50%;
-  margin-right: 20px;
-}
-.image:hover {
-  cursor: pointer;
-}
-
-.topdiv {
-  position: fixed;
-  top: auto;
-  left: 90px;
-}
-/* .content {
-  background-color: rgb(196, 16, 16);
-  min-width: 84vw;
-  min-height: 60%;
-  max-width: 90vw;
-  max-height: 98vh;
-} */
-.sidbar {
-  position: fixed;
-  right: 0;
-  left: auto;
-  height: 100%;
-}
-.divtest{
-    width: 100px;
-    height: 200px;
-    background-color: red;
+.dashboard-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
