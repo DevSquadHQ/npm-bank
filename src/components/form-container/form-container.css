@@ -9,6 +9,10 @@
   display: block;
   margin-bottom: 1rem;
 }
+.card-title-middle {
+  text-align: center;
+  margin-top: 1rem;
+}
 .dashboard-content .custom-card {
   width: 480px;
 }

@@ -26,9 +26,11 @@
 .ant-input-password-icon {
   color: white !important;
 }
+
 .ant-form-item-explain-error {
   margin-top: 4px;
-  padding-right: 8px;
+  padding-left: 8px;
+  text-align: left;
 }
 
 /* Multie Datepicker style */
