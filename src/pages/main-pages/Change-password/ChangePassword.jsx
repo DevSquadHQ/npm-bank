@@ -1,7 +1,12 @@
-import React from 'react'
+import ChangePassForm from "./ChangePassForm";
+import { Typography } from "antd";
+const { Text } = Typography;
 
 export default function ChangePassword() {
   return (
-    <div>ChangePassword</div>
-  )
+    <>
+      <Text className="card-title">تغییر رمز اولیه ثابت</Text>
+      <ChangePassForm />
+    </>
+  );
 }

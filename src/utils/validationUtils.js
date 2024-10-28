@@ -29,4 +29,13 @@ const validationRules = {
   },
 };
 
-export { validateMessages, validationRules };
+const validateConfirmPassword = ({ getFieldValue }) => ({
+  validator(_, value) {
+    if (!value || getFieldValue("newPassword") === value) {
+      return Promise.resolve();
+    }
+    return Promise.reject(new Error("رمز عبور و تایید آن یکسان نیستند"));
+  },
+});
+
+export { validateMessages, validationRules, validateConfirmPassword };
