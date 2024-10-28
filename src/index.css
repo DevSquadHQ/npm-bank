@@ -64,3 +64,22 @@ body {
   justify-content: center;
   padding: 1rem;
 }
+
+/* dash createAcc */
+
+.ant-select-selector{
+  padding: 10px 15px !important;
+}
+
+.ant-select-arrow{
+  color: white !important;
+  /* padding-top: 8px; */
+}
+
+.ant-form-item-tooltip{
+  padding-right: 8px;
+  color: rgba(255,255,255,0.5)  !important;
+}
+.ant-input-number-handler-down-inner,.ant-input-number-handler-up-inner{
+  color: white  !important;
+}
