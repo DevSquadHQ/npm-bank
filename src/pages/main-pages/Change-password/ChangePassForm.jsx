@@ -2,6 +2,7 @@ import { Button, Form, Input } from "antd";
 import {
   validationRules,
   validateMessages,
+  validateConfirmPassword,
 } from "../../../utils/validationUtils";
 
 export default function ChangePassForm() {
@@ -11,14 +12,6 @@ export default function ChangePassForm() {
     console.log("Success", values);
   };
 
-  const validateConfirmPassword = ({ getFieldValue }) => ({
-    validator(_, value) {
-      if (!value || getFieldValue("newPassword") === value) {
-        return Promise.resolve();
-      }
-      return Promise.reject(new Error("رمز عبور و تایید آن یکسان نیستند"));
-    },
-  });
   return (
     <Form
       form={form}
@@ -34,19 +27,17 @@ export default function ChangePassForm() {
         span: 24,
       }}
     >
-      <Form.Item label="رمز عبور فعلی" name="password">
-        <Input.Password className="inputStyle" value="12345" />
+      <Form.Item
+        label="رمز عبور فعلی"
+        name="password"
+        rules={[{ required: true }, { len: 6 ,message:'رمز عبور باید ۶ رقم باشد'}]}
+      >
+        <Input.Password className="inputStyle" autoComplete="new-password" />
       </Form.Item>
       <Form.Item
         label="رمز عبور جدید"
         name="newPassword"
-        rules={[
-          { required: true },
-          {
-            min: validationRules.password.min,
-            message: `رمز عبور باید حداقل ${validationRules.password.min} کاراکتر باشد`,
-          },
-        ]}
+        rules={[{ required: true }, validationRules.password]}
       >
         <Input.Password className="inputStyle" autoComplete="new-password" />
       </Form.Item>

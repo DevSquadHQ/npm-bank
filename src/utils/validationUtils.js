@@ -15,7 +15,6 @@ const validateMessages = {
 
 const validationRules = {
   password: {
-    min: 8,
     pattern:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     message: "رمز عبور باید ۸ کاراکتر، حروف بزرگ، کوچک، عدد و نماد داشته باشد",
@@ -30,4 +29,13 @@ const validationRules = {
   },
 };
 
-export { validateMessages, validationRules };
+const validateConfirmPassword = ({ getFieldValue }) => ({
+  validator(_, value) {
+    if (!value || getFieldValue("newPassword") === value) {
+      return Promise.resolve();
+    }
+    return Promise.reject(new Error("رمز عبور و تایید آن یکسان نیستند"));
+  },
+});
+
+export { validateMessages, validationRules, validateConfirmPassword };
