@@ -1,7 +1,10 @@
-import React from 'react'
+import { Typography } from "antd";
+const { Text } = Typography;
 
 export default function Report() {
   return (
-    <div>Report</div>
-  )
+    <>
+      <Text className="card-title">گزارش مالی</Text>
+    </>
+  );
 }
