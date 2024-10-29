@@ -63,7 +63,7 @@ const theme = {
       bodyBg: token.NavyBlue,
     },
     Table: {
-      colorText:"#fff",
+      colorText:"rgba(255,255,255,0.5)",
       rowHoverBg: token.NavyBlue,
       borderColor:"none"
     },

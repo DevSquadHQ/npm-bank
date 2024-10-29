@@ -4,6 +4,6 @@
 .table-row-dark {
   background-color: #374151; /* Dark row background color */
 }
-.table-value {
-  color: rgba(255, 255, 255, 0.5);
+.table-label {
+  color: #fff;
 }
