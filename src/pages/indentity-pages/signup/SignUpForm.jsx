@@ -17,7 +17,7 @@ export default function SignUpForm() {
   const onFinishSecond = (data) => {
     const finalData = { ...formData, ...data };
     console.log("Final Submited Data:", finalData);
-    // navigate("/login")
+    navigate("/login")
   };
 
   // const onSubmit = (data) => {
