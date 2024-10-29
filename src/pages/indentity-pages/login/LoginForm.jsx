@@ -56,7 +56,7 @@ export default function LoginForm() {
         </Button>
       </Form.Item>
       <span className="auth-form-footer">
-        عضو نیستید ؟ <a href="/">ایجاد حساب </a>
+        عضو نیستید ؟ <a href="/signUp">ایجاد حساب </a>
       </span>
     </Form>
   );

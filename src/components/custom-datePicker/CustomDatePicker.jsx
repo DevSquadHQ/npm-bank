@@ -2,24 +2,30 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import InputIcon from "react-multi-date-picker/components/input_icon";
-import "../../layouts/identity-layout/identity-layout.css"
-import { getEighteenYearsAgo } from "../../utils/indentityUtils";
+import "../../layouts/identity-layout/identity-layout.css";
 
 
-export default function CustomDatePicker({onChange}) {
+import { useState } from "react";
 
+export default function CustomDatePicker({
+  isRange = false,
+  onChange,
+  initialValue,
+  maxDate
+}) {
 
-  const maxDate = getEighteenYearsAgo(); // تاریخی که کاربر نباید بعد از آن انتخاب کند
+  const [value, setValue] = useState(isRange ? initialValue : maxDate);
 
   return (
     <DatePicker
       containerClassName="datePicker-container"
       inputClass="custom-datePicker"
-      placeholder="انتخاب تاریخ"
-      value={maxDate}
-      onChange={(value)=>onChange(value)}
+      placeholder={isRange ? "انتخاب محدوده تاریخ" : "انتخاب تاریخ"}
+      value={value}
+      onChange={(value) => onChange(value)}
       render={<InputIcon />}
-      maxDate={maxDate}
+      maxDate={!isRange ? maxDate : undefined}
+      range={isRange}
       calendar={persian}
       locale={persian_fa}
       format={"YYYY/MM/DD"}

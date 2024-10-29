@@ -1,5 +1,5 @@
 import { DateObject } from "react-multi-date-picker";
-
+import persian from "react-date-object/calendars/persian";
 // const validateIranianNationalCode = (code) => {
 //   if (!/^\d*$/.test(code)) {
 //     return "کد ملی نباید شامل حروف باشد";
@@ -59,7 +59,6 @@ const validateIranianNationalCode = (code) => {
 const getEighteenYearsAgo = () => {
   const today = new Date();
   today.setFullYear(today.getFullYear() - 18); // 18 سال از تاریخ امروز کم می‌کنیم
-  return new DateObject(today);
-};
+  return new DateObject({ calendar: persian, date: today });};
 
 export { validateIranianNationalCode, getEighteenYearsAgo };
