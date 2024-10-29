@@ -7,7 +7,7 @@ export default function FormContainer(props) {
 
   return (
     <Card className="custom-card">
-      {title ? <Text class="card-title">{title}</Text> : ""}
+      {title ? <Text className="card-title">{title}</Text> : ""}
       {children}
     </Card>
   );
