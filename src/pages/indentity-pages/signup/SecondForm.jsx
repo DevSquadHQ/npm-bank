@@ -21,7 +21,7 @@ export default function SecondForm(props) {
       noValidate
       requiredMark={false} //delete star
       form={form}
-      initialValues={{ birthDate: maxDate }}
+      initialValues={{ birthDate: maxDate }} // Set initial values here
       validateMessages={validateMessages}
       labelCol={{
         span: 24,
@@ -30,6 +30,7 @@ export default function SecondForm(props) {
         span: 24,
       }}
     >
+      {console.log(maxDate)}
       <Form.Item label="تاریخ تولد" name="birthDate">
         <CustomDatePicker
           maxDate={maxDate}

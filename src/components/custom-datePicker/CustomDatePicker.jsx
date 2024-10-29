@@ -11,8 +11,9 @@ export default function CustomDatePicker({
   isRange = false,
   onChange,
   initialValue,
-  maxDate,
+  maxDate
 }) {
+
   const [value, setValue] = useState(isRange ? initialValue : maxDate);
 
   return (
