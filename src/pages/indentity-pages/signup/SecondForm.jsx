@@ -5,8 +5,10 @@ import {
   validateMessages,
   validationRules,
 } from "../../../utils/validationUtils";
+import { getEighteenYearsAgo } from "../../../utils/indentityUtils";
 
 export default function SecondForm(props) {
+  const maxDate = getEighteenYearsAgo().format("YYYY/MM/DD"); // تاریخی که کاربر نباید بعد از آن انتخاب کند
   const [form] = Form.useForm();
 
   const { onFinish, handleBack } = props;
@@ -19,6 +21,7 @@ export default function SecondForm(props) {
       noValidate
       requiredMark={false} //delete star
       form={form}
+      initialValues={{ birthDate: maxDate }}
       validateMessages={validateMessages}
       labelCol={{
         span: 24,
@@ -29,6 +32,7 @@ export default function SecondForm(props) {
     >
       <Form.Item label="تاریخ تولد" name="birthDate">
         <CustomDatePicker
+          maxDate={maxDate}
           onChange={(date) =>
             form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
           }
