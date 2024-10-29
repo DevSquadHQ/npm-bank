@@ -1,12 +1,15 @@
 import React from "react";
-import { Button, Form, Input, InputNumber, Select, Tooltip } from "antd";
+import { Button, Form, InputNumber, Select } from "antd";
 import { validateMessages } from "../../../utils/validationUtils";
 
-export default function CreateAccForm() {
+
+export default function CreateAccForm({ onFormSubmit }) {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     console.log("Success", values);
+    // navigate("/accountInfo")
+    onFormSubmit(values); // Pass form values to parent component
   };
 
   return (
@@ -52,9 +55,10 @@ export default function CreateAccForm() {
           min={10000}
           // defaultValue={10000}
           step={5000}
-          formatter={(value) => (value ? `${value} تومان`.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '')}
+          formatter={(value) =>
+            value ? `${value} تومان`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
+          }
           // parser={(value) => value?.replace(/\s?تومان|,/g, '')}
-
         />
       </Form.Item>
       <Form.Item>

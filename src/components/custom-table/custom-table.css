@@ -1,0 +1,9 @@
+.table-row-light {
+  background-color: #1f2a37; /* Light row background color */
+}
+.table-row-dark {
+  background-color: #374151; /* Dark row background color */
+}
+.table-label {
+  color: #fff;
+}
