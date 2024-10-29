@@ -29,4 +29,10 @@ const validationRules = {
   },
 };
 
-export { validateMessages, validationRules };
+const validateDateRange = (_, value) => {
+  if (value && value.length === 2) {
+    return Promise.resolve();
+  }
+  return Promise.reject(new Error("لطفاً هر دو تاریخ را انتخاب کنید"));
+};
+export { validateMessages, validationRules, validateDateRange };

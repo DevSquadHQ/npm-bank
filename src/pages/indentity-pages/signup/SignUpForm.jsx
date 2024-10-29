@@ -5,7 +5,7 @@ import SecondForm from "./SecondForm";
 
 
 export default function SignUpForm() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [formData,setFormData]=useState({});
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ export default function SignUpForm() {
   const onFinishSecond=(data)=>{
     const finalData={...formData,...data};
     console.log("Final Submited Data:",finalData);
-    navigate("/login")
+    // navigate("/login")
     
   }
 
