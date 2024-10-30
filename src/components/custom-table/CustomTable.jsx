@@ -44,16 +44,19 @@ import { Table } from "antd";
 export default function CustomTable({
   tableData,
   pagination = false,
+  columnsTable,
 }) {
-  const columns = Object.keys(tableData[0])
-    .filter((key) => key !== "id")
-    .map((key, index) => ({
-      title: "",
-      dataIndex: key,
-      key,
-      align: "right",
-      className: index === 0 ? "table-label" : "",
-    }));
+  const columns = columnsTable
+    ? columnsTable
+    : Object.keys(tableData[0])
+        .filter((key) => key !== "id")
+        .map((key, index) => ({
+          title: "",
+          dataIndex: key,
+          key,
+          align: "right",
+          className: index === 0 ? "table-label" : "",
+        }));
 
   return (
     <Table
@@ -63,7 +66,7 @@ export default function CustomTable({
       showHeader={false}
       style={{
         backgroundColor: "transparent",
-        width: "100%"
+        width: "100%",
       }}
       rowClassName={(record, index) =>
         index % 2 !== 0 ? "table-row-light" : "table-row-dark"

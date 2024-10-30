@@ -5,43 +5,44 @@ import { validateDateRange } from "../../../utils/validationUtils";
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import CustomTable from "../../../components/custom-table/CustomTable";
-import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 const { Text } = Typography;
 
 const reportsData = [
-  { id: "1", label: "13/05/1403", amount: "1,1111 تومان", status: "success" },
-  { id: "2", label: "01/02/1403", amount: "1111111 تومان", status: "موفق" },
-  { id: "3", label: "13/05/1403", amount: "1111 تومان", status: "ناموفق" },
+  { id: "1", date: "13/05/1403", amount: "1,1111 تومان", status: "موفق" },
+  { id: "2", date: "01/02/1403", amount: "1111111 تومان", status: "موفق" },
+  { id: "3", date: "13/05/1403", amount: "1111 تومان", status: "ناموفق" },
 ];
 
 // Helper function to render status with icons
 const renderStatus = (status) => {
+  <CloseCircleFilled />;
   return status === "موفق" ? (
-    <span>
-      <CheckCircleOutlined style={{ color: "green", marginRight: 8 }} />
+    <Flex gap="small">
+      <CheckCircleFilled style={{ color: "green", marginRight: 8 }} />
       {status}
-    </span>
+    </Flex>
   ) : (
-    <span>
-      <CloseCircleOutlined style={{ color: "red", marginRight: 8 }} />
+    <Flex gap="small">
+      <CloseCircleFilled style={{ color: "red", marginRight: 8 }} />
       {status}
-    </span>
+    </Flex>
   );
 };
 
 const columns = [
   {
-    title: "تاریخ",
-    dataIndex: "label",
-    key: "label",
+    title: "date",
+    dataIndex: "date",
+    key: "date",
   },
   {
-    title: "مبلغ",
+    title: "amount",
     dataIndex: "amount",
     key: "amount",
   },
   {
-    title: "وضعیت",
+    title: "status",
     dataIndex: "status",
     key: "status",
     render: renderStatus,
@@ -111,7 +112,7 @@ export default function Report() {
         </Form>
 
         <CustomTable
-          columns={columns}
+          columnsTable={columns}
           tableData={reportsData}
           pagination={true}
         />
