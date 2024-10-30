@@ -67,6 +67,9 @@ const theme = {
       rowHoverBg: token.NavyBlue,
       borderColor:"none"
     },
+    Result:{
+      colorTextHeading:"#fff"
+    }
   },
 };
 
