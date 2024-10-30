@@ -41,7 +41,10 @@ import React from "react";
 import "./custom-table.css";
 import { Table } from "antd";
 
-export default function CustomTable({ tableData, pagination = false }) {
+export default function CustomTable({
+  tableData,
+  pagination = false,
+}) {
   const columns = Object.keys(tableData[0])
     .filter((key) => key !== "id")
     .map((key, index) => ({
@@ -58,7 +61,10 @@ export default function CustomTable({ tableData, pagination = false }) {
       dataSource={tableData}
       pagination={pagination}
       showHeader={false}
-      style={{ backgroundColor: "transparent" }}
+      style={{
+        backgroundColor: "transparent",
+        width: "100%"
+      }}
       rowClassName={(record, index) =>
         index % 2 !== 0 ? "table-row-light" : "table-row-dark"
       }

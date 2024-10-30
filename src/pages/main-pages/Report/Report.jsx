@@ -65,7 +65,7 @@ export default function Report() {
   return (
     <>
       <Text className="card-title">گزارش مالی</Text>
-      <Flex vertical align="center" gap="large">
+      <Flex vertical align="center" gap="large" style={{ width: "100%" }}>
         <Form
           action=""
           style={{ width: "80%", maring: "0 auto" }}
@@ -113,7 +113,6 @@ export default function Report() {
         <CustomTable
           columns={columns}
           tableData={reportsData}
-          style={{ width: "100%" }}
           pagination={true}
         />
       </Flex>
