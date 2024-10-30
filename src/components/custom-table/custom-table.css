@@ -7,3 +7,36 @@
 .table-label {
   color: #fff;
 }
+.custom-table-wrapper .ant-pagination {
+  margin: 0 auto;
+  margin-top: 3rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  display: inline-block;
+}
+.custom-table-wrapper .ant-pagination li:not(:last-child) {
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  margin: 0;
+}
+.custom-table-wrapper .ant-pagination li {
+  /* padding:0 ; */
+  display: inline-block;
+}
+.custom-table-wrapper .ant-pagination li.ant-pagination-item-active {
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pagination-total {
+  color: rgba(255, 255, 255, 0.5);
+}
+.ant-spin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ant-table {
+  width: 100%;
+}

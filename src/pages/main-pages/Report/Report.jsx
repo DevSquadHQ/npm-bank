@@ -12,6 +12,11 @@ const reportsData = [
   { id: "1", date: "13/05/1403", amount: "1,1111 تومان", status: "موفق" },
   { id: "2", date: "01/02/1403", amount: "1111111 تومان", status: "موفق" },
   { id: "3", date: "13/05/1403", amount: "1111 تومان", status: "ناموفق" },
+  { id: "4", date: "13/05/1403", amount: "1111 تومان", status: "موفق" },
+  { id: "5", date: "13/05/1403", amount: "1111 تومان", status: "ناموفق" },
+  { id: "6", date: "13/05/1403", amount: "1111 تومان", status: "موفق" },
+  { id: "7", date: "13/05/1403", amount: "1111 تومان", status: "ناموفق" },
+  { id: "8", date: "13/05/1403", amount: "1111 تومان", status: "موفق" },
 ];
 
 // Helper function to render status with icons

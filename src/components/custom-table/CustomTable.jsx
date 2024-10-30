@@ -46,6 +46,17 @@ export default function CustomTable({
   pagination = false,
   columnsTable,
 }) {
+  const pageSize = 3;
+  const paginationConfig = pagination
+    ? {
+        pageSize: pageSize,
+        showSizeChanger: false,
+      }
+    : false;
+
+  const totalText = (total, range) =>
+    `نمایش ${range[0]} تا ${range[1]} از ${total} مورد`;
+
   const columns = columnsTable
     ? columnsTable
     : Object.keys(tableData[0])
@@ -59,19 +70,27 @@ export default function CustomTable({
         }));
 
   return (
-    <Table
-      columns={columns}
-      dataSource={tableData}
-      pagination={pagination}
-      showHeader={false}
-      style={{
-        backgroundColor: "transparent",
-        width: "100%",
-      }}
-      rowClassName={(record, index) =>
-        index % 2 !== 0 ? "table-row-light" : "table-row-dark"
-      }
-      rowKey="id" // Assuming each data object has a unique `id` property
-    />
+    <>
+      <Table
+        columns={columns}
+        dataSource={tableData}
+        className="custom-table-wrapper"
+        pagination={pagination && paginationConfig}
+        showHeader={false}
+        style={{
+          backgroundColor: "transparent",
+          width: "100%",
+        }}
+        rowClassName={(record, index) =>
+          index % 2 !== 0 ? "table-row-light" : "table-row-dark"
+        }
+        rowKey="id" // Assuming each data object has a unique `id` property
+      />
+      {pagination && (
+        <span className="pagination-total">
+          {totalText(tableData.length, [1, pageSize])} {/* Adjust as needed */}
+        </span>
+      )}
+    </>
   );
 }
