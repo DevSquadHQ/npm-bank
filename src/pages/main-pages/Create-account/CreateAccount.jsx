@@ -18,20 +18,6 @@ export default function CreateAccount() {
   };
 
   // Prepare account data for display in the table
-  // const accData = formValues
-  //   ? [
-  //       { key: "1", label: "شماره سپرده", value: "111111111111" },
-  //       { key: "2", label: "شماره کارت", value: "111111111111" },
-  //       { key: "3", label: "CVV2", value: "1111" },
-  //       { key: "4", label: "تاریخ انقضا", value: "1408/05" },
-  //       { key: "5", label: "رمز اولیه ثابت", value: "111111" },
-  //       {
-  //         key: "6",
-  //         label: "نوع حساب",
-  //         value: formValues["Account-Type"] === "1" ? "جاری" : "قرض‌الحسنه",
-  //       },
-  //     ]
-  //   : [];
   const accData = formValues
     ? [
         { key: "1", label: "شماره سپرده", value: "111111111111"},
