@@ -18,31 +18,17 @@ export default function CreateAccount() {
   };
 
   // Prepare account data for display in the table
-  // const accData = formValues
-  //   ? [
-  //       { key: "1", label: "شماره سپرده", value: "111111111111" },
-  //       { key: "2", label: "شماره کارت", value: "111111111111" },
-  //       { key: "3", label: "CVV2", value: "1111" },
-  //       { key: "4", label: "تاریخ انقضا", value: "1408/05" },
-  //       { key: "5", label: "رمز اولیه ثابت", value: "111111" },
-  //       {
-  //         key: "6",
-  //         label: "نوع حساب",
-  //         value: formValues["Account-Type"] === "1" ? "جاری" : "قرض‌الحسنه",
-  //       },
-  //     ]
-  //   : [];
   const accData = formValues
     ? [
-        { id: "1", label: "شماره سپرده", column2: "111111111111" },
-        { id: "2", label: "شماره کارت", column2: "111111111111" },
-        { id: "3", label: "CVV2", column2: "1111" },
-        { id: "4", label: "تاریخ انقضا", column2: "1408/05" },
-        { id: "5", label: "رمز اولیه ثابت", column2: "111111" },
+        { key: "1", label: "شماره سپرده", value: "111111111111"},
+        { key: "2", label: "شماره کارت", value: "111111111111"},
+        { key: "3", label: "CVV2", value: "1111", status: "موفق" },
+        { key: "4", label: "تاریخ انقضا", value: "1408/05" },
+        { key: "5", label: "رمز اولیه ثابت", value: "111111" },
         {
-          id: "6",
+          key: "6",
           label: "نوع حساب",
-          column2: formValues["Account-Type"] === "1" ? "جاری" : "قرض‌الحسنه",
+          value: formValues["Account-Type"] === "1" ? "جاری" : "قرض‌الحسنه"
         },
       ]
     : [];
