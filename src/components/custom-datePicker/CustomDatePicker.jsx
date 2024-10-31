@@ -11,7 +11,8 @@ export default function CustomDatePicker({
   isRange = false,
   onChange,
   initialValue,
-  maxDate
+  maxDate,
+  minDate
 }) {
 
   const [value, setValue] = useState(isRange ? initialValue : maxDate);
@@ -25,6 +26,7 @@ export default function CustomDatePicker({
       onChange={(value) => onChange(value)}
       render={<InputIcon />}
       maxDate={!isRange ? maxDate : undefined}
+      minDate={!isRange ? minDate : undefined}
       range={isRange}
       calendar={persian}
       locale={persian_fa}

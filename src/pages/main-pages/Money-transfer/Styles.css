@@ -1,0 +1,42 @@
+.centerplacholder::placeholder {
+  text-align: center;
+}
+.centerplacholder {
+  width: 100%;
+  padding: 10px 15px;
+  direction: ltr;
+  background-color: transparent;
+}
+h1 {
+  color: #fff;
+}
+
+.okbutton{
+  background-color: #1677ff;
+  color: #fff;
+  border: none;
+}
+.modal{
+  width: 250px;
+}
+.ant-modal-content{
+  background-color: #374151 !important;
+  width: 70%;
+  position: relative;
+  left: auto;
+  right: 35%;
+
+}
+.ant-modal-title{
+  background-color: #374151;
+  color: red;
+}
+.resendbutton{
+  background-color: #1677ff;
+  color: #fff;
+  border: none;
+}
+.resendbutton:disabled{
+  background-color: #fff;
+  color: #1677ff;
+}

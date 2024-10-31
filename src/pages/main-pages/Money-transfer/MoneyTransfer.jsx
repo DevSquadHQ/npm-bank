@@ -1,7 +1,12 @@
 import React from 'react'
+import "./Styles.css"
+import MoneyTransferForm from './MoneyTransferForm'
 
 export default function MoneyTransfer() {
   return (
-    <div>MoneyTransfer</div>
-  )
+    <>
+    <h1>انتقال وجه</h1>
+    <MoneyTransferForm/>
+ </> 
+ )
 }
