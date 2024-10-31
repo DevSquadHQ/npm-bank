@@ -82,7 +82,7 @@ export default function Report() {
       <CustomTable
         tableData={reportsData}
         isReport={true}
-        // pagination={true}
+        pagination={true}
       />
     </>
   );
