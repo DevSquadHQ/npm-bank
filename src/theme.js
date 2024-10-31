@@ -63,13 +63,22 @@ const theme = {
       bodyBg: token.NavyBlue,
     },
     Table: {
-      colorText:"rgba(255,255,255,0.5)",
+      colorText: "rgba(255,255,255,0.5)",
       rowHoverBg: token.NavyBlue,
-      borderColor:"none"
+      borderColor: "none",
     },
-    Result:{
-      colorTextHeading:"#fff"
-    }
+    Result: {
+      colorTextHeading: "#fff",
+    },
+    Pagination: {
+      colorBgContainer: "transparent",
+      colorText: "rgba(255,255,255,0.5)",
+      itemActiveBg: "transparent",
+      colorPrimary: "#fff",
+      itemActiveBg: "rgba(255,255,255,0.3)",
+      colorPrimaryHover: "#fff",
+      controlHeight: 40,
+    },
   },
 };
 
