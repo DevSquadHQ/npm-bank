@@ -65,7 +65,9 @@ const theme = {
     Table: {
       colorText: "rgba(255,255,255,0.5)",
       rowHoverBg: token.NavyBlue,
-      borderColor: "none",
+      borderColor: "rgba(255,255,255,0.1)",
+      rowSelectedBg:token.NavyBlue,
+      rowSelectedHoverBg:"#191f2a"
     },
     Result: {
       colorTextHeading: "#fff",
