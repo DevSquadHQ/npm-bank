@@ -4,11 +4,23 @@ import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePi
 import { validateDateRange } from "../../../utils/validationUtils";
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
+import CustomTable from "../../../components/custom-table/CustomTable";
 const { Text } = Typography;
+
+const reportsData = [
+  { id: "1", label: "13/05/1403", value: "1,1111 تومان", status: "موفق" },
+  { id: "2", label: "01/02/1403", value: "1111111 تومان", status: "موفق" },
+  { id: "3", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { id: "4", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+  { id: "5", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { id: "6", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+  { id: "7", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { id: "8", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+];
 
 export default function Report() {
   const [form] = Form.useForm();
-  
+
   // Set initial values for the date range
   const initialValues = [
     new DateObject({ calendar: persian })
@@ -67,6 +79,11 @@ export default function Report() {
           </Button>
         </Form.Item>
       </Form>
+      <CustomTable
+        tableData={reportsData}
+        isReport={true}
+        // pagination={true}
+      />
     </>
   );
 }
