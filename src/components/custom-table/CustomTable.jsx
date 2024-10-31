@@ -73,7 +73,7 @@ export default function CustomTable({
         pagination={pagination ? paginationConfig : false}
         showHeader={false}
         className="custom-table-wrapper"
-        style={{ backgroundColor: "transparent" }}
+        style={{ backgroundColor: "transparent", width: "100%" }}
         rowClassName={(record, index) =>
           index % 2 !== 0 ? "table-row-light" : "table-row-dark"
         }
