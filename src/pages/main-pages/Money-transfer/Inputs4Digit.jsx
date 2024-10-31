@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Input } from 'antd';
-import "./Styles.css"
+import "./Transaction.css"
 
 
 const formatNumber = (value) => {

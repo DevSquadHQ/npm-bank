@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Styles.css"
+import "./Transaction.css"
 import MoneyTransferForm from './MoneyTransferForm'
 
 export default function MoneyTransfer() {
