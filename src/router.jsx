@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <ChangePassword />,
       },
       {
-        path: "/accoutList",
+        path: "/accountList",
         element: <AccountList />,
       },
       {
