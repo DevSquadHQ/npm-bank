@@ -3,9 +3,9 @@ import CustomTable from "../../../components/custom-table/CustomTable";
 import { useState } from "react";
 
 const tableData = [
-  { id: "1", label: "شماره سپرده", amount: "1111111111" },
-  { id: "2", label: "شماره کارت", amount: "1111111111111" },
-  { id: "3", label: "نوع حساب", amount: "جاری" },
+  { id: "1", label: "شماره سپرده", value: "1111111111" },
+  { id: "2", label: "شماره کارت", value: "1111111111111" },
+  { id: "3", label: "نوع حساب", value: "جاری" },
 ];
 
 export default function AccountSuspension() {
