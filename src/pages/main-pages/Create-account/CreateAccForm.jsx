@@ -1,15 +1,16 @@
 import React from "react";
 import { Button, Form, InputNumber, Select } from "antd";
 import { validateMessages } from "../../../utils/validationUtils";
+import { useNavigate } from "react-router-dom";
 
-
-export default function CreateAccForm({ onFormSubmit }) {
+export default function CreateAccForm() {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
     console.log("Success", values);
-    // navigate("/accountInfo")
-    onFormSubmit(values); // Pass form values to parent component
+    // onFormSubmit(values); // Pass form values to parent component
+    navigate("/accountInfo", { state: values });
   };
 
   return (
