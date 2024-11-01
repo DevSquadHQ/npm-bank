@@ -1,43 +1,23 @@
-import { useState, useEffect } from "react";
-import { Button, Form, InputNumber, Input, Modal } from "antd";
+import { useState } from "react";
+import { Button, Form, InputNumber, Input } from "antd";
 import { validateMessages } from "../../../utils/validationUtils";
 import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import Inputs4Digit from "./Inputs4Digit";
+import OtpModal from "./OtpModal.jsx";
+import { getToday } from "../../../utils/indentityUtils.js";
 
 export default function MoneyTransferForm() {
   const [form] = Form.useForm();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [counter, setCounter] = useState(10); 
-  const today = new Date();
+  const [open, setOpen] = useState(false);
+
+  const today = getToday();
 
   const onFinish = (values) => {
     console.log("Success", values);
-    setIsModalVisible(true);
-    setCounter(10); 
+    setOpen(true);
   };
-
-  const handleModalOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleResend = () => {
-    setCounter(10); 
-  };
-
-  useEffect(() => {
-    let timer;
-    if (counter > 0) {
-      timer = setInterval(() => {
-        setCounter((prevCounter) => prevCounter - 1);
-      }, 1000);
-    } else if (counter === 0) {
-      clearInterval(timer); 
-    }
-
-    return () => clearInterval(timer);
-  }, [counter]);
 
   return (
     <>
@@ -47,6 +27,7 @@ export default function MoneyTransferForm() {
         onFinish={onFinish}
         requiredMark={false}
         validateMessages={validateMessages}
+        initialValues={{ expirationDate: today }} // Set initial values here
         labelCol={{
           span: 24,
         }}
@@ -106,6 +87,9 @@ export default function MoneyTransferForm() {
             minDate={today}
             calendar={persian}
             locale={persian_fa}
+            onChange={(date) =>
+              form.setFieldValue("expirationDate", date?.format("YYYY/MM/DD"))
+            }
           />
         </Form.Item>
         <Form.Item>
@@ -118,33 +102,8 @@ export default function MoneyTransferForm() {
           </Button>
         </Form.Item>
       </Form>
-{/* ============================ modal =========================== */}
-      <Modal
-        title="رمز پویا"
-        open={isModalVisible}
-        onOk={handleModalOk}
-        footer={[
-          <Button
-          className="resendbutton"
-            key="resend"
-            type="primary"
-            onClick={handleResend}
-            disabled={counter > 0} 
-          >
-            {counter > 0 ? `ارسال مجدد (${counter})` : "ارسال مجدد"}
-          </Button>,
-          <Button
-          className="okbutton"
-            key="submit"
-            type="default"
-            onClick={handleModalOk}
-          >
-            تایید
-          </Button>
-        ]}
-      >
-          <Input  placeholder="رمز پویا ارسال شده را وارد کنید"/>
-      </Modal>
+      {/* ============================ modal =========================== */}
+      <OtpModal open={open} setOpen={setOpen} />
     </>
   );
 }

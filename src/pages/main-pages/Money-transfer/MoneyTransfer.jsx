@@ -5,7 +5,7 @@ import MoneyTransferForm from './MoneyTransferForm'
 export default function MoneyTransfer() {
   return (
     <>
-    <h1>انتقال وجه</h1>
+    <h1 className='card-title'>انتقال وجه</h1>
     <MoneyTransferForm/>
  </> 
  )

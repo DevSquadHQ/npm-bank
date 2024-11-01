@@ -79,6 +79,12 @@ const theme = {
       colorPrimaryHover: "#fff",
       controlHeight: 40,
     },
+    Modal: {
+      contentBg: token.form,
+      headerBg: token.form,
+      titleColor: "#fff",
+      colorIcon: "#fff",
+    },
   },
 };
 

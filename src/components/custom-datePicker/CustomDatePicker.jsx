@@ -4,7 +4,6 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import InputIcon from "react-multi-date-picker/components/input_icon";
 import "../../layouts/identity-layout/identity-layout.css";
 
-
 import { useState } from "react";
 
 export default function CustomDatePicker({
@@ -12,10 +11,11 @@ export default function CustomDatePicker({
   onChange,
   initialValue,
   maxDate,
-  minDate
+  minDate,
 }) {
-
-  const [value, setValue] = useState(isRange ? initialValue : maxDate);
+  const [value, setValue] = useState(
+    isRange ? initialValue : maxDate ? maxDate : minDate
+  );
 
   return (
     <DatePicker

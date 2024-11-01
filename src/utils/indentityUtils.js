@@ -19,7 +19,7 @@ import persian from "react-date-object/calendars/persian";
 //     : "کد ملی نامعتبر است";
 // };
 
-// ***********************  [کد ملی]  Function to validate Iranian National Code *********************** 
+// ***********************  [کد ملی]  Function to validate Iranian National Code ***********************
 
 // Converts Per digits to Eng digits
 const convertPersianToEnglish = (input) =>
@@ -54,11 +54,17 @@ const validateIranianNationalCode = (code) => {
     : { isValid: false, message: "کد ملی نامعتبر است" };
 };
 
-// *********************** [زیر 18] u can just pick from 18 years ago *********************** 
+// *********************** [زیر 18] u can just pick from 18 years ago ***********************
 
 const getEighteenYearsAgo = () => {
   const today = new Date();
   today.setFullYear(today.getFullYear() - 18); // 18 سال از تاریخ امروز کم می‌کنیم
-  return new DateObject({ calendar: persian, date: today });};
+  return new DateObject({ calendar: persian, date: today });
+};
 
-export { validateIranianNationalCode, getEighteenYearsAgo };
+const getToday = () => {
+  const today = new Date();
+  return new DateObject({ calendar: persian, date: today });
+};
+
+export { validateIranianNationalCode, getEighteenYearsAgo, getToday };
