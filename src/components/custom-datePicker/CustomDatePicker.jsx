@@ -21,7 +21,7 @@ export default function CustomDatePicker({
   return (
     <DatePicker
       containerClassName="datePicker-container"
-      render={<CustomInput />}
+      // render={<CustomInput />}
       placeholder={isRange ? "انتخاب محدوده تاریخ" : "انتخاب تاریخ"}
       value={value}
       onChange={(value) => onChange(value)}
