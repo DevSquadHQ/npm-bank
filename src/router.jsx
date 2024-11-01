@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import IdentityLayout from "./layouts/identity-layout/IdentityLayout";
 import Login from "./pages/indentity-pages/login/Login";
@@ -12,6 +11,7 @@ import ChangePassword from "./pages/main-pages/Change-password/ChangePassword.js
 import AccountList from "./pages/main-pages/Account-list/AccountList.jsx";
 import MyAccount from "./pages/main-pages/My-account/MyAccount.jsx";
 import CreateAccount from "./pages/main-pages/Create-account/CreateAccount.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -65,5 +65,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  { element: <NotFound />, path: "*" },
 ]);
-
