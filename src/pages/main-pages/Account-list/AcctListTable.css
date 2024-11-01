@@ -1,0 +1,18 @@
+.table-row-light {
+    background-color: #1f2a37;
+  }
+  
+  .table-row-dark {
+    background-color: #374151;
+  }
+  
+  /* .table-label {
+    color: #fff;
+  } */
+  .table-sub-label{
+    color: rgba(255,255,255,0.5) !important;
+  }
+  .list-row{
+    background-color: #1f2a37;
+
+  }
