@@ -35,7 +35,7 @@ body {
   border-color: #4b5563;
   padding: 10px 15px;
 }
-.rmdp-input {
+.custom-datePicker{
   background-color: transparent !important;
   outline: 2px solid transparent !important;
   box-shadow: none !important;
