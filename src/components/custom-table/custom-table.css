@@ -4,8 +4,17 @@
 .table-row-dark {
   background-color: #374151; /* Dark row background color */
 }
+
 .table-label {
-  color: #fff;
+  color: #fff !important;
+}
+
+.table-sub-label {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.table-row-same-color {
+  background-color: #1F2A37 !important; /* Single color for all rows */
 }
 
 .custom-table-wrapper .ant-pagination {
@@ -49,3 +58,4 @@
 .failure-text {
   color: #9a3338;
 } */
+

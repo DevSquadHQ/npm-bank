@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import CustomTable from "../../../components/custom-table/CustomTable";
 import { useLocation } from "react-router-dom";
 const { Text } = Typography;
-// import greenIcon from "../../../assets/images/successGreen.png";
 import { CheckCircleFilled } from "@ant-design/icons";
+import { accountInfoColumns } from "../../../components/custom-table/tableColumnsConfig";
 
 export default function AcountInfo(props) {
   const { isFirst = true } = props;
@@ -54,7 +54,12 @@ export default function AcountInfo(props) {
           اطلاعات حساب بانکی شما:
         </Text>
       </div>
-      <CustomTable tableData={accData} />
+      <CustomTable
+        tableData={accData}
+        columnsConfig={accountInfoColumns}
+        selectable={false}
+        pagination={false}
+      />
     </>
   );
 }

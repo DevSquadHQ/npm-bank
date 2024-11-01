@@ -6,6 +6,7 @@ import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import CustomTable from "../../../components/custom-table/CustomTable";
 const { Text } = Typography;
+import { reportColumns } from "../../../components/custom-table/tableColumnsConfig";
 
 const reportsData = [
   { key: "1", label: "13/05/1403", value: "1,1111 تومان", status: "موفق" },
@@ -83,6 +84,7 @@ export default function Report() {
         </Form>
         <CustomTable
           tableData={reportsData}
+          columnsConfig={reportColumns}
           pagination={true}
           isReport={true}
         />

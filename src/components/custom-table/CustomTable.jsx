@@ -1,13 +1,17 @@
-import React from "react";
-import "./custom-table.css";
-import { Table } from "antd";
-import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import React, { useState } from "react";
+import { Table, Typography } from "antd";
+const { Text } = Typography;
 
 export default function CustomTable({
   tableData,
-  isReport = false,
+  columnsConfig,
+  selectable = false,
   pagination = false,
+  alternateRowColors = true,
 }) {
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  // pagination 
   const pageSize = 3;
   const paginationConfig = pagination
     ? {
@@ -16,103 +20,33 @@ export default function CustomTable({
       }
     : false;
 
-  const totalText = (total, range) =>
-    `نمایش ${range[0]} تا ${range[1]} از ${total} مورد`;
+  // selectable rows 
+  const rowSelection = selectable
+    ? {
+        type: "radio",
+        selectedRowKeys: selectedRow ? [selectedRow] : [],
+        onChange: (selectedRowKeys) => {
+          setSelectedRow(selectedRowKeys[0]);
+        },
+      }
+    : undefined;
 
-  // Base columns for 2-column table
-  const columns = [
-    {
-      dataIndex: "label",
-      key: "label",
-      align: "right",
-      className: "table-label",
-    },
-    {
-      dataIndex: "value",
-      key: "value",
-      align: "right",
-    },
-    // Conditionally add the status column if `isReport` is true
-    ...(isReport
-      ? [
-          {
-            dataIndex: "status",
-            key: "status",
-            align: "right",
-            render: (status) =>
-              status === "موفق" ? (
-                <>
-                  <CheckCircleFilled
-                    style={{ color: "#7fd952", marginLeft: 8 }}
-                  />
-                  <span>{status}</span>
-                </>
-              ) : (
-                <>
-                  <CloseCircleFilled
-                    style={{ color: "#9a3338", marginLeft: 8 }}
-                  />
-                  <span>{status}</span>
-                </>
-              ),
-          },
-        ]
-      : []),
-  ];
-
-  //if isReport={true} obj format:
-  // { key: "1", label: "شماره سپرده", value: "111111111111", status: "ناموفق" },
-  // { key: "2", label: "شماره کارت", value: "111111111111", status: "موفق" },
-  // { key: "3", label: "CVV2", value: "1111", status: "موفق" },
+  // alternateRowColors 
+  const rowClassName = alternateRowColors
+    ? (record, index) =>
+        index % 2 !== 0 ? "table-row-light" : "table-row-dark"
+    : "table-row-same-color";
 
   return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={tableData}
-        pagination={pagination ? paginationConfig : false}
-        showHeader={false}
-        className="custom-table-wrapper"
-        style={{ backgroundColor: "transparent", width: "100%" }}
-        rowClassName={(record, index) =>
-          index % 2 !== 0 ? "table-row-light" : "table-row-dark"
-        }
-      />
-      {pagination && (
-        <span className="pagination-total">
-          {totalText(tableData.length, [1, pageSize])} {/* Adjust as needed */}
-        </span>
-      )}
-    </>
+    <Table
+      columns={columnsConfig} //  column config 
+      dataSource={tableData}
+      rowSelection={rowSelection}
+      pagination={pagination ? paginationConfig : false}
+      showHeader={false}
+      rowKey="id"
+      style={{ backgroundColor: "transparent", width: "100%" }}
+      rowClassName={rowClassName}
+    />
   );
 }
-
-// import React from "react";
-// import "./custom-table.css";
-// import { Table } from "antd";
-
-// export default function CustomTable({ tableData, pagination = false }) {
-//   const columns = Object.keys(tableData[0])
-//     .filter((key) => key !== "id")
-//     .map((key, index) => ({
-//       title: "",
-//       dataIndex: key,
-//       key,
-//       align: "right",
-//       className: index === 0 ? "table-label" : "",
-//     }));
-
-//   return (
-//     <Table
-//       columns={columns}
-//       dataSource={tableData}
-//       pagination={pagination}
-//       showHeader={false}
-//       style={{ backgroundColor: "transparent" }}
-//       rowClassName={(record, index) =>
-//         index % 2 !== 0 ? "table-row-light" : "table-row-dark"
-//       }
-//       rowKey="id" // Assuming each data object has a unique `id` property
-//     />
-//   );
-// }
