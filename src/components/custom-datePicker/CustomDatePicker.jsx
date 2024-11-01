@@ -36,3 +36,16 @@ export default function CustomDatePicker({
     />
   );
 }
+function CustomInput({ onFocus, value, onChange }) {
+  return (
+    <Flex items="center">
+      <input
+        className="custom-datePicker"
+        onFocus={onFocus}
+        value={value}
+        onChange={onChange}
+      />
+      <CalendarOutlined />
+    </Flex>
+  );
+}
