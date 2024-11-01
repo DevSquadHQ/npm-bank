@@ -1,7 +1,10 @@
-import React from 'react'
+import MoneyTransferForm from './MoneyTransferForm'
 
 export default function MoneyTransfer() {
   return (
-    <div>MoneyTransfer</div>
-  )
+    <>
+    <h1 className='card-title'>انتقال وجه</h1>
+    <MoneyTransferForm/>
+ </> 
+ )
 }
