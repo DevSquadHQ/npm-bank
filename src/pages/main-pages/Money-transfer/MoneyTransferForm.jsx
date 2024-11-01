@@ -49,11 +49,8 @@ export default function MoneyTransferForm() {
           validateFirst
         >
           <InputNumber
-            style={{
-              width: "100%",
-              backgroundColor: "transparent",
-              padding: "10px 15px",
-            }}
+            style={{ width: "100%" }}
+            className="inputStyle"
             placeholder="مبلغ مورد نیاز را وارد کنید"
             min={10000}
             formatter={(value) =>
@@ -68,15 +65,7 @@ export default function MoneyTransferForm() {
           validateTrigger="onChange"
           validateFirst
         >
-          <Input
-            placeholder="CVV2"
-            maxLength={6}
-            style={{
-              width: "100%",
-              backgroundColor: "transparent",
-              padding: "10px 15px",
-            }}
-          />
+          <Input placeholder="CVV2" maxLength={6} className="inputStyle" />
         </Form.Item>
         <Form.Item
           label="تاریخ انقضا"

@@ -67,19 +67,26 @@ body {
 
 /* dash createAcc */
 
-.ant-select-selector{
+.ant-select-selector {
   padding: 10px 15px !important;
 }
 
-.ant-select-arrow{
+.ant-select-arrow {
   color: white !important;
   /* padding-top: 8px; */
 }
 
-.ant-form-item-tooltip{
+.ant-form-item-tooltip {
   padding-right: 8px;
-  color: rgba(255,255,255,0.5)  !important;
+  color: rgba(255, 255, 255, 0.5) !important;
 }
-.ant-input-number-handler-down-inner,.ant-input-number-handler-up-inner{
-  color: white  !important;
+.ant-input-number-handler-down-inner,
+.ant-input-number-handler-up-inner {
+  color: white !important;
+}
+
+.inputStyle {
+  padding: 10px 15px;
+  box-shadow: none;
+  background-color: var(--input-bg);
 }
