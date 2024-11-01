@@ -8,14 +8,14 @@ import CustomTable from "../../../components/custom-table/CustomTable";
 const { Text } = Typography;
 
 const reportsData = [
-  { id: "1", label: "13/05/1403", value: "1,1111 تومان", status: "موفق" },
-  { id: "2", label: "01/02/1403", value: "1111111 تومان", status: "موفق" },
-  { id: "3", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
-  { id: "4", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
-  { id: "5", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
-  { id: "6", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
-  { id: "7", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
-  { id: "8", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+  { key: "1", label: "13/05/1403", value: "1,1111 تومان", status: "موفق" },
+  { key: "2", label: "01/02/1403", value: "1111111 تومان", status: "موفق" },
+  { key: "3", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { key: "4", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+  { key: "5", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { key: "6", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
+  { key: "7", label: "13/05/1403", value: "1111 تومان", status: "ناموفق" },
+  { key: "8", label: "13/05/1403", value: "1111 تومان", status: "موفق" },
 ];
 
 export default function Report() {
