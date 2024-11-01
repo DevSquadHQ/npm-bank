@@ -12,6 +12,7 @@ import AccountList from "./pages/main-pages/Account-list/AccountList.jsx";
 import MyAccount from "./pages/main-pages/My-account/MyAccount.jsx";
 import CreateAccount from "./pages/main-pages/Create-account/CreateAccount.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import AcountInfo from "./pages/main-pages/Acount-info/AcountInfo.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/createAccount",
         element: <CreateAccount />,
+      },
+      {
+        path: "/accountInfo",
+        element: <AcountInfo />,
       },
     ],
   },

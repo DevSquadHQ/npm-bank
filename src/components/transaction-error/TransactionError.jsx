@@ -1,4 +1,4 @@
-import { Button, Result } from "antd";
+import { Result } from "antd";
 import React from "react";
 
 export default function TransactionError(props) {
