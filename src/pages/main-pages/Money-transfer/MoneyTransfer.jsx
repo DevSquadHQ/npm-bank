@@ -1,5 +1,3 @@
-import React from 'react'
-import "./Transaction.css"
 import MoneyTransferForm from './MoneyTransferForm'
 
 export default function MoneyTransfer() {

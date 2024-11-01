@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Input } from "antd";
-import "./Transaction.css";
 
 const formatNumber = (value) => {
   return value.replace(/\D/g, "").replace(/(\d{4})(?=\d)/g, "$1-");
