@@ -40,6 +40,7 @@ export default function OtpModal(props) {
 
   return (
     <Modal
+    centered
       title="رمز پویا"
       open={open}
       onOk={handleModalOk}
