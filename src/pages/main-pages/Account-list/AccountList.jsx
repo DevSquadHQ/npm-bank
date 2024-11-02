@@ -26,7 +26,7 @@ export default function AccountList() {
       accountType: "جاری",
     },
     {
-      id: "24",
+      id: "4",
       status: "مسدود",
       accountNumber: "1111111111",
       accountType: "قرض الحسنه",

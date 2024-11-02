@@ -75,7 +75,7 @@ export const accountListColumns = [
     dataIndex: "action",
     key: "action",
     render: (_, record) => (
-      <Link to={`/accountinfo/${record.id}`} style={{ color: "#4a90e2" }}>
+      <Link to={`/info/${record.id}`} style={{ color: "#4a90e2" }}>
         جزئیات
       </Link>
     ),
