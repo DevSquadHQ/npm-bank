@@ -13,6 +13,7 @@ import MyAccount from "./pages/main-pages/My-account/MyAccount.jsx";
 import CreateAccount from "./pages/main-pages/Create-account/CreateAccount.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AcountInfo from "./pages/main-pages/Acount-info/AcountInfo.jsx";
+import IdTest from "./pages/main-pages/Acount-info/IdTest.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/accountInfo",
         element: <AcountInfo />,
+      },
+      {
+        path: "/Info/:id",
+        element: <IdTest />,
       },
     ],
   },

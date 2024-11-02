@@ -27,6 +27,7 @@ export default function CustomTable({
         selectedRowKeys: selectedRow ? [selectedRow] : [],
         onChange: (selectedRowKeys) => {
           setSelectedRow(selectedRowKeys[0]);
+          console.log({selectedRowKeys});        
         },
       }
     : undefined;
