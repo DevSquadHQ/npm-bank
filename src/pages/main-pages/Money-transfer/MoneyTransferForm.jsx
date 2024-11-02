@@ -27,7 +27,7 @@ export default function MoneyTransferForm() {
         onFinish={onFinish}
         requiredMark={false}
         validateMessages={validateMessages}
-        initialValues={{ expirationDate: today }} // Set initial values here
+        initialValues={{ expirationDate: today.format("YYYY/MM/DD") }} // Set initial values here
         labelCol={{
           span: 24,
         }}
