@@ -54,7 +54,7 @@ export default function MoneyTransferForm() {
             placeholder="مبلغ مورد نیاز را وارد کنید"
             min={10000}
             formatter={(value) =>
-              value ? `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
+              value ? `${value} تومان`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
             }
           />
         </Form.Item>
