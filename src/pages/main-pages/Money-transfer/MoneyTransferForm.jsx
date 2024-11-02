@@ -42,8 +42,9 @@ export default function MoneyTransferForm() {
           <Inputs4Digit />
         </Form.Item>
         <Form.Item
-          label="مبلغ (تومان)"
+          label="مبلغ"
           name="fee"
+          tooltip="حداقل ۱۰ هزار تومان"
           rules={[{ required: true }]}
           validateTrigger="onChange"
           validateFirst
