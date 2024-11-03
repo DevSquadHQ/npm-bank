@@ -73,7 +73,7 @@ export default function MoneyTransferForm() {
           />
           {fee !== undefined && fee >= 10000 && (
             <div style={{ marginTop: "8px", color: "#888" }}>
-               {Num2persian(fee)} تومان
+               {Num2persian(fee/10)} تومان
             </div>
           )}
         </Form.Item>
