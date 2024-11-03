@@ -87,6 +87,15 @@ const theme = {
       titleColor: "#fff",
       colorIcon: "#fff",
     },
+    
+    Menu:{
+      colorBgContainer: "transparent",
+      colorText: "#FFF",
+      itemHoverBg:token.NavyBlue,
+      itemSelectedBg:token.input,
+      itemSelectedColor:"#FFF"
+      
+    }
   },
 };
 
