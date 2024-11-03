@@ -52,7 +52,7 @@ export default function CreateAccForm() {
         <InputNumber
           style={{ width: "100%" }}
           placeholder="مبلغ مورد نیاز را وارد کنید"
-          // addonAfter="تومان"
+          addonAfter="تومان"
           min={10000}
           // defaultValue={10000}
           step={5000}
