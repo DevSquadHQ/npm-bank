@@ -62,12 +62,8 @@ export default function CreateAccForm() {
           // parser={(value) => value?.replace(/\s?تومان|,/g, '')}
         />
       </Form.Item>
-      <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "100%", marginTop: "16px" }}
-        >
+      <Form.Item label>
+        <Button type="primary" htmlType="submit" block>
           افتتاح حساب
         </Button>
       </Form.Item>

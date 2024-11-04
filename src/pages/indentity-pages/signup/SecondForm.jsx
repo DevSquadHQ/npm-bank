@@ -89,16 +89,8 @@ export default function SecondForm(props) {
       >
         <Input.Password className="inputStyle" autoComplete="new-password" />
       </Form.Item>
-      <Form.Item
-        wrapperCol={{
-          span: 24,
-        }}
-      >
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "100%", marginTop: "32px" }}
-        >
+      <Form.Item label>
+        <Button type="primary" htmlType="submit" block>
           ثبت نام
         </Button>
       </Form.Item>
@@ -111,7 +103,7 @@ export default function SecondForm(props) {
           onClick={handleBack}
           type="primary"
           htmlType="submit"
-          style={{ width: "100%" }}
+          block
           ghost
         >
           بازگشت

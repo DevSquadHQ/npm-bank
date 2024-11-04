@@ -56,12 +56,8 @@ export default function ChangePassForm() {
       >
         <Input.Password className="inputStyle" autoComplete="new-password" />
       </Form.Item>
-      <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "100%", marginTop: "32px" }}
-        >
+      <Form.Item name="button" label>
+        <Button type="primary" htmlType="submit" block>
           تایید
         </Button>
       </Form.Item>

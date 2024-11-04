@@ -41,6 +41,7 @@ export default function OtpModal(props) {
   return (
     <Modal
       title="رمز پویا"
+      centered
       open={open}
       onOk={handleModalOk}
       onCancel={handleCancel}
@@ -53,7 +54,9 @@ export default function OtpModal(props) {
             onClick={handleResend}
             disabled={counter > 0}
           >
-            {counter > 0 ? formatTime(counter) : " ارسال مجدد"}
+            {counter > 0
+              ? `ارسال مجدد کد از ${formatTime(counter)}`
+              : " ارسال مجدد"}
           </Button>
           <Button
             className="okbutton"

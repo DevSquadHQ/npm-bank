@@ -20,12 +20,15 @@ export default function AccountSuspension() {
 
   return (
     <Flex vertical gap="large">
-      <CustomTable tableData={tableData} columnsConfig={accountInfoColumns}
+      <CustomTable
+        tableData={tableData}
+        columnsConfig={accountInfoColumns}
         selectable={false}
-        pagination={false}/>
+        pagination={false}
+      />
       <Form form={form} action="" onFinish={onFinish}>
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          <Button type="primary" htmlType="submit" block>
             {isBlock ? "رفع مسدودی" : "مسدود کردن"}
           </Button>
         </Form.Item>

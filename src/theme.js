@@ -12,6 +12,7 @@ const theme = {
     Form: {
       labelColor: "#fff",
       colorError: "#FF7073",
+      itemMarginBottom: 10,
     },
     Input: {
       colorBgContainer: token.input,
@@ -66,8 +67,8 @@ const theme = {
       colorText: "rgba(255,255,255,0.5)",
       rowHoverBg: token.NavyBlue,
       borderColor: "rgba(255,255,255,0.1)",
-      rowSelectedBg:token.NavyBlue,
-      rowSelectedHoverBg:"#191f2a"
+      rowSelectedBg: token.NavyBlue,
+      rowSelectedHoverBg: "#191f2a",
     },
     Result: {
       colorTextHeading: "#fff",
@@ -87,15 +88,14 @@ const theme = {
       titleColor: "#fff",
       colorIcon: "#fff",
     },
-    
-    Menu:{
+
+    Menu: {
       colorBgContainer: "transparent",
       colorText: "#FFF",
-      itemHoverBg:token.NavyBlue,
-      itemSelectedBg:token.input,
-      itemSelectedColor:"#FFF"
-      
-    }
+      itemHoverBg: token.NavyBlue,
+      itemSelectedBg: token.input,
+      itemSelectedColor: "#FFF",
+    },
   },
 };
 

@@ -77,7 +77,7 @@ export default function Report() {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+            <Button type="primary" htmlType="submit" block>
               تایید{" "}
             </Button>
           </Form.Item>

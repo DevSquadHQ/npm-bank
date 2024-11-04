@@ -72,16 +72,8 @@ export default function FirstForm({ onFinish }) {
         />
       </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          span: 24,
-        }}
-      >
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: "100%", marginTop: "32px" }}
-        >
+      <Form.Item label>
+        <Button type="primary" htmlType="submit" block>
           ادامه
         </Button>
       </Form.Item>
