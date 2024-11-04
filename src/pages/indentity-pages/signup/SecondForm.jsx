@@ -2,6 +2,7 @@ import { Button, Form, Input } from "antd";
 import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
 import "../../../layouts/identity-layout/identity-layout.css";
 import {
+  validateConfirmPassword,
   validateMessages,
   validationRules,
 } from "../../../utils/validationUtils";
@@ -73,9 +74,21 @@ export default function SecondForm(props) {
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
           className="inputStyle"
+          autoComplete="new-password"
         />
       </Form.Item>
-
+      <Form.Item
+        label="تکرار رمز عبور "
+        name="confirm-password"
+        dependencies={["password"]}
+        hasFeedback
+        rules={[
+          { required: true, message: "تایید رمز عبور را وارد کنید" },
+          validateConfirmPassword("password"),
+        ]}
+      >
+        <Input.Password className="inputStyle" autoComplete="new-password" />
+      </Form.Item>
       <Form.Item
         wrapperCol={{
           span: 24,

@@ -30,7 +30,10 @@ export default function ChangePassForm() {
       <Form.Item
         label="رمز عبور فعلی"
         name="password"
-        rules={[{ required: true }, { len: 6 ,message:'رمز عبور باید ۶ رقم باشد'}]}
+        rules={[
+          { required: true },
+          { len: 6, message: "رمز عبور باید ۶ رقم باشد" },
+        ]}
       >
         <Input.Password className="inputStyle" autoComplete="new-password" />
       </Form.Item>
@@ -44,11 +47,11 @@ export default function ChangePassForm() {
       <Form.Item
         label="تکرار رمز عبور جدید"
         name="confirm-newPassword"
-        dependencies={["new-password"]}
+        dependencies={["newPassword"]}
         hasFeedback
         rules={[
           { required: true, message: "تایید رمز عبور را وارد کنید" },
-          validateConfirmPassword,
+          validateConfirmPassword("newPassword"),
         ]}
       >
         <Input.Password className="inputStyle" autoComplete="new-password" />

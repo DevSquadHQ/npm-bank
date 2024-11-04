@@ -36,14 +36,16 @@ const validateDateRange = (_, value) => {
   return Promise.reject(new Error("لطفاً هر دو تاریخ را انتخاب کنید"));
 };
 
-const validateConfirmPassword = ({ getFieldValue }) => ({
-  validator(_, value) {
-    if (!value || getFieldValue("newPassword") === value) {
-      return Promise.resolve();
-    }
-    return Promise.reject(new Error("رمز عبور و تایید آن یکسان نیستند"));
-  },
-});
+const validateConfirmPassword =
+  (fieldName) =>
+  ({ getFieldValue }) => ({
+    validator(_, value) {
+      if (!value || getFieldValue(fieldName) === value) {
+        return Promise.resolve();
+      }
+      return Promise.reject(new Error("رمز عبور و تایید آن یکسان نیستند"));
+    },
+  });
 
 export {
   validateMessages,
