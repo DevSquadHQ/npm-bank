@@ -14,7 +14,7 @@ export default function AccountSuspension() {
   const [isBlock, setIsBlock] = useState(false);
   const accountId = "2";
 
-  const onFinish = () => {
+  const handleClick = () => {
     console.log("Account ID:", accountId);
   };
 
@@ -26,13 +26,9 @@ export default function AccountSuspension() {
         selectable={false}
         pagination={false}
       />
-      <Form form={form} action="" onFinish={onFinish}>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" block>
-            {isBlock ? "رفع مسدودی" : "مسدود کردن"}
-          </Button>
-        </Form.Item>
-      </Form>
+      <Button type="primary" htmlType="submit" block onClick={handleClick}>
+        {isBlock ? "رفع مسدودی" : "مسدود کردن"}
+      </Button>
     </Flex>
   );
 }
