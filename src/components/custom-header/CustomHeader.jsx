@@ -1,4 +1,4 @@
-import CustomPopover from "../custom-popover/CustomPopover";
+import CustomDropdown from "../custom-dropdown/CustomDropdown";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout } from "antd";
 import "./custom-header.css";
@@ -24,7 +24,7 @@ export default function CustomHeader(props) {
           <span>+</span>
         </Button>
       </Link>
-      <CustomPopover />
+      <CustomDropdown />
     </Header>
   );
 }

@@ -1,3 +1,5 @@
+import { Divider } from "antd";
+
 const token = {
   NavyBlue: "#111928",
   form: "#1F2A37",
@@ -14,6 +16,7 @@ const theme = {
       colorError: "#FF7073",
       itemMarginBottom: 10,
     },
+
     Input: {
       colorBgContainer: token.input,
       colorTextPlaceholder: "rgba(255,255,255,0.5)",
@@ -53,6 +56,11 @@ const theme = {
     Popover: {
       colorBgElevated: token.input,
       colorText: "#fff",
+    },
+    Dropdown: {
+      colorBgElevated: token.input,
+      colorText: "rgba(255, 255, 255, 0.5)",
+      colorSplit: "rgba(255, 255, 255, 0.1)",
     },
     Menu: {
       itemColor: "#fff",

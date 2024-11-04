@@ -27,8 +27,6 @@ body {
   align-items: center;
 }
 
-
-
 /* auth form footer  */
 .auth-form-footer {
   color: #6b7280;
@@ -73,4 +71,7 @@ body {
   padding: 10px 15px;
   box-shadow: none;
   background-color: var(--input-bg);
+}
+.text-white {
+  color: #fff;
 }
