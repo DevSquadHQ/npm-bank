@@ -1,18 +1,23 @@
 import { Button, Form, Input } from "antd";
+import CustomDatePicker from "../../../components/custom-datePicker/CustomDatePicker";
 import { validateIranianNationalCode } from "../../../utils/indentityUtils";
 import "../../../layouts/identity-layout/identity-layout.css";
+
 import {
   validateMessages,
   validationRules,
 } from "../../../utils/validationUtils";
+import { getEighteenYearsAgo } from "../../../utils/indentityUtils";
 
 export default function FirstForm({ onFinish }) {
   const [form] = Form.useForm();
+  const maxDate = getEighteenYearsAgo().format("YYYY/MM/DD"); // تاریخی که کاربر نباید بعد از آن انتخاب کند
 
   return (
     <Form
       action=""
       // autoComplete="off"
+      initialValues={{ birthDate: maxDate }} // Set initial values here
       onFinish={onFinish}
       noValidate
       requiredMark={false}
@@ -71,7 +76,14 @@ export default function FirstForm({ onFinish }) {
           className="inputStyle"
         />
       </Form.Item>
-
+      <Form.Item label="تاریخ تولد" name="birthDate">
+        <CustomDatePicker
+          maxDate={maxDate}
+          onChange={(date) =>
+            form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
+          }
+        />
+      </Form.Item>
       <Form.Item label>
         <Button type="primary" htmlType="submit" block>
           ادامه
