@@ -51,7 +51,6 @@ export default function MoneyTransferForm() {
         >
           <InputNumber
             style={{ width: "100%" }}
-            className="inputStyle"
             placeholder="مبلغ مورد نیاز را وارد کنید"
             min={10000}
             formatter={(value) =>
