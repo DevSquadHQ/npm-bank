@@ -54,6 +54,7 @@ export default function CustomTable({
       rowKey="id"
       style={{ backgroundColor: "transparent", width: "100%" }}
       rowClassName={rowClassName}
+      rowHoverable={false}
     />
     {pagination && (
       <span className="pagination-total">
