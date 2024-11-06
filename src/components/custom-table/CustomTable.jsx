@@ -20,6 +20,10 @@ export default function CustomTable({
       }
     : false;
 
+    
+  const totalText = (total, range) =>
+    `نمایش ${range[0]} تا ${range[1]} از ${total} مورد`;
+
   // selectable rows 
   const rowSelection = selectable
     ? {
@@ -39,15 +43,23 @@ export default function CustomTable({
     : "table-row-same-color";
 
   return (
+  <>
     <Table
       columns={columnsConfig} //  column config 
       dataSource={tableData}
       rowSelection={rowSelection}
+       className="custom-table-wrapper"
       pagination={pagination ? paginationConfig : false}
       showHeader={false}
       rowKey="id"
       style={{ backgroundColor: "transparent", width: "100%" }}
       rowClassName={rowClassName}
     />
+    {pagination && (
+      <span className="pagination-total">
+        {totalText(tableData.length, [1, pageSize])} {/* Adjust as needed */}
+      </span>
+    )}
+    </>
   );
 }
