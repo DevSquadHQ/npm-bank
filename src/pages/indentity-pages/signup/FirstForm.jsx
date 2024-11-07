@@ -74,9 +74,13 @@ export default function FirstForm({ onFinish }) {
         <Input
           placeholder="لطفا کد ملی خود را وارد کنید"
           className="inputStyle"
+          count={{
+            show: true,
+            max: 10,
+          }}
         />
       </Form.Item>
-      <Form.Item label="تاریخ تولد" name="birthDate">
+      <Form.Item label="تاریخ تولد" name="birthDate" tooltip="بالای ۱۸ سال">
         <CustomDatePicker
           maxDate={maxDate}
           onChange={(date) =>
