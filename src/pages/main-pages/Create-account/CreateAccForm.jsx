@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, InputNumber, Select } from "antd";
 import { validateMessages } from "../../../utils/validationUtils";
 import { useNavigate } from "react-router-dom";
+import Num2persian from "num2persian";
 
 export default function CreateAccForm() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [toTooman, setToTooman] = useState(null); // State for Persian text
+
+  // Handle amount change and update converted amount
+  const handleAmountChange = (value) => {
+    const amountInToomans = value ? Math.floor(value / 10) : null; // Divide by 10 to get Tomans
+    setToTooman(amountInToomans ? Num2persian(amountInToomans) : null); // Convert to Persian text
+  };
 
   const onFinish = (values) => {
     console.log("Success", values);
@@ -52,16 +60,21 @@ export default function CreateAccForm() {
         <InputNumber
           style={{ width: "100%" }}
           placeholder="مبلغ مورد نیاز را وارد کنید"
-          addonAfter="تومان"
-          min={10000}
-          // defaultValue={10000}
+          addonAfter="ریال"
+          min={100000}
+          // defaultValue={100000}
+          onChange={handleAmountChange}
           step={5000}
           formatter={(value) =>
-            value ? `${value} تومان`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
+            value ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
           }
-          // parser={(value) => value?.replace(/\s?تومان|,/g, '')}
         />
       </Form.Item>
+
+      <div className="toomanLabel">
+        {toTooman ? `( ${toTooman} تومان )` : <span>&nbsp;</span>}
+      </div>
+
       <Form.Item label>
         <Button type="primary" htmlType="submit" block>
           افتتاح حساب

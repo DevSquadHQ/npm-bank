@@ -28,11 +28,11 @@ export default function CustomSidebar(props) {
     {
       key: "setting",
       icon: <SettingFilled />,
-      label: "تنظیمات",
+      label: "تنظیمات حساب",
       children: [
         {
           key: "accountSuspension",
-          label: <Link to="/accountSuspension">مسدودسازی حساب</Link>,
+          label: <Link to="/accountSuspension">مسدود / فعال</Link>,
         },
         {
           key: "changePassword",

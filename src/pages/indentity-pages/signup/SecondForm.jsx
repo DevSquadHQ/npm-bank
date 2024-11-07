@@ -20,7 +20,6 @@ export default function SecondForm(props) {
       noValidate
       requiredMark={false} //delete star
       form={form}
-
       validateMessages={validateMessages}
       labelCol={{
         span: 24,
@@ -63,6 +62,7 @@ export default function SecondForm(props) {
           placeholder="لطفا رمز عبور خود را وارد کنید"
           className="inputStyle"
           autoComplete="new-password"
+          showCount
         />
       </Form.Item>
       <Form.Item
@@ -75,7 +75,11 @@ export default function SecondForm(props) {
           validateConfirmPassword("password"),
         ]}
       >
-        <Input.Password className="inputStyle" autoComplete="new-password" />
+        <Input.Password
+          className="inputStyle"
+          autoComplete="new-password"
+          showCount
+        />
       </Form.Item>
       <Form.Item label>
         <Button type="primary" htmlType="submit" block>

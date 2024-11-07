@@ -1,4 +1,4 @@
-import { Divider } from "antd";
+import { Divider, Tooltip } from "antd";
 
 const token = {
   NavyBlue: "#111928",
@@ -6,14 +6,15 @@ const token = {
   input: "#374151",
   button: "#1C64F2",
   fontFamily: "vazir",
+  // Andt tokens
+  colorError: "#FF7073",
+  colorTextBase: "#fff",
 };
 
 const theme = {
   token,
   components: {
     Form: {
-      labelColor: "#fff",
-      colorError: "#FF7073",
       itemMarginBottom: 10,
     },
 
@@ -107,6 +108,9 @@ const theme = {
       itemSelectedBg: token.input,
       itemSelectedColor: "#FFF",
     },
+    Tooltip:{
+      colorBgSpotlight:token.NavyBlue
+    }
   },
 };
 
