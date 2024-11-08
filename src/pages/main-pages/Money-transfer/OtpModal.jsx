@@ -2,19 +2,16 @@ import { useState, useEffect } from "react";
 import { Button, Input, Modal, Flex } from "antd";
 
 export default function OtpModal(props) {
-  const { open, setOpen, setShowResult, setIsSuccess } = props;
+  const { open, setOpen } = props;
   const timer = 60;
   const [counter, setCounter] = useState(timer);
   const otpVal = "123456";
   const [otpValue, setOtpValue] = useState("");
   const handleModalOk = () => {
-    setShowResult(true);
     setOpen(false);
     setCounter(timer);
     if (otpValue === otpVal) {
-      setIsSuccess(true);
     } else {
-      setIsSuccess(false);
     }
   };
   const handleCancel = () => {

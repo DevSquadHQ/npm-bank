@@ -9,7 +9,6 @@ import OtpModal from "./OtpModal.jsx";
 import { getToday } from "../../../utils/indentityUtils.js";
 
 export default function MoneyTransferForm(props) {
-  const { setShowResult, setIsSuccess } = props;
   const [form] = Form.useForm();
   const [open, setOpen] = useState(false);
 
@@ -95,8 +94,6 @@ export default function MoneyTransferForm(props) {
       <OtpModal
         open={open}
         setOpen={setOpen}
-        setShowResult={setShowResult}
-        setIsSuccess={setIsSuccess}
       />
     </>
   );
