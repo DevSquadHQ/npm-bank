@@ -8,7 +8,8 @@ import Inputs4Digit from "./Inputs4Digit";
 import OtpModal from "./OtpModal.jsx";
 import { getToday } from "../../../utils/indentityUtils.js";
 
-export default function MoneyTransferForm() {
+export default function MoneyTransferForm(props) {
+  const { setShowResult, setIsSuccess } = props;
   const [form] = Form.useForm();
   const [open, setOpen] = useState(false);
 
@@ -84,13 +85,19 @@ export default function MoneyTransferForm() {
           />
         </Form.Item>
         <Form.Item label>
-          <Button type="primary" htmlType="submit" block >
+          <Button type="primary" htmlType="submit" block>
             تایید
           </Button>
         </Form.Item>
       </Form>
-      {/* ============================ modal =========================== */}
-      <OtpModal open={open} setOpen={setOpen} />
+
+      {/* modal  */}
+      <OtpModal
+        open={open}
+        setOpen={setOpen}
+        setShowResult={setShowResult}
+        setIsSuccess={setIsSuccess}
+      />
     </>
   );
 }
