@@ -5,9 +5,9 @@ export default function TransactionError(props) {
   const { isSuccess } = props;
   return (
     <Result
-    //default is error just add isSucces to the components
+      //default is error just add isSucces to the components
       status={isSuccess ? "success" : "error"}
-      title={isSuccess?"عملیات با موفقیت انجام شد.":"عملیات ناموفق"}
+      title={isSuccess ? "عملیات با موفقیت انجام شد." : "عملیات ناموفق"}
     />
   );
 }

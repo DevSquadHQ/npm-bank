@@ -5,9 +5,14 @@ export default function OtpModal(props) {
   const { open, setOpen } = props;
   const timer = 60;
   const [counter, setCounter] = useState(timer);
+  const otpVal = "123456";
+  const [otpValue, setOtpValue] = useState("");
   const handleModalOk = () => {
     setOpen(false);
     setCounter(timer);
+    if (otpValue === otpVal) {
+    } else {
+    }
   };
   const handleCancel = () => {
     setOpen(false);
@@ -73,6 +78,8 @@ export default function OtpModal(props) {
         type="password"
         autoComplete="new-password"
         placeholder="رمز پویا ارسال شده را وارد کنید"
+        value={otpValue}
+        onChange={(e) => setOtpValue(e.target.value)}
       />
     </Modal>
   );

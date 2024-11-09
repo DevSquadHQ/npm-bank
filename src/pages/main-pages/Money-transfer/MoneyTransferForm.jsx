@@ -9,7 +9,7 @@ import OtpModal from "./OtpModal.jsx";
 import { getToday } from "../../../utils/indentityUtils.js";
 import Num2persian from 'num2persian';
 
-export default function MoneyTransferForm() {
+export default function MoneyTransferForm(props) {
   const [form] = Form.useForm();
   const [open, setOpen] = useState(false);
   const [fee, setFee] = useState(undefined); 
@@ -99,13 +99,17 @@ export default function MoneyTransferForm() {
           />
         </Form.Item>
         <Form.Item label>
-          <Button type="primary" htmlType="submit" block >
+          <Button type="primary" htmlType="submit" block>
             تایید
           </Button>
         </Form.Item>
       </Form>
-      {/* ============================ modal =========================== */}
-      <OtpModal open={open} setOpen={setOpen} />
+
+      {/* modal  */}
+      <OtpModal
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 }
