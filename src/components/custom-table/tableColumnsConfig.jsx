@@ -15,7 +15,7 @@ export const accountInfoColumns = [
   {
     dataIndex: "value",
     key: "value",
-    render: (text) => <Text className="table-sub-label">{text}</Text>,
+    render: (text,record) => <Text className="table-sub-label" copyable={record.label==="شماره کارت"} >{text}</Text>,
   },
 ];
 
