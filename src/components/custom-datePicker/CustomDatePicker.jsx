@@ -2,7 +2,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { CalendarOutlined } from "@ant-design/icons";
-import "./custom-datePicker.css"
+import "./custom-datePicker.css";
 import { Flex } from "antd";
 
 import { useState } from "react";
@@ -40,6 +40,7 @@ function CustomInput({ onFocus, value, onChange }) {
   return (
     <Flex items="center">
       <input
+        readOnly
         className="custom-datePicker"
         onFocus={onFocus}
         value={value}

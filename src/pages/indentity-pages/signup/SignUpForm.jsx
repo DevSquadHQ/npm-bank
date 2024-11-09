@@ -11,13 +11,14 @@ export default function SignUpForm() {
 
   const onFinishFirst = (data) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
-    setStep(2);
+    // setStep(2);
+    console.log(data);
   };
 
   const onFinishSecond = (data) => {
     const finalData = { ...formData, ...data };
     console.log("Final Submited Data:", finalData);
-    navigate("/login")
+    navigate("/login");
   };
 
   // const onSubmit = (data) => {

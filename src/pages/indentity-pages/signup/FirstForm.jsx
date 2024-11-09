@@ -5,6 +5,7 @@ import "../../../layouts/identity-layout/identity-layout.css";
 
 import {
   validateMessages,
+  validateRequired,
   validationRules,
 } from "../../../utils/validationUtils";
 import { getEighteenYearsAgo } from "../../../utils/indentityUtils";
@@ -80,7 +81,12 @@ export default function FirstForm({ onFinish }) {
           }}
         />
       </Form.Item>
-      <Form.Item label="تاریخ تولد" name="birthDate" tooltip="بالای ۱۸ سال">
+      <Form.Item
+        label="تاریخ تولد"
+        name="birthDate"
+        tooltip="بالای ۱۸ سال"
+        rules={[{ validator: validateRequired }]}
+      >
         <CustomDatePicker
           maxDate={maxDate}
           onChange={(date) =>

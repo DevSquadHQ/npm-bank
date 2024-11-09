@@ -36,6 +36,13 @@ const validateDateRange = (_, value) => {
   return Promise.reject(new Error("لطفاً هر دو تاریخ را انتخاب کنید"));
 };
 
+const validateRequired = (_, value) => {
+  if (value) {
+    return Promise.resolve();
+  }
+  return Promise.reject(new Error("لطفاً یک تاریخ را انتخاب کنید"));
+};
+
 const validateConfirmPassword =
   (fieldName) =>
   ({ getFieldValue }) => ({
@@ -52,4 +59,5 @@ export {
   validationRules,
   validateConfirmPassword,
   validateDateRange,
+  validateRequired,
 };
