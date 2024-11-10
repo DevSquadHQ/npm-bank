@@ -1,17 +1,23 @@
 /* date picker style  */
 .datePicker-container {
-    width: 100%;
-    background-color: var(--input-bg);
-    border-radius: 8px;
-    border-color: #4b5563;
-    padding: 10px 15px;
-  }
-  .custom-datePicker{
-    background-color: transparent !important;
-    outline: 2px solid transparent !important;
-    box-shadow: none !important;
-    color: #fff;
-    padding: 0 !important;
-    border-color: transparent !important;
-    width: 100%;
-  }
+  width: 100%;
+  background-color: #374151;
+  border-radius: 8px;
+  border: 1px solid #4b5563;
+  padding: 8px 15px;
+  transition: all 0.2s,
+}
+
+.datePicker-container:hover {
+  border-color: #4096ff !important;
+  
+}
+
+.custom-datePicker {
+  background-color: transparent !important;
+  outline: 2px solid transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-color: transparent !important;
+  width: 100%;
+}
