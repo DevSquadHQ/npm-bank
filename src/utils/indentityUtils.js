@@ -1,5 +1,6 @@
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
+import gregorian from "react-date-object/calendars/gregorian";
 // const validateIranianNationalCode = (code) => {
 //   if (!/^\d*$/.test(code)) {
 //     return "کد ملی نباید شامل حروف باشد";
@@ -62,9 +63,29 @@ const getEighteenYearsAgo = () => {
   return new DateObject({ calendar: persian, date: today });
 };
 
+const convertDate = (persianDate) => {
+  // const date = new DateObject({ calendar: gregorian, date: persianDate });
+  // Initialize the date with the Persian calendar
+  const date = new DateObject({ calendar: persian, date: persianDate });
+
+  // Reinitialize the date object with the Gregorian calendar
+  const gregorianDate = new DateObject({
+    calendar: gregorian,
+    date: date.toDate(),
+  });
+  console.log(gregorianDate);
+
+  return gregorianDate;
+};
+
 const getToday = () => {
   const today = new Date();
   return new DateObject({ calendar: persian, date: today });
 };
 
-export { validateIranianNationalCode, getEighteenYearsAgo, getToday };
+export {
+  validateIranianNationalCode,
+  getEighteenYearsAgo,
+  getToday,
+  convertDate,
+};

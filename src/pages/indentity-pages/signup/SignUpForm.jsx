@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
+import { convertDate } from "../../../utils/indentityUtils";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
@@ -10,9 +11,14 @@ export default function SignUpForm() {
   const navigate = useNavigate();
 
   const onFinishFirst = (data) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
+    const updatedData = {
+      ...data,
+      // birthDate: convertDate(data.birthDate).format("YYYY/MM/DD"),
+    };
+    setFormData((prevData) => ({ ...prevData, ...updatedData }));
     // setStep(2);
-    console.log(data);
+    console.log(updatedData);
+    console.log(data.birthDate);
   };
 
   const onFinishSecond = (data) => {

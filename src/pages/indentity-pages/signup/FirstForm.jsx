@@ -13,6 +13,7 @@ import { getEighteenYearsAgo } from "../../../utils/indentityUtils";
 export default function FirstForm({ onFinish }) {
   const [form] = Form.useForm();
   const maxDate = getEighteenYearsAgo().format("YYYY/MM/DD"); // تاریخی که کاربر نباید بعد از آن انتخاب کند
+  // const maxDate = getEighteenYearsAgo().format("YYYY/MM/DD"); // تاریخی که کاربر نباید بعد از آن انتخاب کند
 
   return (
     <Form
