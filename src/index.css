@@ -55,9 +55,3 @@ body {
   padding-left: 8px;
   text-align: left;
 }
-
-/* right border of slider */
-.ant-menu-light.ant-menu-root.ant-menu-inline,
-.ant-menu-light.ant-menu-root.ant-menu-vertical {
-  border-inline-end: none;
-}

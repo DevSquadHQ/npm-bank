@@ -78,6 +78,8 @@ const theme = {
       itemHoverBg: token.colorBgBase,
       itemSelectedBg: token.inputBgColor,
       itemSelectedColor: "#FFF",
+      itemHoverColor:"#fff",
+      colorSplit:"none"
     },
     Table: {
       colorText: "rgba(255,255,255,0.5)",
