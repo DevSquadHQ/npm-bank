@@ -37,7 +37,7 @@ export default function FirstForm({ onFinish }) {
         validateTrigger="onChange" // Show validation on every change
         validateFirst // showing only one error
       >
-        <Input placeholder="لطفا نام خود را وارد کنید" className="inputStyle" />
+        <Input placeholder="لطفا نام خود را وارد کنید"   />
       </Form.Item>
 
       <Form.Item
@@ -49,7 +49,7 @@ export default function FirstForm({ onFinish }) {
       >
         <Input
           placeholder="لطفا نام خانوادگی خود را وارد کنید"
-          className="inputStyle"
+           
         />
       </Form.Item>
 
@@ -73,7 +73,7 @@ export default function FirstForm({ onFinish }) {
       >
         <Input
           placeholder="لطفا کد ملی خود را وارد کنید"
-          className="inputStyle"
+           
           count={{
             show: true,
             max: 10,

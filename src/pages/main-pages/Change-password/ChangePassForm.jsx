@@ -35,14 +35,14 @@ export default function ChangePassForm() {
           { len: 6, message: "رمز عبور باید ۶ رقم باشد" },
         ]}
       >
-        <Input.Password className="inputStyle" autoComplete="new-password" />
+        <Input.Password   autoComplete="new-password" />
       </Form.Item>
       <Form.Item
         label="رمز عبور جدید"
         name="newPassword"
         rules={[{ required: true }, validationRules.password]}
       >
-        <Input.Password className="inputStyle" autoComplete="new-password" />
+        <Input.Password   autoComplete="new-password" />
       </Form.Item>
       <Form.Item
         label="تکرار رمز عبور جدید"
@@ -54,7 +54,7 @@ export default function ChangePassForm() {
           validateConfirmPassword("newPassword"),
         ]}
       >
-        <Input.Password className="inputStyle" autoComplete="new-password" />
+        <Input.Password   autoComplete="new-password" />
       </Form.Item>
       <Form.Item name="button" label>
         <Button type="primary" htmlType="submit" block>

@@ -1,15 +1,7 @@
 body {
-  font-family: "vazir";
-}
-
-:root {
-  --navy-blue: #111928; /* Replace with your desired navy blue color */
-  --form-bg: #1f2a37;
-  --input-bg: #374151;
-}
-body {
   margin: 0;
   padding: 0;
+  /* font-family: "vazir"; */
 }
 
 /* global  */
@@ -25,17 +17,6 @@ body {
 }
 .items-center {
   align-items: center;
-}
-
-/* auth form footer  */
-.auth-form-footer {
-  color: #6b7280;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  a {
-    color: #1c64f2;
-  }
 }
 
 /* dash styles */
@@ -58,15 +39,6 @@ body {
   color: white !important;
 }
 
-.inputStyle {
-  padding: 10px 15px;
-  box-shadow: none;
-  background-color: var(--input-bg);
-}
-.text-white {
-  color: #fff;
-}
-
 .toomanLabel {
   text-align: right;
   padding-right: 4px;
@@ -76,3 +48,16 @@ body {
 /* .ant-input-show-count-suffix{
   color: rgba(255,255,255,0.5);
 } */
+
+/* error message style */
+.ant-form-item-explain-error {
+  margin-top: 4px;
+  padding-left: 8px;
+  text-align: left;
+}
+
+/* right border of slider */
+.ant-menu-light.ant-menu-root.ant-menu-inline,
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none;
+}

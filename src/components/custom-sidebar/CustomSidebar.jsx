@@ -48,10 +48,8 @@ export default function CustomSidebar(props) {
       collapsed={collapsed}
       trigger={null}
       width={200}
-      className="custom-sidebar"
     >
       <Menu
-       className="main-menu"
         mode="inline"
         defaultSelectedKeys={["1"]}
         items={items}

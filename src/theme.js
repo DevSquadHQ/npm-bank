@@ -1,51 +1,57 @@
-import { Divider, Tooltip } from "antd";
+import { theme as antdTheme, Typography } from "antd";
 
 const token = {
   NavyBlue: "#111928",
   form: "#1F2A37",
   input: "#374151",
   button: "#1C64F2",
+  inputBgColor: "#374151",
+  inputBorderColor: "#4B5563",
+  greyText: "#9CA3AF",
   fontFamily: "vazir",
   // Andt tokens
+  colorPrimary: "#1c64f2",
+  colorInfo: "#1c64f2",
+  colorBgBase: "#111928",
+  colorBgContainer: "#1f2a37",
   colorError: "#FF7073",
-  colorTextBase: "#fff",
+  // colorTextBase: "#fff",
 };
 
 const theme = {
   token,
+  algorithm: antdTheme.darkAlgorithm,
   components: {
     Form: {
       itemMarginBottom: 10,
     },
-
     Input: {
-      colorBgContainer: token.input,
-      colorTextPlaceholder: "rgba(255,255,255,0.5)",
-      colorBorder: "#4B5563",
-      colorText: "white",
+      colorBgContainer: token.inputBgColor,
+      colorBorder: token.inputBorderColor,
+      paddingBlock: 10,
+      paddingInline: 15,
+      activeShadow: "0 0 0 1px rgba(100, 242, 100, 0.1)",
     },
     Select: {
-      colorBgContainer: token.input,
-      colorTextPlaceholder: "rgba(255,255,255,0.5)",
-      colorBorder: "#4B5563",
+      controlHeight: 44,
+      paddingSM: 16,
+      controlPaddingHorizontal: 36,
+      colorBgContainer: token.inputBgColor,
+      colorBorder: token.inputBorderColor,
       colorText: "white",
-      controlPaddingHorizontal:36,
-      controlHeight:45,
       optionSelectedFontWeight: "inherit",
       optionSelectedBg: token.input,
       optionActiveBg: "rgba(55,65,81,0.5)",
       colorBgElevated: token.NavyBlue,
+      activeShadow: "0 0 0 0 rgba(5, 145, 255, 0.1)",
     },
     InputNumber: {
-      controlHeight:45,
-      colorBgContainer: token.input,
-      colorTextPlaceholder: "rgba(255,255,255,0.5)",
-      colorBorder: "#4B5563",
-      colorText: "white",
-      handleBorderColor: "rgba(255,255,255,0.5)",
-      handleActiveBg: token.form,
+      controlHeight: 44,
+      paddingInline: 15,
       handleWidth: 36,
-      handleBg: "rgba(0,0,0,0.2)",
+      colorBgContainer: token.inputBgColor,
+      colorBorder: token.inputBorderColor,
+      handleBorderColor: "rgba(255,255,255,0.5)",
     },
     Button: {
       controlHeight: "41px",
@@ -53,27 +59,25 @@ const theme = {
       paddingBlock: 8,
     },
     Card: {
-      cardPaddingBase: "0",
-      colorBgContainer: token.form,
-      borderRadiusLG: "8px",
-    },
-    Popover: {
-      colorBgElevated: token.input,
-      colorText: "#fff",
+      colorBgContainer: token.colorBgContainer,
+      colorBorderSecondary: "none",
     },
     Dropdown: {
-      colorBgElevated: token.input,
-      colorText: "rgba(255, 255, 255, 0.5)",
+      colorBgElevated: token.inputBgColor,
+      colorText: token.greyText,
       colorSplit: "rgba(255, 255, 255, 0.1)",
-    },
-    Menu: {
-      itemColor: "#fff",
-      itemBg: "inherit",
+      paddingBlock: 8,
+      controlPaddingHorizontal: 16,
     },
     Layout: {
-      siderBg: token.form,
-      headerBg: token.form,
-      bodyBg: token.NavyBlue,
+      siderBg: token.colorBgContainer,
+      headerBg: token.colorBgContainer,
+    },
+    Menu: {
+      colorText: token.greyText,
+      itemHoverBg: token.colorBgBase,
+      itemSelectedBg: token.inputBgColor,
+      itemSelectedColor: "#FFF",
     },
     Table: {
       colorText: "rgba(255,255,255,0.5)",
@@ -100,17 +104,9 @@ const theme = {
       titleColor: "#fff",
       colorIcon: "#fff",
     },
-
-    Menu: {
-      colorBgContainer: "transparent",
-      colorText: "#FFF",
-      itemHoverBg: token.NavyBlue,
-      itemSelectedBg: token.input,
-      itemSelectedColor: "#FFF",
+    Tooltip: {
+      colorBgSpotlight: token.NavyBlue,
     },
-    Tooltip:{
-      colorBgSpotlight:token.NavyBlue
-    }
   },
 };
 

@@ -1,7 +1,6 @@
 .main-layout {
   min-height: 100svh;
   width: 100svw;
-  background-color: var(--navy-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,22 +13,14 @@
   margin-bottom: 40px !important;
 }
 
-
-
-
-/* warning message style */
-
-.ant-input-password-icon {
-  color: white !important;
-}
-
-.ant-form-item-explain-error {
-  margin-top: 4px;
-  padding-left: 8px;
-  text-align: left;
-}
-
-/* Multie Datepicker style */
-.rmdp-container {
-  color: #fff !important;
+.auth-form-footer {
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 0.5rem;
+  a {
+    color: #1c64f2 !important;
+    margin:0 ;
+  }
 }

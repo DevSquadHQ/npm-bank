@@ -35,7 +35,7 @@ export default function SecondForm(props) {
       >
         <Input
           placeholder="لطفا شماره تلفن خود را وارد کنید"
-          className="inputStyle"
+           
           type="tel"
         />
       </Form.Item>
@@ -48,7 +48,7 @@ export default function SecondForm(props) {
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
           type="email"
-          className="inputStyle"
+           
         />
       </Form.Item>
 
@@ -60,7 +60,7 @@ export default function SecondForm(props) {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-          className="inputStyle"
+           
           autoComplete="new-password"
           showCount
         />
@@ -76,7 +76,7 @@ export default function SecondForm(props) {
         ]}
       >
         <Input.Password
-          className="inputStyle"
+           
           autoComplete="new-password"
           showCount
         />
