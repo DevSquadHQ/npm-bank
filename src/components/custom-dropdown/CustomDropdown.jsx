@@ -1,11 +1,12 @@
 import { Avatar, Dropdown } from "antd";
 import avatar from "../../assets/images/avatar.jpg";
 import { Link } from "react-router-dom";
+import "./custom-dropdown.css"
 
 const items = [
   {
     label: (
-      <div className="text-white">
+      <div className="header-dropdown">
         <strong>Jese Leos</strong>
         <p>name@example.com</p>
       </div>
@@ -16,7 +17,7 @@ const items = [
     type: "divider",
   },
   {
-    label: <Link to="/myAccount">حساب من</Link>,
+    label: <Link to="/myAccount">پروفایل من</Link>,
     key: "3",
   },
   {
@@ -24,16 +25,19 @@ const items = [
     key: "4",
   },
   {
-    label: <Link to="/">خروج</Link>,
-    key: "5",
-  },
-  {
     type: "divider",
   },
   {
-    label: <Link to="/">حذف حساب</Link>,
-    key: "7",
+    label: <Link to="/">خروج</Link>,
+    key: "5",
   },
+  // {
+  //   type: "divider",
+  // },
+  // {
+  //   label: <Link to="/">حذف حساب</Link>,
+  //   key: "7",
+  // },
 ];
 
 export default function CustomDropdown() {

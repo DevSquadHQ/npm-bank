@@ -3,9 +3,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  gap: 1rem;
+  gap: 2rem;
 }
-.custom-header .collapsed-button {
+
+.move-left {
   margin-left: auto;
-  color: #fff!important;
+  display: flex;
+  align-items: center;
+}
+
+.bank-logo {
+  height: 48px !important;
+  margin-right: 1rem;
 }

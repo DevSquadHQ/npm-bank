@@ -59,7 +59,7 @@ export default function MoneyTransferForm(props) {
         >
           <InputNumber
             style={{ width: "100%" }}
-            className="inputStyle"
+             
             placeholder="مبلغ مورد نیاز را وارد کنید"
             min={10000}
             value={fee} 
@@ -82,7 +82,7 @@ export default function MoneyTransferForm(props) {
           validateTrigger="onChange"
           validateFirst
         >
-          <Input placeholder="CVV2" maxLength={6} className="inputStyle" />
+          <Input placeholder="CVV2" maxLength={6}   />
         </Form.Item>
         <Form.Item
           label="تاریخ انقضا"

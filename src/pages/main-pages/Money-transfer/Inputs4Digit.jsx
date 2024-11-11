@@ -37,7 +37,7 @@ const Inputs4Digit = () => {
   const [value, setValue] = useState("");
   return (
     <NumericInput
-      className="inputStyle"
+       
       placeholder="0000 - 0000 - 0000 - 0000"
       value={value}
       onChange={setValue}

@@ -32,7 +32,7 @@ export default function LoginForm() {
       >
         <Input
           placeholder="لطفا ایمیل خود را وارد کنید"
-          className="inputStyle"
+           
         />
       </Form.Item>
       <Form.Item
@@ -42,7 +42,7 @@ export default function LoginForm() {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-          className="inputStyle"
+           
           autoComplete="new-password"
         />
       </Form.Item>

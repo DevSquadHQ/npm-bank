@@ -1,6 +1,6 @@
 import CustomDropdown from "../custom-dropdown/CustomDropdown";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout } from "antd";
+import { Button, Image, Layout } from "antd";
 import "./custom-header.css";
 import { Link } from "react-router-dom";
 
@@ -10,16 +10,22 @@ export default function CustomHeader(props) {
   const { toggle, collapsed } = props;
   return (
     <Header className="custom-header">
-      <Button
-        type="text"
-        size="large"
-        onClick={toggle}
-        className="collapsed-button"
-      >
-        {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-      </Button>
+      <div className="move-left">
+        <Button
+          type="text"
+          size="large"
+          onClick={toggle}
+        >
+          {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        </Button>
+        <Image
+          className="bank-logo"
+          src="/favicon.svg"
+          preview={false}
+        />
+      </div>
       <Link to={"/createAccount"}>
-        <Button type="primary" variant="link">
+        <Button type="primary" >
           ساخت حساب جدید
           <span>+</span>
         </Button>
