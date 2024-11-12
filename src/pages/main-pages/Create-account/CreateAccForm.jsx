@@ -3,6 +3,7 @@ import { Button, Form, InputNumber, Select } from "antd";
 import { validateMessages } from "../../../utils/validationUtils";
 import { useNavigate } from "react-router-dom";
 import Num2persian from "num2persian";
+import { BASE_URL } from "../../../core/http-service";
 
 export default function CreateAccForm() {
   const [form] = Form.useForm();
@@ -15,10 +16,22 @@ export default function CreateAccForm() {
     setToTooman(amountInToomans ? Num2persian(amountInToomans) : null); // Convert to Persian text
   };
 
-  const onFinish = (values) => {
-    console.log("Success", values);
+  const onFinish = async (values) => {
+    // console.log("Success", values);
     // onFormSubmit(values); // Pass form values to parent component
-    navigate("/accountInfo", { state: values });
+
+    const response = await fetch(`${BASE_URL}/Account/register`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    const responseJson = await response.json();
+    console.log(responseJson);
+    // navigate("/accountInfo", { state: values });
   };
 
   return (

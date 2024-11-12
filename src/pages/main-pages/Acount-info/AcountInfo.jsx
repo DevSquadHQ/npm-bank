@@ -6,6 +6,7 @@ const { Text } = Typography;
 import { CheckCircleFilled } from "@ant-design/icons";
 import { accountInfoColumns } from "../../../components/custom-table/tableColumnsConfig";
 
+
 export default function AcountInfo(props) {
   const { isFirst = true } = props;
 

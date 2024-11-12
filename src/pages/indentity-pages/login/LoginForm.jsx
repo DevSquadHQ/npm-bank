@@ -7,7 +7,7 @@ export default function LoginForm() {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(`${BASE_URL}/User/register`, {
       method: "POST",
       headers: {
         accept: "/",

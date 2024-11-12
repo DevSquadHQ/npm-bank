@@ -17,7 +17,7 @@ export default function SignUpForm() {
 
   const onFinishSecond = async (data) => {
     const finalData = { ...formData, ...data };
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(`${BASE_URL}/User/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",
