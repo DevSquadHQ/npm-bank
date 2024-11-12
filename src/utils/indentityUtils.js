@@ -64,18 +64,33 @@ const getEighteenYearsAgo = () => {
 };
 
 const convertDate = (persianDate) => {
-  // const date = new DateObject({ calendar: gregorian, date: persianDate });
-  // Initialize the date with the Persian calendar
-  const date = new DateObject({ calendar: persian, date: persianDate });
+  // اگر ورودی یک آرایه باشد و طول آن 2 باشد (بازه تاریخی)
+  if (Array.isArray(persianDate) && persianDate.length === 2) {
+    return persianDate.map((date) => {
+      // بررسی اگر تاریخ وارد شده معتبر است
+      if (date) {
+        const dateObject = new DateObject({ calendar: persian, date });
+        const gregorianDate = new DateObject({
+          calendar: gregorian,
+          date: dateObject.toDate(),
+        });
+        return gregorianDate.format("YYYY/MM/DD"); // فرمت مورد نظر
+      }
+      return ""; // در صورت عدم وجود تاریخ معتبر، رشته خالی بر می‌گرداند
+    });
+  }
 
-  // Reinitialize the date object with the Gregorian calendar
-  const gregorianDate = new DateObject({
-    calendar: gregorian,
-    date: date.toDate(),
-  });
-  console.log(gregorianDate);
+  // اگر ورودی یک تاریخ تک باشد
+  if (persianDate) {
+    const dateObject = new DateObject({ calendar: persian, date: persianDate });
+    const gregorianDate = new DateObject({
+      calendar: gregorian,
+      date: dateObject.toDate(),
+    });
+    return gregorianDate.format("YYYY/MM/DD"); // فرمت موردنظر
+  }
 
-  return gregorianDate;
+  return ""; // در صورتی که ورودی نامعتبر باشد، رشته خالی برمی‌گرداند
 };
 
 const getToday = () => {

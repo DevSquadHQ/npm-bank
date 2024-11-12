@@ -13,12 +13,10 @@ export default function SignUpForm() {
   const onFinishFirst = (data) => {
     const updatedData = {
       ...data,
-      // birthDate: convertDate(data.birthDate).format("YYYY/MM/DD"),
+      birthDate: convertDate(data.birthDate),
     };
     setFormData((prevData) => ({ ...prevData, ...updatedData }));
-    // setStep(2);
-    console.log(updatedData);
-    console.log(data.birthDate);
+    setStep(2);
   };
 
   const onFinishSecond = (data) => {
@@ -40,7 +38,7 @@ export default function SignUpForm() {
   return (
     <>
       {step === 1 ? (
-        <FirstForm onFinish={onFinishFirst} />
+        <FirstForm onFinish={onFinishFirst} setFormData={setFormData} />
       ) : (
         <SecondForm onFinish={onFinishSecond} handleBack={handleBack} />
       )}

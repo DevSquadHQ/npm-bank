@@ -88,12 +88,7 @@ export default function FirstForm({ onFinish }) {
         tooltip="بالای ۱۸ سال"
         rules={[{ validator: validateRequired }]}
       >
-        <CustomDatePicker
-          maxDate={maxDate}
-          onChange={(date) =>
-            form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
-          }
-        />
+        <CustomDatePicker maxDate={maxDate} />
       </Form.Item>
       <Form.Item label>
         <Button type="primary" htmlType="submit" block>

@@ -7,6 +7,7 @@ import persian from "react-date-object/calendars/persian";
 import CustomTable from "../../../components/custom-table/CustomTable";
 const { Text } = Typography;
 import { reportColumns } from "../../../components/custom-table/tableColumnsConfig";
+import { convertDate } from "../../../utils/indentityUtils";
 
 const reportsData = [
   { key: "1", label: "13/05/1403", value: "1,1111 تومان", status: "موفق" },
@@ -31,7 +32,9 @@ export default function Report() {
   ];
 
   const onFinish = (data) => {
-    console.log("Success", data);
+    if (data.reportRange && data.reportRange.length === 2) {
+      const convertedRange = convertDate(data.reportRange);
+    }
   };
 
   return (
@@ -59,22 +62,7 @@ export default function Report() {
             name="reportRange"
             rules={[{ validator: validateDateRange }]}
           >
-            <CustomDatePicker
-              isRange={true}
-              initialValue={initialValues}
-              onChange={(dateRange) =>
-                form.setFieldValue(
-                  "reportRange",
-
-                  dateRange && dateRange.length === 2
-                    ? [
-                        dateRange[0].format("YYYY/MM/DD"), // تاریخ شروع بازه
-                        dateRange[1].format("YYYY/MM/DD"), // تاریخ پایان بازه
-                      ]
-                    : undefined
-                )
-              }
-            />
+            <CustomDatePicker isRange={true} initialValue={initialValues} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
