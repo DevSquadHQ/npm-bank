@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
+import { BASE_URL } from "../../../core/http-service";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
@@ -14,10 +15,19 @@ export default function SignUpForm() {
     setStep(2);
   };
 
-  const onFinishSecond = (data) => {
+  const onFinishSecond = async (data) => {
     const finalData = { ...formData, ...data };
-    console.log("Final Submited Data:", finalData);
-    navigate("/login")
+    const response = await fetch(BASE_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalData),
+    });
+    const responseJson = await response.json();
+    // localStorage.setItem("token", responseJson.token);
+    navigate("/login");
   };
 
   // const onSubmit = (data) => {

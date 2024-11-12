@@ -1,12 +1,22 @@
 import { Button, Form, Input } from "antd";
 import "../../../layouts/identity-layout/identity-layout.css";
 import { validateMessages } from "../../../utils/validationUtils";
+import { BASE_URL } from "../../../core/http-service";
 
 export default function LoginForm() {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Success", values);
+  const onFinish = async (values) => {
+    const response = await fetch(BASE_URL, {
+      method: "POST",
+      headers: {
+        accept: "/",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    const responseJson = await response.json();
+    // localStorage.setItem("token", responseJson.token);
   };
 
   return (
@@ -30,10 +40,7 @@ export default function LoginForm() {
         name="email"
         rules={[{ required: true }, { type: "email" }]}
       >
-        <Input
-          placeholder="لطفا ایمیل خود را وارد کنید"
-           
-        />
+        <Input placeholder="لطفا ایمیل خود را وارد کنید" />
       </Form.Item>
       <Form.Item
         label="رمز عبور"
@@ -42,7 +49,6 @@ export default function LoginForm() {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-           
           autoComplete="new-password"
         />
       </Form.Item>
