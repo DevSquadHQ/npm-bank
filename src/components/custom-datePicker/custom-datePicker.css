@@ -1,0 +1,17 @@
+
+.datePicker-container {
+    width: 100%;
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    border-color: #4b5563;
+    padding: 10px 15px;
+  }
+  .custom-datePicker{
+    background-color: transparent !important;
+    outline: 2px solid transparent !important;
+    box-shadow: none !important;
+    color: #fff;
+    padding: 0 !important;
+    border-color: transparent !important;
+    width: 100%;
+  }
