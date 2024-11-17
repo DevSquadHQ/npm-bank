@@ -13,11 +13,12 @@ export default function CustomDatePicker({
   initialValue,
   maxDate,
   minDate,
+  onlyMonthPicker
 }) {
   const [value, setValue] = useState(
     isRange ? initialValue : maxDate ? maxDate : minDate
   );
-
+  const dateFormat=onlyMonthPicker?"YYYY/MM":"YYYY/MM/DD";
   return (
     <DatePicker
       containerClassName="datePicker-container"
@@ -31,8 +32,9 @@ export default function CustomDatePicker({
       range={isRange}
       calendar={persian}
       locale={persian_fa}
-      format={"YYYY/MM/DD"}
+      format={dateFormat}
       calendarPosition="bottom-left"
+      onlyMonthPicker
     />
   );
 }

@@ -1,5 +1,5 @@
-import MoneyTransferForm from "./MoneyTransferForm";
-
+import MoneyTransferForm from './MoneyTransferForm'
+import './main.css'
 export default function MoneyTransfer() {
   return (
     <>
