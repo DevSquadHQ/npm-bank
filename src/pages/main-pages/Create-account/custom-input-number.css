@@ -1,0 +1,48 @@
+.ant-input-number-handler-down-inner,
+.ant-input-number-handler-up-inner {
+  color: white !important;
+}
+
+.toomanLabel {
+  text-align: right;
+  padding-right: 4px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9em;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-10px); /* Slide up slightly */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and slide */
+  height: 0; /* Prevent space when hidden */
+  overflow: hidden; /* Ensures no space is reserved */
+}
+
+.toomanLabel.show {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset position */
+  height: auto; /* Allow proper height for content */
+}
+
+/* Wrapper for the InputNumber and clear icon */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: height 0.3s ease; /* Smooth height transition */
+  height: auto; /* Default height adapts to content */
+}
+
+/* Clear icon styles */
+.clear-icon {
+  position: absolute;
+  left: 98px; /* Adjust for RTL layout */
+  opacity: 0; /* Initially hidden */
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+
+/* Hover and focus styles for the clear icon */
+.input-wrapper:hover .clear-icon {
+  opacity: 1;
+}
