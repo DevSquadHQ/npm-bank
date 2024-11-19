@@ -9,7 +9,8 @@ import OtpModal from "./OtpModal.jsx";
 import { getToday } from "../../../utils/indentityUtils.js";
 import Num2persian from "num2persian";
 import "./main.css";
-import { CloseOutlined, StarOutlined } from "@ant-design/icons";
+import "../Create-account/custom-input-number.css";
+import { CloseCircleFilled, StarOutlined } from "@ant-design/icons";
 import CardInput from "./detectbank.jsx";
 
 export default function MoneyTransferForm(props) {
@@ -35,7 +36,6 @@ export default function MoneyTransferForm(props) {
     const parsedValue = parseInt(value, 10);
     const validFee = isNaN(parsedValue) ? undefined : parsedValue;
 
-    
     setFee(validFee);
     form.setFieldsValue({ fee: validFee });
 
@@ -92,7 +92,7 @@ export default function MoneyTransferForm(props) {
             <Dropdown overlay={feeMenu} trigger={["click"]}>
               <StarOutlined style={{ color: "gold", fontSize: "20px" }} />
             </Dropdown>
-            <p style={{ margin: 0 , color:"#fff" }}>مبالغ پیش‌فرض</p>
+            <p style={{ margin: 0, color: "#fff" }}>مبالغ پیش‌فرض</p>
           </Flex>
 
           <div style={{ position: "relative", marginTop: "10px" }}>
@@ -107,13 +107,14 @@ export default function MoneyTransferForm(props) {
                 value ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
               }
             />
-            <CloseOutlined className="deletfee" onClick={clearFeeField} />
+            <CloseCircleFilled className="deletfee" onClick={clearFeeField} />
           </div>
         </Form.Item>
 
         <div className="toomanLabel">
           {toTooman ? `معادل ${toTooman} تومان ` : <span>&nbsp;</span>}
         </div>
+
         <Form.Item
           label="CVV2"
           name="cvvNumber"
@@ -124,12 +125,14 @@ export default function MoneyTransferForm(props) {
           validateTrigger="onChange"
           validateFirst
         >
-          <Input placeholder="CVV2" maxLength={6}   />
+          <Input placeholder="CVV2" maxLength={6} />
         </Form.Item>
         <Form.Item
           label="تاریخ انقضا"
           name="expirationDate"
-          rules={[{ required: true, message: "لطفاً تاریخ انقضا را وارد کنید." }]}
+          rules={[
+            { required: true, message: "لطفاً تاریخ انقضا را وارد کنید." },
+          ]}
         >
           <CustomDatePicker
             onlyMonthPicker

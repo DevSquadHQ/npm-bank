@@ -34,7 +34,7 @@ body {
   padding-right: 8px;
 }
 
-.ant-input-number-handler-down-inner,
+/* .ant-input-number-handler-down-inner,
 .ant-input-number-handler-up-inner {
   color: white !important;
 }
@@ -44,7 +44,7 @@ body {
   padding-right: 4px;
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.9em;
-}
+} */
 /* .ant-input-show-count-suffix{
   color: rgba(255,255,255,0.5);
 } */

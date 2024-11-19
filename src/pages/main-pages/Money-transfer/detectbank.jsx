@@ -1,5 +1,6 @@
 import  { useState } from 'react';
-import {banks}  from './banks.js';
+// import {banks}  from './banks.js';
+import {banks}  from '../../../utils/banksInfoUtils.js';
 import { Input } from 'antd'
 import "./main.css"
 
