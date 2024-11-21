@@ -20,7 +20,7 @@ export default function CustomHeader(props) {
         </Button>
         <Image
           className="bank-logo"
-          src="/favicon.svg"
+          src="images/favicon.svg"
           preview={false}
         />
       </div>

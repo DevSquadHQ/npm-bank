@@ -34,12 +34,12 @@ body {
   padding-right: 8px;
 }
 
-/* .ant-input-number-handler-down-inner,
+.ant-input-number-handler-down-inner,
 .ant-input-number-handler-up-inner {
   color: white !important;
 }
 
-.toomanLabel {
+/* .toomanLabel {
   text-align: right;
   padding-right: 4px;
   color: rgba(255, 255, 255, 0.4);

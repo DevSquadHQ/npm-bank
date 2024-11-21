@@ -1,5 +1,5 @@
 import { Avatar, Dropdown } from "antd";
-import avatar from "../../assets/images/avatar.jpg";
+import avatar from "/images/avatar.jpg";
 import { Link } from "react-router-dom";
 import "./custom-dropdown.css"
 
