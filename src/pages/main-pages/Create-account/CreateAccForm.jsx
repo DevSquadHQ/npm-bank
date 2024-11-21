@@ -20,20 +20,17 @@ export default function CreateAccForm() {
 
   // Handle amount change and update converted amount
   const handleAmountChange = (value) => {
-
     form.setFieldsValue({ Amount: value }); // Update form value
 
     const amountInToomans = value ? Math.floor(value / 10) : null; // Divide by 10 to get Tomans
     setToTooman(amountInToomans ? Num2persian(amountInToomans) : null); // Convert to Persian text
   };
 
-  
   // Clear the InputNumber value and tooman label
   const handleClear = () => {
-    form.resetFields(["Amount"]); 
-    setToTooman(undefined); 
+    form.resetFields(["Amount"]);
+    setToTooman(undefined);
   };
-
 
   //log and navigate
   const onFinish = (values) => {
@@ -91,9 +88,7 @@ export default function CreateAccForm() {
               value ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : ""
             }
           />
-           {form.getFieldValue("Amount") && (
-            <CloseCircleFilled className="clear-icon" onClick={handleClear} />
-          )}
+          <CloseCircleFilled className="clear-icon" onClick={handleClear} />
         </div>
       </Form.Item>
 
@@ -112,7 +107,7 @@ export default function CreateAccForm() {
             label: (
               <span>
                 <img
-                  src={bank.bank_logo} // Dynamically load SVG from bank_logo
+                  src={bank.bank_logo} 
                   alt={bank.bank_name}
                   style={{
                     width: 20,
@@ -124,7 +119,6 @@ export default function CreateAccForm() {
                 {bank.bank_title}
               </span>
             ),
-            // searchText: bank.bank_title, // A field used for search matching
           }))}
           filterOption={
             (input, option) => option?.label.props.children[1]?.includes(input) // Matches directly without case conversion
