@@ -9,7 +9,7 @@ import OtpModal from "./OtpModal.jsx";
 import { getToday } from "../../../utils/indentityUtils.js";
 import Num2persian from "num2persian";
 import "./main.css";
-import "../Create-account/custom-input-number.css";
+import "../../../components/custom-inputNumber/custom-input-number.css";
 import { CloseCircleFilled, StarOutlined } from "@ant-design/icons";
 import CardInput from "./detectbank.jsx";
 

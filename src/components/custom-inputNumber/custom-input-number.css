@@ -1,0 +1,43 @@
+
+.toomanLabel {
+    text-align: right;
+    padding-right: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-10px); /* Slide up slightly */
+    transition: all 0.3s ease; 
+    height: 0; /* Prevent space when hidden */
+    overflow: hidden; 
+  }
+  
+  .toomanLabel.show {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); 
+    height: 1.5em; /* Allow proper height for content */
+  }
+  
+  /* Wrapper for the InputNumber and clear icon */
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Clear icon  */
+  .clear-icon {
+    position: absolute;
+    left: 98px;
+    opacity: 0; 
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: opacity 0.3s;
+    z-index: 10;
+  }
+  
+  .input-wrapper:hover .clear-icon {
+    opacity: 1;
+  }
+  
