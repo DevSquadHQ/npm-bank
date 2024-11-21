@@ -1,5 +1,5 @@
 import React from "react";
-import bankCart from "../../../assets/images/card-header.png";
+import bankCart from "/images/card-header.png";
 import "../../../components/form-container/form-container.css";
 import { Image, Typography } from "antd";
 import CreateAccForm from "./CreateAccForm";
