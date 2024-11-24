@@ -1,23 +1,52 @@
 import { useState, useEffect } from "react";
 import { Button, Input, Modal, Flex } from "antd";
+import { BASE_URL } from "../../../core/http-service";
 
 export default function SignUpOtp(props) {
   const { open, setOpen, phoneNumber } = props;
   const timer = 60;
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
-  const handleModalOk = () => {
+  const handleModalOk = async () => {
     // setOpen(false);
     // setCounter(timer);
-    console.log(otpValue);
+
+    const requestBody = {
+      code: otpValue,
+      phoneNumber: phoneNumber, // Construct an object with a key and value
+    };
+
+    const response = await fetch(`${BASE_URL}/Otp/verify-otp`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+    const responseJson = await response.json();
+    localStorage.setItem("token",responseJson)
   };
   const handleCancel = () => {
     setOpen(false);
     setCounter(timer);
   };
 
-  const handleResend = () => {
+  const handleResend = async () => {
     setCounter(timer);
+    const requestBody = {
+      phoneNumber: phoneNumber, // Construct an object with a key and value
+    };
+    const response = await fetch(`${BASE_URL}/Otp/send-otp`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+    const responseJson = await response.json();
+    console.log(responseJson);
   };
 
   useEffect(() => {
@@ -41,8 +70,8 @@ export default function SignUpOtp(props) {
   };
 
   const onChange = (text) => {
-    console.log("onChange:",typeof text);
-    setOtpValue(text)
+    console.log("onChange:", text);
+    setOtpValue(text);
   };
   //   const onInput = (value) => {
   //     console.log("onInput:", value.target.value);
@@ -84,7 +113,7 @@ export default function SignUpOtp(props) {
       ]}
     >
       <Input.OTP
-        length={5}
+        length={6}
         {...sharedProps}
         style={{ width: "100%", direction: "ltr" }}
       />
