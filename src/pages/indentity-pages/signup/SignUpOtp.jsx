@@ -8,8 +8,8 @@ export default function SignUpOtp(props) {
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
   const handleModalOk = async () => {
-    // setOpen(false);
-    // setCounter(timer);
+    setOpen(false);
+    setCounter(timer);
 
     const requestBody = {
       code: otpValue,
@@ -25,7 +25,7 @@ export default function SignUpOtp(props) {
       body: JSON.stringify(requestBody),
     });
     const responseJson = await response.json();
-    localStorage.setItem("token",responseJson)
+    localStorage.setItem("token", responseJson);
   };
   const handleCancel = () => {
     setOpen(false);
