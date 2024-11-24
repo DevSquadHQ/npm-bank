@@ -41,7 +41,8 @@ export default function SignUpOtp(props) {
   };
 
   const onChange = (text) => {
-    console.log("onChange:", text);
+    console.log("onChange:",typeof text);
+    setOtpValue(text)
   };
   //   const onInput = (value) => {
   //     console.log("onInput:", value.target.value);

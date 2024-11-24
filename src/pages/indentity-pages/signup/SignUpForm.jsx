@@ -9,6 +9,7 @@ export default function SignUpForm() {
   const [formData, setFormData] = useState({});
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  
 
   const navigate = useNavigate();
 
