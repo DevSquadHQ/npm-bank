@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
+import SignUpOtp from "./SignUpOtp";
 
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const [open, setOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,7 +20,9 @@ export default function SignUpForm() {
   const onFinishSecond = (data) => {
     const finalData = { ...formData, ...data };
     console.log("Final Submited Data:", finalData);
-    navigate("/login")
+    setPhoneNumber(finalData.phoneNumber);
+    setOpen(true);
+    // navigate("/login");
   };
 
   // const onSubmit = (data) => {
@@ -37,6 +42,8 @@ export default function SignUpForm() {
       ) : (
         <SecondForm onFinish={onFinishSecond} handleBack={handleBack} />
       )}
+
+      <SignUpOtp open={open} setOpen={setOpen} phoneNumber={phoneNumber} />
     </>
   );
 }
