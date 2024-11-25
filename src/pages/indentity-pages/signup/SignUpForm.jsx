@@ -58,7 +58,7 @@ export default function SignUpForm() {
         const responseJson = await response.json();
         console.log(responseJson);
         setOpen(false);
-        navigate("/login");
+        responseJson && navigate("/login");
       }
     };
     registerReq();
