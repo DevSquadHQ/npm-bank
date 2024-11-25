@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
@@ -10,8 +10,7 @@ export default function SignUpForm() {
   const [formData, setFormData] = useState({});
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
-
-  const navigate = useNavigate();
+  const [otpOtken, setOtpOtken] = useState(localStorage.getItem("token"));
 
   const onFinishFirst = (data) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
@@ -20,8 +19,9 @@ export default function SignUpForm() {
 
   const onFinishSecond = async (data) => {
     const finalData = { ...formData, ...data };
-    console.log("Final Submited Data:", finalData);
+    // console.log("Final Submited Data:", finalData);
     setPhoneNumber(finalData.phoneNumber);
+    setFormData(finalData);
 
     const requestBody = {
       phoneNumber: finalData.phoneNumber, // Construct an object with a key and value
@@ -37,13 +37,32 @@ export default function SignUpForm() {
     });
     // const responseJson = await response.json();
     // console.log(responseJson);
-    // navigate("/login");
   };
 
-  // const onSubmit = (data) => {
-  //   console.log("Submitted Data:", data); // Check if date is included in data
-  //   step === 1 ? setStep(2) : navigate("/login");
-  // };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const registerReq = async () => {
+      if (!otpOtken) {
+        return;
+      } else {
+        const response = await fetch(`${BASE_URL}/User/register`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${otpOtken}`,
+          },
+          body: JSON.stringify(formData),
+        });
+        const responseJson = await response.json();
+        console.log(responseJson);
+        setOpen(false);
+        navigate("/login");
+      }
+    };
+    registerReq();
+  }, [otpOtken, formData]);
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -58,7 +77,12 @@ export default function SignUpForm() {
         <SecondForm onFinish={onFinishSecond} handleBack={handleBack} />
       )}
 
-      <SignUpOtp open={open} setOpen={setOpen} phoneNumber={phoneNumber} />
+      <SignUpOtp
+        open={open}
+        setOpen={setOpen}
+        phoneNumber={phoneNumber}
+        setOtpOtken={setOtpOtken}
+      />
     </>
   );
 }

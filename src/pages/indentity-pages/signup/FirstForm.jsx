@@ -17,7 +17,7 @@ export default function FirstForm({ onFinish }) {
     <Form
       action=""
       // autoComplete="off"
-      initialValues={{ birthDate: maxDate }} // Set initial values here
+      initialValues={{ birthdate: maxDate }} // Set initial values here
       onFinish={onFinish}
       noValidate
       requiredMark={false}
@@ -32,7 +32,7 @@ export default function FirstForm({ onFinish }) {
     >
       <Form.Item
         label="نام"
-        name="username"
+        name="firstName"
         rules={[{ required: true }, { min: 2 }, validationRules.perName]}
         validateTrigger="onChange" // Show validation on every change
         validateFirst // showing only one error
@@ -80,11 +80,11 @@ export default function FirstForm({ onFinish }) {
           }}
         />
       </Form.Item>
-      <Form.Item label="تاریخ تولد" name="birthDate" tooltip="بالای ۱۸ سال">
+      <Form.Item label="تاریخ تولد" name="birthdate" tooltip="بالای ۱۸ سال">
         <CustomDatePicker
           maxDate={maxDate}
           onChange={(date) =>
-            form.setFieldValue("birthDate", date?.format("YYYY/MM/DD"))
+            form.setFieldValue("birthdate", date?.format("YYYY/MM/DD"))
           }
         />
       </Form.Item>

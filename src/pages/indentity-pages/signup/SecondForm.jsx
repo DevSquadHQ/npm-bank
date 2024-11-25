@@ -67,7 +67,7 @@ export default function SecondForm(props) {
       </Form.Item>
       <Form.Item
         label="تکرار رمز عبور "
-        name="confirm-password"
+        name="confirmPassword"
         dependencies={["password"]}
         hasFeedback
         rules={[

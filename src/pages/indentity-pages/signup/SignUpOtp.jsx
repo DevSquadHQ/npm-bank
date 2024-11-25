@@ -3,9 +3,9 @@ import { Button, Input, Modal, Flex } from "antd";
 import { BASE_URL } from "../../../core/http-service";
 
 export default function SignUpOtp(props) {
-  const { open, setOpen, phoneNumber } = props;
+  const { open, setOpen, phoneNumber, setOtpOtken } = props;
   const timer = 60;
-  const otpLength=6;
+  const otpLength = 6;
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
 
@@ -15,7 +15,6 @@ export default function SignUpOtp(props) {
   const handleModalOk = async () => {
     // setOpen(false);
     setCounter(timer);
-
     const requestBody = {
       code: otpValue,
       phoneNumber: phoneNumber, // Construct an object with a key and value
@@ -30,7 +29,8 @@ export default function SignUpOtp(props) {
       body: JSON.stringify(requestBody),
     });
     const responseJson = await response.json();
-    localStorage.setItem("token", responseJson);
+    localStorage.setItem("otp-token", responseJson);
+    setOtpOtken(responseJson);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -50,8 +50,7 @@ export default function SignUpOtp(props) {
       },
       body: JSON.stringify(requestBody),
     });
-    // const responseJson = await response.json();
-    // console.log(responseJson);
+    const responseJson = await response.json();
   };
 
   useEffect(() => {
@@ -82,12 +81,12 @@ export default function SignUpOtp(props) {
   };
 
   const onChange = (text) => {
-    console.log("onChange:", text);
+    // console.log("onChange:", text);
     setOtpValue(text);
-      // Auto-submit if OTP reaches the required length
-      if (text.length === otpLength) {
-        handleModalOk();
-      }
+    // Auto-submit if OTP reaches the required length
+    // if (text.length === otpLength) {
+    //   handleModalOk();
+    // }
   };
   //   const onInput = (value) => {
   //     console.log("onInput:", value.target.value);
