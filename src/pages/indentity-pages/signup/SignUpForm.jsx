@@ -35,8 +35,8 @@ export default function SignUpForm() {
       },
       body: JSON.stringify(requestBody),
     });
-    const responseJson = await response.json();
-    console.log(responseJson);
+    // const responseJson = await response.json();
+    // console.log(responseJson);
     // navigate("/login");
   };
 

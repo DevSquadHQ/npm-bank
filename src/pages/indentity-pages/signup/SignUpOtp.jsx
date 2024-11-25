@@ -1,14 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button, Input, Modal, Flex } from "antd";
 import { BASE_URL } from "../../../core/http-service";
 
 export default function SignUpOtp(props) {
   const { open, setOpen, phoneNumber } = props;
   const timer = 60;
+  const otpLength=6;
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
+
+  // Create a ref for the OTP input
+  const inputRef = useRef(null);
+
   const handleModalOk = async () => {
-    setOpen(false);
+    // setOpen(false);
     setCounter(timer);
 
     const requestBody = {
@@ -45,8 +50,8 @@ export default function SignUpOtp(props) {
       },
       body: JSON.stringify(requestBody),
     });
-    const responseJson = await response.json();
-    console.log(responseJson);
+    // const responseJson = await response.json();
+    // console.log(responseJson);
   };
 
   useEffect(() => {
@@ -62,6 +67,13 @@ export default function SignUpOtp(props) {
     return () => clearInterval(timer);
   }, [counter]);
 
+  // Focus on the first input when the modal is opened
+  useEffect(() => {
+    if (open && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [open]);
+
   // Format the counter to MM:SS
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -72,6 +84,10 @@ export default function SignUpOtp(props) {
   const onChange = (text) => {
     console.log("onChange:", text);
     setOtpValue(text);
+      // Auto-submit if OTP reaches the required length
+      if (text.length === otpLength) {
+        handleModalOk();
+      }
   };
   //   const onInput = (value) => {
   //     console.log("onInput:", value.target.value);
@@ -113,7 +129,8 @@ export default function SignUpOtp(props) {
       ]}
     >
       <Input.OTP
-        length={6}
+        ref={inputRef}
+        length={otpLength}
         {...sharedProps}
         style={{ width: "100%", direction: "ltr" }}
       />
