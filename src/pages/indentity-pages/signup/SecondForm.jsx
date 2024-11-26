@@ -1,4 +1,5 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input,Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import "../../../layouts/identity-layout/identity-layout.css";
 import {
@@ -10,7 +11,7 @@ import {
 export default function SecondForm(props) {
   const [form] = Form.useForm();
 
-  const { onFinish, handleBack } = props;
+  const { onFinish, handleBack, loading } = props;
 
   return (
     <Form
@@ -33,11 +34,7 @@ export default function SecondForm(props) {
         name="phoneNumber"
         rules={[{ required: true }, validationRules.phoneNumber]}
       >
-        <Input
-          placeholder="لطفا شماره تلفن خود را وارد کنید"
-           
-          type="tel"
-        />
+        <Input placeholder="لطفا شماره تلفن خود را وارد کنید" type="tel" />
       </Form.Item>
 
       <Form.Item
@@ -45,11 +42,7 @@ export default function SecondForm(props) {
         name="email"
         rules={[{ required: true }, { type: "email" }]}
       >
-        <Input
-          placeholder="لطفا ایمیل خود را وارد کنید"
-          type="email"
-           
-        />
+        <Input placeholder="لطفا ایمیل خود را وارد کنید" type="email" />
       </Form.Item>
 
       <Form.Item
@@ -60,7 +53,6 @@ export default function SecondForm(props) {
       >
         <Input.Password
           placeholder="لطفا رمز عبور خود را وارد کنید"
-           
           autoComplete="new-password"
           showCount
         />
@@ -75,15 +67,15 @@ export default function SecondForm(props) {
           validateConfirmPassword("password"),
         ]}
       >
-        <Input.Password
-           
-          autoComplete="new-password"
-          showCount
-        />
+        <Input.Password autoComplete="new-password" showCount />
       </Form.Item>
       <Form.Item label>
         <Button type="primary" htmlType="submit" block>
-          ثبت نام
+          {loading ? (
+            <Spin indicator={<LoadingOutlined spin />} />
+          ) : (
+            <>ثبت نام</>
+          )}
         </Button>
       </Form.Item>
       <Form.Item

@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { Button, Input, Modal, Flex } from "antd";
+import { Button, Input, Modal, Flex,Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 import { BASE_URL } from "../../../core/http-service";
 
 export default function SignUpOtp(props) {
@@ -8,12 +10,14 @@ export default function SignUpOtp(props) {
   const otpLength = 6;
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Create a ref for the OTP input
   const inputRef = useRef(null);
 
   const handleModalOk = async () => {
     // setOpen(false);
+    setLoading(true);
     setCounter(timer);
     const requestBody = {
       code: otpValue,
@@ -31,6 +35,7 @@ export default function SignUpOtp(props) {
     const responseJson = await response.json();
     localStorage.setItem("otp-token", responseJson);
     setOtpOtken(responseJson);
+    setLoading(false);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -38,6 +43,7 @@ export default function SignUpOtp(props) {
   };
 
   const handleResend = async () => {
+    setLoading(true);
     setCounter(timer);
     const requestBody = {
       phoneNumber: phoneNumber, // Construct an object with a key and value
@@ -51,6 +57,8 @@ export default function SignUpOtp(props) {
       body: JSON.stringify(requestBody),
     });
     const responseJson = await response.json();
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -81,19 +89,11 @@ export default function SignUpOtp(props) {
   };
 
   const onChange = (text) => {
-    // console.log("onChange:", text);
     setOtpValue(text);
-    // Auto-submit if OTP reaches the required length
-    // if (text.length === otpLength) {
-    //   handleModalOk();
-    // }
   };
-  //   const onInput = (value) => {
-  //     console.log("onInput:", value.target.value);
-  //   };
+
   const sharedProps = {
     onChange,
-    // onInput,
   };
 
   return (
@@ -122,7 +122,11 @@ export default function SignUpOtp(props) {
             type="primary"
             onClick={handleModalOk}
           >
-            ارسال کد
+            {loading ? (
+              <Spin indicator={<LoadingOutlined spin />} />
+            ) : (
+              <> ارسال کد</>
+            )}
           </Button>
         </Flex>,
       ]}

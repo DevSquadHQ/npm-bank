@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import IdentityLayout from "./layouts/identity-layout/IdentityLayout";
 import Login from "./pages/indentity-pages/login/Login";
 import SignUp from "./pages/indentity-pages/signup/SignUp";
@@ -15,46 +15,55 @@ import NotFound from "./pages/NotFound.jsx";
 import AcountInfo from "./pages/main-pages/Acount-info/AcountInfo.jsx";
 import IdTest from "./pages/main-pages/Acount-info/IdTest.jsx";
 
+const isAuthenticated = () => {
+  return localStorage.getItem("login-token") !== null;
+};
+
+function ProtectedRoute({ element }) {
+  return isAuthenticated() ? element : <Navigate to="/login" />;
+}
+
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
       {
-        element: <Home />,
+        element: <ProtectedRoute element={<Home />} />,
         index: true,
       },
       {
         path: "/report",
-        element: <Report />,
+        element: <ProtectedRoute element={<Report />} />,
       },
       {
         path: "/moneyTransfer",
-        element: <MoneyTransfer />,
+        element: <ProtectedRoute element={<MoneyTransfer />} />,
       },
       {
         path: "/accountSuspension",
-        element: <AccountSuspension />,
+        element: <ProtectedRoute element={<AccountSuspension />} />,
       },
       {
         path: "/changePassword",
-        element: <ChangePassword />,
+        element: <ProtectedRoute element={<ChangePassword />} />,
       },
+
       {
         path: "/accountList",
-        element: <AccountList />,
+        element: <ProtectedRoute element={<AccountList />} />,
       },
       {
         path: "/myAccount",
-        element: <MyAccount />,
+        element: <ProtectedRoute element={<MyAccount />} />,
       },
       {
         path: "/createAccount",
-        element: <CreateAccount />,
+        element: <ProtectedRoute element={<CreateAccount />} />,
       },
       {
         path: "/accountInfo",
-        element: <AcountInfo />,
+        element: <ProtectedRoute element={<AcountInfo />} />,
       },
       {
         path: "/Info/:id",

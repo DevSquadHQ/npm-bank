@@ -5,12 +5,14 @@ import SecondForm from "./SecondForm";
 import SignUpOtp from "./SignUpOtp";
 import { BASE_URL } from "../../../core/http-service";
 
+
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otpOtken, setOtpOtken] = useState(localStorage.getItem("token"));
+  const [loading, setLoading] = useState(false);
 
   const onFinishFirst = (data) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
@@ -46,6 +48,7 @@ export default function SignUpForm() {
       if (!otpOtken) {
         return;
       } else {
+        setLoading(true);
         const response = await fetch(`${BASE_URL}/User/register`, {
           method: "POST",
           headers: {
@@ -57,6 +60,7 @@ export default function SignUpForm() {
         });
         const responseJson = await response.json();
         console.log(responseJson);
+        setLoading(false);
         setOpen(false);
         responseJson && navigate("/login");
       }
@@ -74,7 +78,11 @@ export default function SignUpForm() {
       {step === 1 ? (
         <FirstForm onFinish={onFinishFirst} />
       ) : (
-        <SecondForm onFinish={onFinishSecond} handleBack={handleBack} />
+        <SecondForm
+          onFinish={onFinishSecond}
+          handleBack={handleBack}
+          loading={loading}
+        />
       )}
 
       <SignUpOtp

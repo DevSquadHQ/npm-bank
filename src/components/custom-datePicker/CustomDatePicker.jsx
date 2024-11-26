@@ -2,7 +2,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { CalendarOutlined } from "@ant-design/icons";
-import "./custom-datePicker.css"
+import "./custom-datePicker.css";
 import { Flex } from "antd";
 
 import { useState } from "react";
@@ -13,12 +13,12 @@ export default function CustomDatePicker({
   initialValue,
   maxDate,
   minDate,
-  onlyMonthPicker
+  onlyMonthPicker = false,
 }) {
   const [value, setValue] = useState(
     isRange ? initialValue : maxDate ? maxDate : minDate
   );
-  const dateFormat=onlyMonthPicker?"YYYY/MM":"YYYY/MM/DD";
+  const dateFormat = onlyMonthPicker ? "YYYY/MM" : "YYYY/MM/DD";
   return (
     <DatePicker
       containerClassName="datePicker-container"
