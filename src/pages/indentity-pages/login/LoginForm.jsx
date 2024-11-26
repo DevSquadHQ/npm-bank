@@ -1,5 +1,5 @@
 import { Button, Form, Input, notification, Spin } from "antd";
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from "@ant-design/icons";
 import "../../../layouts/identity-layout/identity-layout.css";
 import { validateMessages } from "../../../utils/validationUtils";
 import { BASE_URL } from "../../../core/http-service";
@@ -8,10 +8,10 @@ import { useState } from "react";
 
 export default function LoginForm() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
   const [api, contextHolder] = notification.useNotification();
-  const openNotificationWithIcon = (type) => {
+  const openNotificationWithIcon = (type, message) => {
     api[type]({
       message: "خطا",
       description: message,
@@ -21,6 +21,7 @@ export default function LoginForm() {
   };
 
   const onFinish = async (values) => {
+    setLoading(true);
     const response = await fetch(`${BASE_URL}/User/login`, {
       method: "POST",
 
@@ -35,9 +36,9 @@ export default function LoginForm() {
       localStorage.setItem("login-token", responseJson);
       navigate("/");
     } else {
-      setMessage(responseJson.detail);
-      openNotificationWithIcon("error");
+      openNotificationWithIcon("error", responseJson.detail);
     }
+    setLoading(false);
   };
 
   return (
@@ -77,9 +78,12 @@ export default function LoginForm() {
           />
         </Form.Item>
         <Form.Item label>
-          <Button type="primary" htmlType="submit" block>
-          {/* <Spin indicator={<LoadingOutlined spin />} /> */}
-            ورود به حساب
+          <Button type="primary" htmlType="submit" block disabled={loading}>
+            {loading ? (
+              <Spin indicator={<LoadingOutlined spin />} />
+            ) : (
+              <> ورود به حساب</>
+            )}
           </Button>
         </Form.Item>
         <span className="auth-form-footer">

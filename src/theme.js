@@ -22,6 +22,9 @@ const theme = {
   token,
   algorithm: antdTheme.darkAlgorithm,
   components: {
+    Spin: {
+      colorPrimary: "#fff",
+    },
     Form: {
       itemMarginBottom: 10,
     },
@@ -78,8 +81,8 @@ const theme = {
       itemHoverBg: token.colorBgBase,
       itemSelectedBg: token.inputBgColor,
       itemSelectedColor: "#FFF",
-      itemHoverColor:"#fff",
-      colorSplit:"none"
+      itemHoverColor: "#fff",
+      colorSplit: "none",
     },
     Table: {
       colorText: "rgba(255,255,255,0.5)",
