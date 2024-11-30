@@ -6,7 +6,6 @@ import SignUpOtp from "./SignUpOtp";
 import { BASE_URL } from "../../../core/http-service";
 import { notification, Spin } from "antd";
 
-
 export default function SignUpForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
@@ -47,7 +46,11 @@ export default function SignUpForm() {
       },
       body: JSON.stringify(requestBody),
     });
-    // const responseJson = await response.json();
+    if (response.status === 200) {
+    } else {
+      const responseJson = await response.json();
+      openNotificationWithIcon("error", responseJson);
+    }
     // console.log(responseJson);
   };
 
@@ -68,15 +71,12 @@ export default function SignUpForm() {
           body: JSON.stringify(formData),
         });
         const responseJson = await response.json();
-        setOpen(false);
-        console.log(responseJson);
-        if(response.status===200){
-          
-
-          // navigate("/login");
-        }else{
+        if (response.status === 200) {
+          navigate("/login");
+        } else {
           openNotificationWithIcon("error", responseJson.detail);
           localStorage.removeItem("otp-token");
+          setOpen(false)
         }
       }
     };
@@ -90,7 +90,7 @@ export default function SignUpForm() {
 
   return (
     <>
-     {contextHolder}
+      {contextHolder}
       {step === 1 ? (
         <FirstForm onFinish={onFinishFirst} />
       ) : (

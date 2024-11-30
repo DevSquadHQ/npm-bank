@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Button, Input, Modal, Flex,Spin,notification } from "antd";
+import { Button, Input, Modal, Flex, Spin, notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { BASE_URL } from "../../../core/http-service";
@@ -24,12 +24,12 @@ export default function SignUpOtp(props) {
   // Create a ref for the OTP input
   const inputRef = useRef(null);
 
-  const handleModalOk = async () => {
+  const handleModalOk = async (otpVal) => {
     // setOpen(false);
     setLoading(true);
     setCounter(timer);
     const requestBody = {
-      code: otpValue,
+      code: otpVal,
       phoneNumber: phoneNumber, // Construct an object with a key and value
     };
 
@@ -42,14 +42,15 @@ export default function SignUpOtp(props) {
       body: JSON.stringify(requestBody),
     });
     const responseJson = await response.json();
-    if(response.status===200){
-
+    setLoading(false);
+    if (response.status === 200) {
       localStorage.setItem("otp-token", responseJson);
       setOtpOtken(responseJson);
-    }else{
+    } else {
+      setOpen(false);
+      // setOtpValue("");
       openNotificationWithIcon("error", responseJson.message);
     }
-    setLoading(false);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -103,57 +104,65 @@ export default function SignUpOtp(props) {
   };
 
   const onChange = (text) => {
-    setOtpValue(text);
+    // setOtpValue(text);
+    text.length === otpLength ? handleModalOk(text) : null;
+  };
+
+  const onInput = (event) => {
+    console.log("onInput:", event.target.value);
+    // console.log(event)
   };
 
   const sharedProps = {
     onChange,
+    onInput,
   };
 
   return (
-  <>
-    {contextHolder}
-    <Modal
-      title={`رمز یکبار مصرف به ${phoneNumber} ارسال شد`}
-      centered
-      open={open}
-      onOk={handleModalOk}
-      onCancel={handleCancel}
-      footer={[
-        <Flex justify="space-between" key="flex">
-          <Button
-            key="resend"
-            type="link"
-            style={{ color: "#fff" }}
-            onClick={handleResend}
-            disabled={counter > 0}
-          >
-            {counter > 0
-              ? `ارسال مجدد کد از ${formatTime(counter)}`
-              : " ارسال مجدد"}
-          </Button>
-          <Button
-            className="okbutton"
-            key="submit"
-            type="primary"
-            onClick={handleModalOk}
-          >
-            {loading ? (
-              <Spin indicator={<LoadingOutlined spin />} />
-            ) : (
-              <> ارسال کد</>
-            )}
-          </Button>
-        </Flex>,
-      ]}
-    >
-      <Input.OTP
-        ref={inputRef}
-        length={otpLength}
-        {...sharedProps}
-        style={{ width: "100%", direction: "ltr" }}
-      />
-    </Modal>
-  </>
+    <>
+      {contextHolder}
+      <Modal
+        title={`رمز یکبار مصرف به ${phoneNumber} ارسال شد`}
+        centered
+        open={open}
+        onCancel={handleCancel}
+        footer={[
+          <Flex justify="space-between" key="flex">
+            <Button
+              key="resend"
+              type="link"
+              style={{ color: "#fff" }}
+              onClick={handleResend}
+              disabled={counter > 0}
+            >
+              {counter > 0
+                ? `ارسال مجدد کد از ${formatTime(counter)}`
+                : " ارسال مجدد"}
+            </Button>
+            <Button
+              className="okbutton"
+              key="submit"
+              type="primary"
+              onClick={() => handleModalOk(otpValue)}
+            >
+              {loading ? (
+                <Spin indicator={<LoadingOutlined spin />} />
+              ) : (
+                <> ارسال کد</>
+              )}
+            </Button>
+          </Flex>,
+        ]}
+      >
+        <Input.OTP
+          ref={inputRef}
+          value={otpValue}
+          onChange={(e) => setOtpValue(e.target.value)}
+          length={otpLength}
+          {...sharedProps}
+          style={{ width: "100%", direction: "ltr" }}
+        />
+      </Modal>
+    </>
   );
 }
