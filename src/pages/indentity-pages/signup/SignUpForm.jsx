@@ -4,6 +4,7 @@ import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 import SignUpOtp from "./SignUpOtp";
 import { BASE_URL } from "../../../core/http-service";
+import { notification, Spin } from "antd";
 
 
 export default function SignUpForm() {
@@ -13,6 +14,15 @@ export default function SignUpForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otpOtken, setOtpOtken] = useState(localStorage.getItem("token"));
   const [loading, setLoading] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: "خطا",
+      description: message,
+      showProgress: true,
+      duration: 2,
+    });
+  };
 
   const onFinishFirst = (data) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
@@ -48,7 +58,6 @@ export default function SignUpForm() {
       if (!otpOtken) {
         return;
       } else {
-        setLoading(true);
         const response = await fetch(`${BASE_URL}/User/register`, {
           method: "POST",
           headers: {
@@ -59,10 +68,16 @@ export default function SignUpForm() {
           body: JSON.stringify(formData),
         });
         const responseJson = await response.json();
-        console.log(responseJson);
-        setLoading(false);
         setOpen(false);
-        responseJson && navigate("/login");
+        console.log(responseJson);
+        if(response.status===200){
+          
+
+          // navigate("/login");
+        }else{
+          openNotificationWithIcon("error", responseJson.detail);
+          localStorage.removeItem("otp-token");
+        }
       }
     };
     registerReq();
@@ -75,6 +90,7 @@ export default function SignUpForm() {
 
   return (
     <>
+     {contextHolder}
       {step === 1 ? (
         <FirstForm onFinish={onFinishFirst} />
       ) : (

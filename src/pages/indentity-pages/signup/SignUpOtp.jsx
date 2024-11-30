@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Button, Input, Modal, Flex,Spin } from "antd";
+import { Button, Input, Modal, Flex,Spin,notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { BASE_URL } from "../../../core/http-service";
@@ -11,6 +11,15 @@ export default function SignUpOtp(props) {
   const [counter, setCounter] = useState(timer);
   const [otpValue, setOtpValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: "خطا",
+      description: message,
+      showProgress: true,
+      duration: 2,
+    });
+  };
 
   // Create a ref for the OTP input
   const inputRef = useRef(null);
@@ -33,8 +42,13 @@ export default function SignUpOtp(props) {
       body: JSON.stringify(requestBody),
     });
     const responseJson = await response.json();
-    localStorage.setItem("otp-token", responseJson);
-    setOtpOtken(responseJson);
+    if(response.status===200){
+
+      localStorage.setItem("otp-token", responseJson);
+      setOtpOtken(responseJson);
+    }else{
+      openNotificationWithIcon("error", responseJson.message);
+    }
     setLoading(false);
   };
   const handleCancel = () => {
@@ -97,6 +111,8 @@ export default function SignUpOtp(props) {
   };
 
   return (
+  <>
+    {contextHolder}
     <Modal
       title={`رمز یکبار مصرف به ${phoneNumber} ارسال شد`}
       centered
@@ -138,5 +154,6 @@ export default function SignUpOtp(props) {
         style={{ width: "100%", direction: "ltr" }}
       />
     </Modal>
+  </>
   );
 }
